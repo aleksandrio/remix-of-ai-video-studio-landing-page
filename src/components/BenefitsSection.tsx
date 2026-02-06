@@ -1,43 +1,30 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import {
-  ShieldCheck,
-  TrendingUp,
-  Smile,
-  GraduationCap,
-  Wrench,
-  HeartHandshake,
-} from 'lucide-react'
+import collaborationImage from '@/assets/collaboration.jpg'
 
 const benefits = [
   {
-    icon: ShieldCheck,
     title: 'Odpowiedzialne korzystanie',
     description: 'Uczniowie uczą się etycznych zasad pracy z AI — wiedzą, co wolno, a czego nie.',
   },
   {
-    icon: TrendingUp,
     title: 'Lepsze wyniki w nauce',
     description: 'AI jako tutor pomaga zrozumieć trudne tematy i przygotować się do sprawdzianów.',
   },
   {
-    icon: Smile,
     title: 'Większa motywacja',
     description: 'Interaktywne narzędzia AI sprawiają, że nauka staje się angażująca i ciekawa.',
   },
   {
-    icon: GraduationCap,
     title: 'Kompetencje przyszłości',
     description: 'Umiejętność pracy z AI to jedna z kluczowych kompetencji XXI wieku.',
   },
   {
-    icon: Wrench,
     title: 'Gotowe narzędzia',
     description: 'Uczniowie wychodzą z konkretnymi aplikacjami, z których mogą korzystać od razu.',
   },
   {
-    icon: HeartHandshake,
     title: 'Wsparcie dla nauczycieli',
     description: 'Nauczyciele otrzymują wiedzę, jak integrować AI w codzienną pracę dydaktyczną.',
   },
@@ -48,43 +35,51 @@ export function BenefitsSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="korzysci" className="py-24 lg:py-32 bg-secondary/30" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
+    <section id="korzysci" ref={ref}>
+      {/* Full-bleed image */}
+      <div className="w-full h-[50vh] lg:h-[60vh]">
+        <img
+          src={collaborationImage}
+          alt="Nauczyciel współpracujący z uczniami"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Benefits content */}
+      <div className="py-20 lg:py-32 px-6 lg:px-10 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="max-w-3xl mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-accent-emerald/10 text-accent-emerald px-4 py-2 rounded-full mb-6">
-            <TrendingUp className="w-4 h-4" />
-            <span className="text-sm font-semibold">Dlaczego warto</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-6">
+          <p className="text-xs font-medium tracking-editorial uppercase text-muted-foreground mb-8">
+            Dlaczego warto
+          </p>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-6">
             Korzyści dla szkoły
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             Warsztaty dają uczniom konkretne umiejętności, a nauczycielom spokój — 
             bo wiedzą, że AI jest używane mądrze.
           </p>
         </motion.div>
 
-        {/* Benefits grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Benefits grid — 2 col editorial */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + index * 0.08 }}
-              className="bg-card rounded-2xl p-7 border border-border elevated-shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              transition={{ duration: 0.5, delay: 0.1 + index * 0.06 }}
+              className="bg-background p-8 lg:p-10"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                <benefit.icon className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-bold mb-2">{benefit.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">
+              <span className="text-xs font-semibold tracking-editorial uppercase text-primary mb-5 block">
+                0{index + 1}
+              </span>
+              <h3 className="font-heading text-lg font-semibold mb-3">{benefit.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {benefit.description}
               </p>
             </motion.div>

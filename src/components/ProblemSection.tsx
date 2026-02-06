@@ -1,142 +1,105 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { XCircle, CheckCircle, AlertTriangle, Brain, MessageSquare, Lightbulb } from 'lucide-react'
+import workshopImage from '@/assets/workshop-detail.jpg'
 
 export function ProblemSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const badExamples = [
-    { icon: XCircle, text: 'Kopiowanie gotowych odpowiedzi z ChatGPT' },
-    { icon: XCircle, text: 'Generowanie wypracowań bez zrozumienia' },
-    { icon: XCircle, text: 'Oszukiwanie na testach i sprawdzianach' },
-  ]
-
-  const goodExamples = [
-    { icon: CheckCircle, text: 'AI wyjaśnia trudne tematy krok po kroku' },
-    { icon: CheckCircle, text: 'Personalizowane ćwiczenia i powtórki' },
-    { icon: CheckCircle, text: 'Konwersacje językowe z natywnym AI' },
-  ]
-
   return (
-    <section id="problem" className="py-24 lg:py-32 bg-secondary/30" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Section header */}
+    <section id="problem" ref={ref}>
+      {/* Text content */}
+      <div className="py-20 lg:py-32 px-6 lg:px-10 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="max-w-3xl"
         >
-          <div className="inline-flex items-center gap-2 bg-accent-orange/10 text-accent-orange px-4 py-2 rounded-full mb-6">
-            <AlertTriangle className="w-4 h-4" />
-            <span className="text-sm font-semibold">Czy wiesz, że...</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-6">
+          <p className="text-xs font-medium tracking-editorial uppercase text-muted-foreground mb-8">
+            Problem
+          </p>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-8">
             Uczniowie używają AI.
             <br />
             <span className="text-muted-foreground">Pytanie — jak?</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
             Sztuczna inteligencja jest już w każdej klasie. Problem nie w tym, że uczniowie
             z niej korzystają — ale w tym, jak to robią.
           </p>
         </motion.div>
 
-        {/* Two columns comparison */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Bad way */}
+        {/* Comparison grid */}
+        <div className="grid md:grid-cols-2 gap-px bg-border mt-16">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="bg-card rounded-2xl p-8 border border-destructive/20 elevated-shadow"
+            className="bg-background p-8 lg:p-12"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center">
-                <XCircle className="w-6 h-6 text-destructive" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold">AI jako ściąga</h3>
-                <p className="text-sm text-muted-foreground">Tak dziś wygląda rzeczywistość</p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              {badExamples.map((item, i) => (
-                <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-destructive/5">
-                  <item.icon className="w-5 h-5 text-destructive mt-0.5 shrink-0" />
-                  <span className="text-foreground">{item.text}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 p-4 bg-destructive/5 rounded-xl border border-destructive/10">
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">Efekt?</strong> Uczniowie nie uczą się myśleć.
-                Tracą motywację i umiejętność rozwiązywania problemów.
-              </p>
-            </div>
+            <p className="text-xs font-semibold tracking-editorial uppercase text-accent-terracotta mb-8">
+              AI jako ściąga
+            </p>
+            <ul className="space-y-5">
+              <li className="flex items-start gap-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-terracotta mt-2.5 shrink-0" />
+                <span className="text-foreground leading-relaxed">Kopiowanie gotowych odpowiedzi z ChatGPT</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-terracotta mt-2.5 shrink-0" />
+                <span className="text-foreground leading-relaxed">Generowanie wypracowań bez zrozumienia</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-terracotta mt-2.5 shrink-0" />
+                <span className="text-foreground leading-relaxed">Oszukiwanie na testach i sprawdzianach</span>
+              </li>
+            </ul>
+            <p className="mt-8 text-sm text-muted-foreground leading-relaxed border-t border-border pt-6">
+              <strong className="text-foreground">Efekt:</strong> Uczniowie nie uczą się myśleć.
+              Tracą motywację i umiejętność rozwiązywania problemów.
+            </p>
           </motion.div>
 
-          {/* Good way */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="bg-card rounded-2xl p-8 border border-accent-emerald/20 elevated-shadow"
+            className="bg-background p-8 lg:p-12"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-accent-emerald/10 flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-accent-emerald" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold">AI jako mentor</h3>
-                <p className="text-sm text-muted-foreground">Tak może wyglądać przyszłość</p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              {goodExamples.map((item, i) => (
-                <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-accent-emerald/5">
-                  <item.icon className="w-5 h-5 text-accent-emerald mt-0.5 shrink-0" />
-                  <span className="text-foreground">{item.text}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 p-4 bg-accent-emerald/5 rounded-xl border border-accent-emerald/10">
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">Efekt?</strong> Uczniowie rozumieją materiał głębiej,
-                uczą się szybciej i rozwijają krytyczne myślenie.
-              </p>
-            </div>
+            <p className="text-xs font-semibold tracking-editorial uppercase text-primary mb-8">
+              AI jako mentor
+            </p>
+            <ul className="space-y-5">
+              <li className="flex items-start gap-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
+                <span className="text-foreground leading-relaxed">AI wyjaśnia trudne tematy krok po kroku</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
+                <span className="text-foreground leading-relaxed">Personalizowane ćwiczenia i powtórki</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
+                <span className="text-foreground leading-relaxed">Konwersacje językowe z natywnym AI</span>
+              </li>
+            </ul>
+            <p className="mt-8 text-sm text-muted-foreground leading-relaxed border-t border-border pt-6">
+              <strong className="text-foreground">Efekt:</strong> Uczniowie rozumieją materiał głębiej,
+              uczą się szybciej i rozwijają krytyczne myślenie.
+            </p>
           </motion.div>
         </div>
+      </div>
 
-        {/* Bottom message */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-12 text-center"
-        >
-          <div className="inline-flex flex-wrap items-center justify-center gap-6 bg-card rounded-2xl p-6 border border-border elevated-shadow">
-            <div className="flex items-center gap-2 text-foreground">
-              <Brain className="w-5 h-5 text-primary" />
-              <span className="font-medium">Krytyczne myślenie</span>
-            </div>
-            <div className="flex items-center gap-2 text-foreground">
-              <MessageSquare className="w-5 h-5 text-accent-emerald" />
-              <span className="font-medium">Umiejętności komunikacji</span>
-            </div>
-            <div className="flex items-center gap-2 text-foreground">
-              <Lightbulb className="w-5 h-5 text-accent-orange" />
-              <span className="font-medium">Kreatywne rozwiązywanie</span>
-            </div>
-          </div>
-        </motion.div>
+      {/* Full-bleed image divider */}
+      <div className="w-full h-[50vh] lg:h-[70vh]">
+        <img
+          src={workshopImage}
+          alt="Uczeń pracujący z narzędziami AI"
+          className="w-full h-full object-cover"
+        />
       </div>
     </section>
   )
