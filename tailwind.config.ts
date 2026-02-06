@@ -7,10 +7,10 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: 'calc(var(--spacing) * 4)', // 1rem with 14px base = 14px padding
+      padding: '1rem',
       screens: {
         sm: '40rem',
-        md: '48rem', 
+        md: '48rem',
         lg: '64rem',
         xl: '80rem',
         '2xl': '96rem',
@@ -18,8 +18,12 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Outfit', 'DM Sans', 'system-ui', 'sans-serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        editorial: '0.15em',
+        wide: '0.08em',
       },
       colors: {
         border: "var(--border)",
@@ -46,11 +50,11 @@ export default {
         accent: {
           DEFAULT: "var(--accent)",
           foreground: "var(--accent-foreground)",
-          blue: "var(--accent-blue)",
-          emerald: "var(--accent-emerald)",
-          purple: "var(--accent-purple)",
-          orange: "var(--accent-orange)",
-          sky: "var(--accent-sky)",
+          sage: "var(--accent-sage)",
+          olive: "var(--accent-olive)",
+          terracotta: "var(--accent-terracotta)",
+          sand: "var(--accent-sand)",
+          stone: "var(--accent-stone)",
         },
         popover: {
           DEFAULT: "var(--popover)",
@@ -68,20 +72,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {

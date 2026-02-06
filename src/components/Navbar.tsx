@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Menu, X, GraduationCap } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
 
 const navLinks = [
   { href: '#problem', label: 'Problem' },
@@ -30,85 +30,89 @@ export function Navbar() {
 
   return (
     <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-card/95 backdrop-blur-xl border-b border-border shadow-sm'
+          ? 'bg-background/95 backdrop-blur-md border-b border-border'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+        {/* Logo — centered on desktop */}
         <a
           href="#"
           onClick={(e) => {
             e.preventDefault()
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
-          className="flex items-center gap-2 text-foreground"
+          className="font-heading text-sm font-bold tracking-editorial uppercase text-foreground"
         >
-          <GraduationCap className="w-7 h-7 text-primary" />
-          <span className="font-bold text-lg tracking-tight">AI w szkole</span>
+          AI w szkole
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-muted-foreground hover:text-foreground font-medium transition-colors"
+              className="text-xs font-medium tracking-editorial uppercase text-muted-foreground hover:text-foreground transition-colors duration-300"
             >
               {link.label}
             </a>
           ))}
-          <a
-            href="#kontakt"
-            className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-          >
-            Umów się
-          </a>
         </div>
+
+        {/* CTA */}
+        <a
+          href="#kontakt"
+          className="hidden md:inline-flex text-xs font-semibold tracking-wide uppercase border border-foreground text-foreground px-6 py-3 hover:bg-foreground hover:text-background transition-all duration-300"
+        >
+          Umów się
+        </a>
 
         {/* Mobile toggle */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden p-2 text-foreground"
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-card border-b border-border px-6 pb-6"
-        >
-          <div className="flex flex-col gap-4">
-            {navLinks.map((link) => (
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-background border-b border-border overflow-hidden"
+          >
+            <div className="flex flex-col gap-1 px-6 py-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium tracking-wide uppercase text-foreground py-3 border-b border-border/50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
               <a
-                key={link.href}
-                href={link.href}
-                className="text-foreground font-medium py-2"
+                href="#kontakt"
+                className="mt-4 text-sm font-semibold tracking-wide uppercase border border-foreground text-foreground px-6 py-3 text-center hover:bg-foreground hover:text-background transition-all duration-300"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {link.label}
+                Umów się
               </a>
-            ))}
-            <a
-              href="#kontakt"
-              className="bg-primary text-primary-foreground px-5 py-3 rounded-lg font-semibold text-center hover:opacity-90 transition-opacity"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Umów się
-            </a>
-          </div>
-        </motion.div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }
