@@ -47,7 +47,10 @@ export function Navbar() {
             e.preventDefault()
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
-          className="font-heading text-sm font-bold tracking-editorial uppercase text-foreground"
+          className={`font-heading text-sm font-bold tracking-editorial uppercase transition-colors duration-300 ${
+            isScrolled ? 'text-foreground' : 'text-primary-foreground drop-shadow-md'
+          }`}
+          style={!isScrolled ? { textShadow: '0 1px 8px rgba(0,0,0,0.4)' } : undefined}
         >
           AI w szkole
         </a>
@@ -58,7 +61,12 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-xs font-medium tracking-editorial uppercase text-muted-foreground hover:text-foreground transition-colors duration-300"
+              className={`text-xs font-medium tracking-editorial uppercase transition-colors duration-300 ${
+                isScrolled
+                  ? 'text-muted-foreground hover:text-foreground'
+                  : 'text-primary-foreground/80 hover:text-primary-foreground drop-shadow-md'
+              }`}
+              style={!isScrolled ? { textShadow: '0 1px 8px rgba(0,0,0,0.4)' } : undefined}
             >
               {link.label}
             </a>
@@ -68,7 +76,12 @@ export function Navbar() {
         {/* CTA */}
         <a
           href="#kontakt"
-          className="hidden md:inline-flex text-xs font-semibold tracking-wide uppercase border border-foreground text-foreground px-6 py-3 hover:bg-foreground hover:text-background transition-all duration-300"
+          className={`hidden md:inline-flex text-xs font-semibold tracking-wide uppercase px-6 py-3 transition-all duration-300 ${
+            isScrolled
+              ? 'border border-foreground text-foreground hover:bg-foreground hover:text-background'
+              : 'border border-primary-foreground/70 text-primary-foreground hover:bg-primary-foreground/20 drop-shadow-md'
+          }`}
+          style={!isScrolled ? { textShadow: '0 1px 8px rgba(0,0,0,0.4)' } : undefined}
         >
           Umów się
         </a>
@@ -76,7 +89,9 @@ export function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-foreground"
+          className={`md:hidden p-2 transition-colors duration-300 ${
+            isScrolled ? 'text-foreground' : 'text-primary-foreground drop-shadow-md'
+          }`}
         >
           {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
