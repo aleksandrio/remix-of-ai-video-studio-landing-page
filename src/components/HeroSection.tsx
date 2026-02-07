@@ -9,10 +9,10 @@ export function HeroSection() {
         <img
           src={heroImage}
           alt="Uczniowie pracujący z AI w nowoczesnej klasie"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover brightness-[0.45]"
         />
-        {/* Gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/70" />
+        {/* Extra gradient overlay for text zone */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
 
         {/* Hero content overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 drop-shadow-lg" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.4)' }}>
