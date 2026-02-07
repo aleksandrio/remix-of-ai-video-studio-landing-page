@@ -44,7 +44,7 @@ export function ContactSection() {
             </div>
 
             <p className="mt-12 text-sm text-background/50 leading-relaxed max-w-md">
-              Pierwsza rozmowa jest bezpłatna. Opowiem o programie, odpowiem na pytania
+              Szkolenie jest bezpłatne. Opowiem o programie, odpowiem na pytania
               i dostosujemy warsztaty do potrzeb Twojej szkoły.
             </p>
           </motion.div>
@@ -66,7 +66,7 @@ export function ContactSection() {
                     Email
                   </p>
                   <p className="text-xl sm:text-2xl font-heading font-semibold">
-                    kontakt@aiwszkole.pl
+                    kowal.alek@gmail.com
                   </p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-background/30 group-hover:text-background group-hover:translate-x-1 transition-all duration-300" />
@@ -81,7 +81,7 @@ export function ContactSection() {
                     Telefon
                   </p>
                   <p className="text-xl sm:text-2xl font-heading font-semibold">
-                    +48 123 456 789
+                    +48 882 568 124
                   </p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-background/30 group-hover:text-background group-hover:translate-x-1 transition-all duration-300" />
