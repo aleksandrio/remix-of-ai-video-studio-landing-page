@@ -15,12 +15,12 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
 
         {/* Hero content overlay */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 drop-shadow-lg" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.4)' }}>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6" style={{ textShadow: '0 2px 24px rgba(0,0,0,0.7), 0 1px 6px rgba(0,0,0,0.5)' }}>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-xs sm:text-sm font-medium tracking-editorial uppercase text-primary-foreground/80 mb-6"
+            className="text-xs sm:text-sm font-semibold tracking-editorial uppercase text-white mb-6"
           >
             Warsztaty AI dla szkół
           </motion.p>
@@ -29,7 +29,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.15 }}
-            className="font-heading text-4xl sm:text-6xl lg:text-8xl font-bold tracking-tight text-primary-foreground leading-[1.05] max-w-5xl"
+            className="font-heading text-4xl sm:text-6xl lg:text-8xl font-bold tracking-tight text-white leading-[1.05] max-w-5xl"
           >
             AI to mentor,
             <br />
@@ -40,7 +40,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-8 text-base sm:text-lg text-primary-foreground/85 max-w-xl leading-relaxed font-light"
+            className="mt-8 text-base sm:text-lg text-white max-w-xl leading-relaxed font-normal"
           >
             Uczę uczniów, jak mądrze korzystać ze sztucznej inteligencji — 
             do nauki, rozwoju i kreatywności.
@@ -54,13 +54,13 @@ export function HeroSection() {
           >
             <a
               href="#kontakt"
-              className="text-sm font-semibold tracking-wide uppercase bg-primary-foreground text-foreground px-10 py-4 hover:bg-primary-foreground/90 transition-all duration-300"
+              className="text-sm font-semibold tracking-wide uppercase bg-white text-foreground px-10 py-4 hover:bg-white/90 transition-all duration-300"
             >
               Zamów warsztaty
             </a>
             <a
               href="#program"
-              className="text-sm font-semibold tracking-wide uppercase border border-primary-foreground text-primary-foreground px-10 py-4 hover:bg-primary-foreground/10 transition-all duration-300"
+              className="text-sm font-semibold tracking-wide uppercase border-2 border-white text-white px-10 py-4 hover:bg-white/15 transition-all duration-300"
             >
               Zobacz program
             </a>
@@ -74,13 +74,13 @@ export function HeroSection() {
           transition={{ delay: 1.2, duration: 0.8 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="text-[10px] tracking-editorial uppercase text-primary-foreground/60">
+          <span className="text-[10px] tracking-editorial uppercase text-white/70">
             Przewiń
           </span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-            className="w-px h-8 bg-primary-foreground/40"
+            className="w-px h-8 bg-white/50"
           />
         </motion.div>
       </div>
