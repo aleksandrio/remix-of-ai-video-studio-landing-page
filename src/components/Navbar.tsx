@@ -48,9 +48,9 @@ export function Navbar() {
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
           className={`font-heading text-sm font-bold tracking-editorial uppercase transition-colors duration-300 ${
-            isScrolled ? 'text-foreground' : 'text-primary-foreground drop-shadow-md'
+            isScrolled ? 'text-foreground' : 'text-white'
           }`}
-          style={!isScrolled ? { textShadow: '0 1px 8px rgba(0,0,0,0.4)' } : undefined}
+          style={!isScrolled ? { textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)' } : undefined}
         >
           AI w szkole
         </a>
@@ -61,12 +61,12 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className={`text-xs font-medium tracking-editorial uppercase transition-colors duration-300 ${
+              className={`text-xs font-semibold tracking-editorial uppercase transition-colors duration-300 ${
                 isScrolled
                   ? 'text-muted-foreground hover:text-foreground'
-                  : 'text-primary-foreground/80 hover:text-primary-foreground drop-shadow-md'
+                  : 'text-white hover:text-white'
               }`}
-              style={!isScrolled ? { textShadow: '0 1px 8px rgba(0,0,0,0.4)' } : undefined}
+              style={!isScrolled ? { textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)' } : undefined}
             >
               {link.label}
             </a>
@@ -79,9 +79,9 @@ export function Navbar() {
           className={`hidden md:inline-flex text-xs font-semibold tracking-wide uppercase px-6 py-3 transition-all duration-300 ${
             isScrolled
               ? 'border border-foreground text-foreground hover:bg-foreground hover:text-background'
-              : 'border border-primary-foreground/70 text-primary-foreground hover:bg-primary-foreground/20 drop-shadow-md'
+              : 'border-2 border-white text-white hover:bg-white/15'
           }`}
-          style={!isScrolled ? { textShadow: '0 1px 8px rgba(0,0,0,0.4)' } : undefined}
+          style={!isScrolled ? { textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)' } : undefined}
         >
           Umów się
         </a>
@@ -90,7 +90,7 @@ export function Navbar() {
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={`md:hidden p-2 transition-colors duration-300 ${
-            isScrolled ? 'text-foreground' : 'text-primary-foreground drop-shadow-md'
+            isScrolled ? 'text-foreground' : 'text-white'
           }`}
         >
           {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
