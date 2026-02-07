@@ -12,7 +12,7 @@ export function HeroSection() {
           className="w-full h-full object-cover"
         />
         {/* Dark overlay for text contrast */}
-        <div className="absolute inset-0 bg-foreground/30" />
+        <div className="absolute inset-0 bg-foreground/50" />
 
         {/* Hero content overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
