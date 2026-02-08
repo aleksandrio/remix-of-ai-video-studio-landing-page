@@ -1,15 +1,25 @@
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
 import heroImage from '@/assets/hero-classroom.jpg'
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+  // Parallax: image moves at 30% of scroll speed
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+
   return (
-    <section className="relative min-h-screen flex flex-col">
-      {/* Full-bleed hero image */}
-      <div className="relative w-full h-screen">
-        <img
+    <section ref={sectionRef} className="relative min-h-screen flex flex-col">
+      {/* Full-bleed hero image with parallax */}
+      <div className="relative w-full h-screen overflow-hidden">
+        <motion.img
           src={heroImage}
           alt="Uczniowie pracujący z AI w nowoczesnej klasie"
-          className="w-full h-full object-cover brightness-[0.45]"
+          className="w-full h-[120%] object-cover brightness-[0.45] absolute inset-0"
+          style={{ y: imageY }}
         />
         {/* Extra gradient overlay for text zone */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
