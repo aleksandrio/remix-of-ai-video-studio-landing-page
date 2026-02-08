@@ -89,7 +89,7 @@ export function ContactSection() {
             </div>
 
             <a
-              href="mailto:kontakt@aiwszkole.pl?subject=Warsztaty AI w szkole"
+              href="mailto:kowal.alek@gmail.com?subject=Warsztaty AI w szkole"
               className="mt-12 inline-flex items-center justify-center text-sm font-semibold tracking-wide uppercase bg-background text-foreground px-10 py-4 hover:bg-background/90 transition-all duration-300"
             >
               Napisz do mnie
