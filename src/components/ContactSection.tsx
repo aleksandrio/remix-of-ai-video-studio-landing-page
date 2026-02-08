@@ -58,7 +58,7 @@ export function ContactSection() {
           >
             <div className="space-y-8">
               <a
-                href="mailto:kontakt@aiwszkole.pl"
+                href="mailto:kowal.alek@gmail.com"
                 className="group flex items-center justify-between py-6 border-b border-background/15 hover:border-background/40 transition-colors duration-300"
               >
                 <div>
@@ -73,7 +73,7 @@ export function ContactSection() {
               </a>
 
               <a
-                href="tel:+48123456789"
+                href="tel:+48882568124"
                 className="group flex items-center justify-between py-6 border-b border-background/15 hover:border-background/40 transition-colors duration-300"
               >
                 <div>
