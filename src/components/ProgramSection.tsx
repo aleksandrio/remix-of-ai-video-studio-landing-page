@@ -5,38 +5,38 @@ import { useRef } from 'react'
 const days = [
   {
     day: 1,
-    title: 'Wprowadzenie do AI',
-    subtitle: 'Czym jest AI i jak z niej korzystać etycznie',
+    title: 'Efektywna nauka z AI',
+    subtitle: 'Twój osobisty system powtórek',
     description:
-      'Uczniowie poznają podstawy sztucznej inteligencji, dowiedzą się, jak działają modele językowe i ustalą zasady odpowiedzialnego korzystania z AI w nauce.',
+      'Uczniowie tworzą mapy myśli, fiszki i podcasty z własnych materiałów za pomocą AI. Poznają techniki Active Recall i Spaced Repetition — i dostają instrukcje, by powtórzyć to w domu.',
   },
   {
     day: 2,
-    title: 'AI jako tutor',
-    subtitle: 'Personalizowana nauka z gotowymi narzędziami',
+    title: 'AI w naukach ścisłych',
+    subtitle: 'Jak sprawić, żeby AI Cię nauczyło, a nie zrobiło za Ciebie',
     description:
-      'Praktyczne ćwiczenia z narzędziami AI do nauki — od tłumaczenia trudnych koncepcji, przez tworzenie notatek, po quizy dopasowane do poziomu ucznia.',
+      'Uczniowie piszą prompty sokratejskie, dzięki którym AI zadaje pytania naprowadzające zamiast podawać gotowe odpowiedzi. Ćwiczą rozwiązywanie zadań z matmy, fizyki i chemii metodą dialogu.',
   },
   {
     day: 3,
-    title: 'Języki i konwersacje',
-    subtitle: 'Ćwiczenie języków obcych z AI',
+    title: 'AI w pisaniu i humanistyce',
+    subtitle: 'Jak pisać z pomocą AI, a nie za pomocą AI',
     description:
-      'Uczniowie rozmawiają z AI w języku obcym, ćwiczą wymowę, gramatykę i słownictwo. AI dostosowuje poziom trudności do każdego ucznia indywidualnie.',
+      'Burza mózgów, struktura argumentów i analiza perspektyw — z AI. Ale sam tekst uczniowie piszą własnymi słowami. Uczą się, gdzie kończy się narzędzie, a zaczyna plagiat.',
   },
   {
     day: 4,
-    title: 'Zapamiętywanie i powtórki',
-    subtitle: 'Efektywna nauka z technikami AI',
+    title: 'AI w językach obcych',
+    subtitle: 'Rozmowa bez stresu — AI jako partner do ćwiczeń',
     description:
-      'Fiszki, powtórki rozłożone w czasie i aktywne przypominanie — uczniowie poznają narzędzia AI, które pomagają zapamiętywać materiał na dłużej.',
+      'Uczniowie prowadzą konwersacje z AI w języku obcym — tekstowo i głosowo. AI poprawia błędy gramatyczne, dostosowuje poziom i nigdy nie ocenia. Idealne do codziennych 5-minutowych ćwiczeń.',
   },
   {
     day: 5,
-    title: 'Projekt końcowy',
-    subtitle: 'Kreatywne zastosowanie AI w praktyce',
+    title: 'Krytyczne myślenie',
+    subtitle: 'AI się myli — i to jest OK, jeśli to zauważysz',
     description:
-      'Uczniowie tworzą własny projekt z pomocą AI — prezentację, esej badawczy lub rozwiązanie problemu. Pokazują, że AI wspiera, a nie zastępuje myślenie.',
+      'Uczniowie szukają halucynacji AI, weryfikują błędne informacje i uczą się, dlaczego AI „zmyśla". Budują najważniejszą kompetencję: umiejętność krytycznej oceny tego, co czytają.',
   },
 ]
 
@@ -55,14 +55,14 @@ export function ProgramSection() {
           className="max-w-3xl mb-16"
         >
           <p className="text-xs font-medium tracking-editorial uppercase text-muted-foreground mb-8">
-            5 dni warsztatów
+            5 spotkań warsztatowych
           </p>
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-6">
             Program zajęć
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Pięć intensywnych dni, podczas których uczniowie poznają praktyczne zastosowania AI 
-            w nauce — korzystając z gotowych, sprawdzonych narzędzi.
+            Pięć praktycznych spotkań opartych na modelu Hook → Do → Reflect. Każde spotkanie to 45 minut 
+            warsztatów, po których uczniowie dostają materiały z promptami i instrukcjami.
           </p>
         </motion.div>
 
@@ -73,9 +73,10 @@ export function ProgramSection() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="flex flex-wrap gap-8 mb-16 text-sm text-muted-foreground border-y border-border py-6"
         >
-          <span>Stacjonarnie w Twojej szkole</span>
-          <span>Dla grup do 30 uczniów</span>
-          <span>45 min / zajęcia</span>
+          <span>Uczniowie 13–18 lat</span>
+          <span>Grupy do 30 osób</span>
+          <span>45 min / spotkanie</span>
+          <span>Telefon + internet</span>
         </motion.div>
 
         {/* Days — editorial list */}

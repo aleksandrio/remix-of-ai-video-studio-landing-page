@@ -14,7 +14,11 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    const handleScroll = () => {
+      // Switch to dark text only after scrolling past the hero image
+      const heroHeight = window.innerHeight
+      setIsScrolled(window.scrollY > heroHeight - 80)
+    }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
