@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import collaborationImage from '@/assets/collaboration.jpg'
+import collaborationImage from '@/assets/collaboration.png'
 
 const benefits = [
   {

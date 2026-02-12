@@ -23,32 +23,27 @@ export function ContactSection() {
   ]
 
   return (
-    <section id="kontakt" className="py-20 lg:py-32 bg-foreground text-background" ref={ref}>
+    <section id="kontakt" className="pt-20 pb-8 lg:pt-32 lg:pb-10 bg-foreground text-background" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="mb-16"
-        >
-          <p className="text-xs font-medium tracking-editorial uppercase text-background/50 mb-8">
-            Kontakt
-          </p>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] max-w-xl">
-            Zaproś mnie
-            <br />
-            do Twojej szkoły
-          </h2>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
-          {/* Left — steps & contact */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          {/* Left — header, steps & contact */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
+            {/* Header */}
+            <div className="mb-12">
+              <p className="text-xs font-medium tracking-editorial uppercase text-background/50 mb-6">
+                Kontakt
+              </p>
+              <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] max-w-xl">
+                Zaproś mnie
+                <br />
+                do swojej szkoły
+              </h2>
+            </div>
+
             <div className="space-y-8 mb-12">
               {steps.map((step, i) => (
                 <div key={i} className="flex items-start gap-5">
@@ -106,8 +101,8 @@ export function ContactSection() {
           >
             <div
               className="calendly-inline-widget rounded-lg overflow-hidden"
-              data-url="https://calendly.com/kowal-alek/30min?hide_gdpr_banner=1&background_color=221f1b&text_color=f5f0e8&primary_color=4d6640"
-              style={{ minWidth: '320px', height: '660px' }}
+              data-url="https://calendly.com/kowal-alek/30min?hide_gdpr_banner=1&background_color=221f1c&text_color=f5f0e8&primary_color=4d6640"
+              style={{ minWidth: '320px', height: '830px' }}
             />
           </motion.div>
         </div>
