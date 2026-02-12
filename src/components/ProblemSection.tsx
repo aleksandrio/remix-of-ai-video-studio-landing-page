@@ -1,7 +1,18 @@
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import workshopImage from '@/assets/workshop-detail.jpg'
+
+function ParallaxImage({ src, alt }: { src: string; alt: string }) {
+  const imgRef = useRef(null)
+  const { scrollYProgress } = useScroll({ target: imgRef, offset: ['start end', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], ['-15%', '15%'])
+  return (
+    <div ref={imgRef} className="w-full h-[50vh] lg:h-[70vh] overflow-hidden relative">
+      <motion.img src={src} alt={alt} className="absolute inset-0 w-full h-[130%] object-cover" style={{ y }} />
+    </div>
+  )
+}
 
 export function ProblemSection() {
   const ref = useRef(null)
@@ -93,14 +104,8 @@ export function ProblemSection() {
         </div>
       </div>
 
-      {/* Full-bleed image divider */}
-      <div className="w-full h-[50vh] lg:h-[70vh]">
-        <img
-          src={workshopImage}
-          alt="Uczeń pracujący z narzędziami AI"
-          className="w-full h-full object-cover"
-        />
-      </div>
+      {/* Full-bleed image divider with parallax */}
+      <ParallaxImage src={workshopImage} alt="Uczeń pracujący z narzędziami AI" />
     </section>
   )
 }

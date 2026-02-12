@@ -1,7 +1,18 @@
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import collaborationImage from '@/assets/collaboration.png'
+
+function ParallaxImage({ src, alt }: { src: string; alt: string }) {
+  const imgRef = useRef(null)
+  const { scrollYProgress } = useScroll({ target: imgRef, offset: ['start end', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], ['-15%', '15%'])
+  return (
+    <div ref={imgRef} className="w-full h-[50vh] lg:h-[60vh] overflow-hidden relative">
+      <motion.img src={src} alt={alt} className="absolute inset-0 w-full h-[130%] object-cover" style={{ y }} />
+    </div>
+  )
+}
 
 const benefits = [
   {
@@ -36,14 +47,8 @@ export function BenefitsSection() {
 
   return (
     <section id="korzysci" ref={ref}>
-      {/* Full-bleed image */}
-      <div className="w-full h-[50vh] lg:h-[60vh]">
-        <img
-          src={collaborationImage}
-          alt="Nauczyciel współpracujący z uczniami"
-          className="w-full h-full object-cover"
-        />
-      </div>
+      {/* Full-bleed image with parallax */}
+      <ParallaxImage src={collaborationImage} alt="Nauczyciel współpracujący z uczniami" />
 
       {/* Benefits content */}
       <div className="py-20 lg:py-32 px-6 lg:px-10 max-w-6xl mx-auto">
