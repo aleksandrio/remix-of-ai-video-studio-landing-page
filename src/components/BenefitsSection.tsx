@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import collaborationImage from '@/assets/collaboration.png'
+import collaborationImage from '@/assets/collaboration.jpeg';
 
 function ParallaxImage({ src, alt }: { src: string; alt: string }) {
   const imgRef = useRef(null)
