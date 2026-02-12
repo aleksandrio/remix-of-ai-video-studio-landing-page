@@ -4,6 +4,7 @@ import { ProblemSection } from './components/ProblemSection'
 import { ProgramSection } from './components/ProgramSection'
 import { FormatsSection } from './components/FormatsSection'
 import { BenefitsSection } from './components/BenefitsSection'
+import { CalendlySection } from './components/CalendlySection'
 import { ContactSection } from './components/ContactSection'
 import { FooterAI } from './components/FooterAI'
 
@@ -17,6 +18,7 @@ export default function App() {
         <ProgramSection />
         <FormatsSection />
         <BenefitsSection />
+        <CalendlySection />
         <ContactSection />
       </main>
       <FooterAI />
