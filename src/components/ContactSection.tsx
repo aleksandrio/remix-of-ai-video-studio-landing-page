@@ -1,38 +1,55 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 import { ArrowRight } from 'lucide-react'
 
 export function ContactSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const widgetLoaded = useRef(false)
+
+  useEffect(() => {
+    if (widgetLoaded.current) return
+    const script = document.createElement('script')
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
+    document.body.appendChild(script)
+    widgetLoaded.current = true
+  }, [])
 
   const steps = [
-    'Napisz do mnie lub zadzwoń',
-    'Ustalimy termin i szczegóły',
-    'Przeprowadzę warsztaty w Twojej szkole',
+    'Wybierz termin w kalendarzu obok',
+    'Porozmawiamy o potrzebach Twojej szkoły',
+    'Przeprowadzę warsztaty u Ciebie',
   ]
 
   return (
     <section id="kontakt" className="py-20 lg:py-32 bg-foreground text-background" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left — headline & steps */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="mb-16"
+        >
+          <p className="text-xs font-medium tracking-editorial uppercase text-background/50 mb-8">
+            Kontakt
+          </p>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] max-w-xl">
+            Zaproś mnie
+            <br />
+            do Twojej szkoły
+          </h2>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
+          {/* Left — steps & contact */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <p className="text-xs font-medium tracking-editorial uppercase text-background/50 mb-8">
-              Kontakt
-            </p>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-10">
-              Zaproś mnie
-              <br />
-              do Twojej szkoły
-            </h2>
-
-            <div className="space-y-8">
+            <div className="space-y-8 mb-12">
               {steps.map((step, i) => (
                 <div key={i} className="flex items-start gap-5">
                   <span className="text-xs font-bold tracking-editorial uppercase text-background/40 w-8 pt-0.5">
@@ -43,29 +60,21 @@ export function ContactSection() {
               ))}
             </div>
 
-            <p className="mt-12 text-sm text-background/50 leading-relaxed max-w-md">
+            <p className="text-sm text-background/50 leading-relaxed max-w-md mb-12">
               Szkolenie jest bezpłatne. Opowiem o programie, odpowiem na pytania
               i dostosujemy warsztaty do potrzeb Twojej szkoły.
             </p>
-          </motion.div>
 
-          {/* Right — contact info */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col justify-center"
-          >
-            <div className="space-y-8">
+            <div className="space-y-6">
               <a
                 href="mailto:kowal.alek@gmail.com"
-                className="group flex items-center justify-between py-6 border-b border-background/15 hover:border-background/40 transition-colors duration-300"
+                className="group flex items-center justify-between py-5 border-b border-background/15 hover:border-background/40 transition-colors duration-300"
               >
                 <div>
-                  <p className="text-xs font-medium tracking-editorial uppercase text-background/40 mb-2">
+                  <p className="text-xs font-medium tracking-editorial uppercase text-background/40 mb-1.5">
                     Email
                   </p>
-                  <p className="text-xl sm:text-2xl font-heading font-semibold">
+                  <p className="text-lg sm:text-xl font-heading font-semibold">
                     kowal.alek@gmail.com
                   </p>
                 </div>
@@ -74,26 +83,32 @@ export function ContactSection() {
 
               <a
                 href="tel:+48882568124"
-                className="group flex items-center justify-between py-6 border-b border-background/15 hover:border-background/40 transition-colors duration-300"
+                className="group flex items-center justify-between py-5 border-b border-background/15 hover:border-background/40 transition-colors duration-300"
               >
                 <div>
-                  <p className="text-xs font-medium tracking-editorial uppercase text-background/40 mb-2">
+                  <p className="text-xs font-medium tracking-editorial uppercase text-background/40 mb-1.5">
                     Telefon
                   </p>
-                  <p className="text-xl sm:text-2xl font-heading font-semibold">
+                  <p className="text-lg sm:text-xl font-heading font-semibold">
                     +48 882 568 124
                   </p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-background/30 group-hover:text-background group-hover:translate-x-1 transition-all duration-300" />
               </a>
             </div>
+          </motion.div>
 
-            <a
-              href="mailto:kowal.alek@gmail.com?subject=Warsztaty AI w szkole"
-              className="mt-12 inline-flex items-center justify-center text-sm font-semibold tracking-wide uppercase bg-background text-foreground px-10 py-4 hover:bg-background/90 transition-all duration-300"
-            >
-              Napisz do mnie
-            </a>
+          {/* Right — Calendly widget */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <div
+              className="calendly-inline-widget rounded-lg overflow-hidden"
+              data-url="https://calendly.com/kowal-alek/30min?hide_gdpr_banner=1&background_color=221f1b&text_color=f5f0e8&primary_color=4d6640"
+              style={{ minWidth: '320px', height: '660px' }}
+            />
           </motion.div>
         </div>
       </div>
