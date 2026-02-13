@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { MapPin, Globe } from 'lucide-react'
+import { OnlineMaterialsCard } from './OnlineMaterialsCard'
 
 const formats = [
   {
@@ -82,6 +83,7 @@ export function FormatsSection() {
               </motion.div>
             )
           })}
+          <OnlineMaterialsCard isInView={isInView} />
         </div>
       </div>
     </section>
