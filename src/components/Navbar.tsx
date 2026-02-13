@@ -7,7 +7,6 @@ const navLinks = [
   { href: '#program', label: 'Program' },
   { href: '#formaty', label: 'Współpraca' },
   { href: '#korzysci', label: 'Korzyści' },
-  { href: '#kontakt', label: 'Kontakt' },
 ]
 
 export function Navbar() {
