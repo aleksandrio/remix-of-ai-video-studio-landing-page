@@ -9,6 +9,7 @@ export function FooterAI() {
           <nav className="flex flex-wrap items-center gap-8">
             <a href="#problem" className="text-xs tracking-wide uppercase text-background/50 hover:text-background transition-colors">Problem</a>
             <a href="#program" className="text-xs tracking-wide uppercase text-background/50 hover:text-background transition-colors">Program</a>
+            <a href="#formaty" className="text-xs tracking-wide uppercase text-background/50 hover:text-background transition-colors">Współpraca</a>
             <a href="#korzysci" className="text-xs tracking-wide uppercase text-background/50 hover:text-background transition-colors">Korzyści</a>
             <a href="#kontakt" className="text-xs tracking-wide uppercase text-background/50 hover:text-background transition-colors">Kontakt</a>
           </nav>
