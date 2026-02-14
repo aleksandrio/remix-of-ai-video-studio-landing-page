@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import heroImage from '@/assets/hero-classroom.webp';
+import heroImage from '@/assets/hero-classroom.jpeg';
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)

@@ -4,17 +4,17 @@ import { ArrowRight } from 'lucide-react'
 
 export function ContactSection() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '200px' })
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
   const widgetLoaded = useRef(false)
 
   useEffect(() => {
-    if (widgetLoaded.current || !isInView) return
+    if (widgetLoaded.current) return
     const script = document.createElement('script')
     script.src = 'https://assets.calendly.com/assets/external/widget.js'
     script.async = true
     document.body.appendChild(script)
     widgetLoaded.current = true
-  }, [isInView])
+  }, [])
 
   const steps = [
     'Wybierz termin w kalendarzu obok',
