@@ -1,10 +1,11 @@
+import { lazy, Suspense } from 'react'
 import { Navbar } from './components/Navbar'
 import { HeroSection } from './components/HeroSection'
 import { ProblemSection } from './components/ProblemSection'
 import { ProgramSection } from './components/ProgramSection'
 import { FormatsSection } from './components/FormatsSection'
 import { BenefitsSection } from './components/BenefitsSection'
-import { ContactSection } from './components/ContactSection'
+const ContactSection = lazy(() => import('./components/ContactSection').then(m => ({ default: m.ContactSection })))
 import { FooterAI } from './components/FooterAI'
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
         <ProgramSection />
         <FormatsSection />
         <BenefitsSection />
-        <ContactSection />
+        <Suspense fallback={null}><ContactSection /></Suspense>
       </main>
       <FooterAI />
     </div>

@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import workshopImage from '@/assets/workshop-detail.jpg'
+import workshopImage from '@/assets/workshop-detail.webp'
 
 function ParallaxImage({ src, alt }: { src: string; alt: string }) {
   const imgRef = useRef(null)
