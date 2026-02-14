@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { ThemeToggle } from './ThemeToggle'
 
 const navLinks = [
   { href: '#problem', label: 'Problem' },
@@ -92,28 +93,44 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
-        <a
-          href="#kontakt"
-          className={`hidden md:inline-flex text-xs font-semibold tracking-wide uppercase px-6 py-3 transition-all duration-300 ${
-            isOverDarkSection || !isScrolled
-              ? 'border-2 border-white text-white hover:bg-white/15'
-              : 'border border-foreground text-foreground hover:bg-foreground hover:text-background'
-          }`}
-          style={isOverDarkSection || !isScrolled ? { textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)' } : undefined}
-        >
-          Umów się
-        </a>
+        {/* CTA + Theme Toggle */}
+        <div className="hidden md:flex items-center gap-4">
+          <ThemeToggle
+            className={
+              isOverDarkSection || !isScrolled
+                ? 'text-white hover:text-white/80'
+                : 'text-muted-foreground hover:text-foreground'
+            }
+          />
+          <a
+            href="#kontakt"
+            className={`text-xs font-semibold tracking-wide uppercase px-6 py-3 transition-all duration-300 ${
+              isOverDarkSection || !isScrolled
+                ? 'border-2 border-white text-white hover:bg-white/15'
+                : 'border border-foreground text-foreground hover:bg-foreground hover:text-background'
+            }`}
+            style={isOverDarkSection || !isScrolled ? { textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)' } : undefined}
+          >
+            Umów się
+          </a>
+        </div>
 
         {/* Mobile toggle */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className={`md:hidden p-2 transition-colors duration-300 ${
-            isOverDarkSection || !isScrolled ? 'text-white' : 'text-foreground'
-          }`}
-        >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle
+            className={
+              isOverDarkSection || !isScrolled ? 'text-white' : 'text-foreground'
+            }
+          />
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`p-2 transition-colors duration-300 ${
+              isOverDarkSection || !isScrolled ? 'text-white' : 'text-foreground'
+            }`}
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
