@@ -38,16 +38,13 @@ export function HeroSection() {
             Warsztaty AI dla szkół
           </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.15 }}
+          <h1
             className="font-heading text-4xl sm:text-6xl lg:text-8xl font-bold tracking-tight text-white leading-[1.05] max-w-5xl"
           >
             AI to mentor,
             <br />
             nie ściąga.
-          </motion.h1>
+          </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
