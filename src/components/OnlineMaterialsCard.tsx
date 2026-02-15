@@ -64,18 +64,17 @@ export function OnlineMaterialsCard({ isInView }: { isInView: boolean }) {
       <div className="grid md:grid-cols-2 gap-8 items-start">
         <div>
           <h3 className="font-heading text-2xl font-semibold mb-4">
-            Nagrania i materiały online
+            Rozszerzone materiały online
           </h3>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Kompletny zestaw nagrań wideo, ćwiczeń i promptów — dostępny w formie subskrypcji. 
-            Idealne dla szkół, które chcą wdrożyć program we własnym tempie, bez konieczności 
-            organizowania spotkań na żywo.
+            Kompletny zestaw nagrań wideo, rozbudowanych ćwiczeń i zaawansowanych promptów — dostępny w formie płatnej subskrypcji. 
+            Idealne uzupełnienie warsztatów lub samodzielne źródło wiedzy o AI dla szkół.
           </p>
           <ul className="space-y-3">
             {[
-              'Nagrane lekcje wideo z ćwiczeniami',
-              'Gotowe prompty i materiały do pobrania',
-              'Dostęp w ramach subskrypcji',
+              'Nagrane lekcje wideo z rozbudowanymi ćwiczeniami',
+              'Zaawansowane prompty i dodatkowe materiały',
+              'Płatny dostęp w ramach subskrypcji',
             ].map((detail) => (
               <li key={detail} className="flex items-center gap-3 text-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
