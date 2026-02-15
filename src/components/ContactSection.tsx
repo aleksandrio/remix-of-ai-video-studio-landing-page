@@ -23,7 +23,7 @@ export function ContactSection() {
   ]
 
   return (
-    <section id="kontakt" className="pt-20 pb-8 lg:pt-32 lg:pb-10 bg-foreground text-background" ref={ref}>
+    <section id="kontakt" className="pt-20 pb-8 lg:pt-32 lg:pb-10 bg-[hsl(30,10%,12%)] text-[hsl(35,30%,96%)]" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left — header, steps & contact */}
