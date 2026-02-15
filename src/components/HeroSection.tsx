@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import heroImage from '@/assets/hero-classroom.webp';
 
 export function HeroSection() {
@@ -15,14 +15,18 @@ export function HeroSection() {
     <section ref={sectionRef} className="relative min-h-screen flex flex-col">
       {/* Full-bleed hero image with parallax */}
       <div className="relative w-full h-screen overflow-hidden">
-        <motion.img
+        <img
           src={heroImage}
           alt="Uczniowie pracujący z AI w nowoczesnej klasie"
-          className="w-full h-[120%] object-cover brightness-[0.45] absolute inset-0"
-          style={{ y: imageY }}
+          className="w-full h-full object-cover absolute inset-0"
+          fetchPriority="high"
+          decoding="sync"
+          loading="eager"
         />
+        {/* Dark overlay replaces brightness filter for better LCP */}
+        <div className="absolute inset-0 bg-black/60" />
         {/* Extra gradient overlay for text zone */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
 
         {/* Hero content overlay */}
         <div
