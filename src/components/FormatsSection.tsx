@@ -10,16 +10,16 @@ const formats = [
     label: 'Pełny program',
     title: '5 spotkań na żywo',
     description:
-      'Pięć warsztatów po 45 minut, prowadzonych osobiście w Twojej szkole. Każde spotkanie to praktyczna praca z AI — uczniowie dostają materiały do dalszej nauki po każdych zajęciach.',
-    details: ['5 × 45 min warsztatów na żywo', 'Materiały po każdym spotkaniu', 'Idealne dla szkół w regionie'],
+      'Pięć warsztatów po 45 minut, prowadzonych osobiście w Twojej szkole. Każde spotkanie to praktyczna praca z AI. Po zajęciach uczniowie otrzymują podstawowe materiały z promptami użytymi podczas warsztatów.',
+    details: ['5 × 45 min warsztatów na żywo', 'Podstawowe materiały z promptami po zajęciach', 'Idealne dla szkół w regionie'],
   },
   {
     icon: Globe,
-    label: 'Program hybrydowy',
-    title: '1 spotkanie + materiały online',
+    label: 'Wariant skrócony',
+    title: '1 dłuższe spotkanie na żywo',
     description:
-      'Jedno intensywne spotkanie na żywo (90 min), które wprowadza uczniów w świat AI. Pozostałe cztery tematy dostarczam jako gotowe materiały online — z promptami, instrukcjami i ćwiczeniami do samodzielnej pracy.',
-    details: ['1 × 90 min warsztatów na żywo', '4 moduły online z materiałami', 'Dla szkół spoza regionu'],
+      'Jedno intensywne spotkanie na żywo (90 min), które wprowadza uczniów w świat AI. Po zajęciach uczniowie otrzymują podstawowe materiały z promptami użytymi podczas warsztatu.',
+    details: ['1 × 90 min warsztatów na żywo', 'Podstawowe materiały z promptami po zajęciach', 'Dla szkół spoza regionu'],
   },
 ]
 
