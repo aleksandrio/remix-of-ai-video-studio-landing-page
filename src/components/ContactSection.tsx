@@ -102,7 +102,7 @@ export function ContactSection() {
             <div
               className="calendly-inline-widget rounded-lg overflow-hidden"
               data-url="https://calendly.com/kowal-alek/30min?hide_gdpr_banner=1&background_color=221f1c&text_color=f5f0e8&primary_color=4d6640"
-              style={{ minWidth: '320px', height: '830px' }}
+              style={{ minWidth: '320px', height: '1050px' }}
             />
           </motion.div>
         </div>
