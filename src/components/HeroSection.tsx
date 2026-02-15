@@ -63,7 +63,7 @@ export function HeroSection() {
           >
             <a
               href="#kontakt"
-              className="text-sm font-semibold tracking-wide uppercase bg-white text-foreground px-10 py-4 hover:bg-white/90 transition-all duration-300"
+              className="text-sm font-semibold tracking-wide uppercase bg-white text-[hsl(30,10%,12%)] px-10 py-4 hover:bg-white/90 transition-all duration-300"
               style={{ textShadow: 'none' }}
             >
               Zamów warsztaty
