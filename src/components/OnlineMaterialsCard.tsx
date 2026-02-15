@@ -33,8 +33,13 @@ export function OnlineMaterialsCard({ isInView }: { isInView: boolean }) {
       .insert({ email: trimmedEmail, name: trimmedName || null })
 
     if (error) {
-      setErrorMsg('Coś poszło nie tak. Spróbuj ponownie.')
-      setFormState('error')
+      // Treat duplicate email as success to avoid leaking info
+      if (error.code === '23505') {
+        setFormState('success')
+      } else {
+        setErrorMsg('Coś poszło nie tak. Spróbuj ponownie.')
+        setFormState('error')
+      }
     } else {
       setFormState('success')
     }
