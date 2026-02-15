@@ -1,15 +1,15 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import heroImage from '@/assets/hero-classroom.webp';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import heroImage from "@/assets/hero-classroom.webp";
 
 export function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start start', 'end start'],
-  })
+    offset: ["start start", "end start"],
+  });
   // Parallax: image moves at 30% of scroll speed
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex flex-col">
@@ -27,7 +27,7 @@ export function HeroSection() {
         {/* Hero content overlay */}
         <div
           className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
-          style={{ textShadow: '0 2px 24px rgba(0,0,0,0.7), 0 1px 6px rgba(0,0,0,0.5)' }}
+          style={{ textShadow: "0 2px 24px rgba(0,0,0,0.7), 0 1px 6px rgba(0,0,0,0.5)" }}
         >
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -47,7 +47,7 @@ export function HeroSection() {
             AI to mentor,
             <br />
             nie ściąga.
-          </h1>
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -67,7 +67,7 @@ export function HeroSection() {
             <a
               href="#kontakt"
               className="text-sm font-semibold tracking-wide uppercase bg-white text-[hsl(30,10%,12%)] px-10 py-4 hover:bg-white/90 transition-all duration-300"
-              style={{ textShadow: 'none' }}
+              style={{ textShadow: "none" }}
             >
               Zamów warsztaty
             </a>
@@ -90,7 +90,7 @@ export function HeroSection() {
           <span className="text-[10px] tracking-editorial uppercase text-white/70">Przewiń</span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             className="w-px h-8 bg-white/50"
           />
         </motion.div>
