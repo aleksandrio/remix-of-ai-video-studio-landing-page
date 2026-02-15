@@ -38,7 +38,10 @@ export function HeroSection() {
             Warsztaty AI dla szkół
           </motion.p>
 
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             className="font-heading text-4xl sm:text-6xl lg:text-8xl font-bold tracking-tight text-white leading-[1.05] max-w-5xl"
           >
             AI to mentor,
