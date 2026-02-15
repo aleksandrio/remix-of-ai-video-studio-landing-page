@@ -10,6 +10,7 @@ function ParallaxImage({ src, alt }: { src: string; alt: string }) {
   return (
     <div ref={imgRef} className="w-full h-[50vh] lg:h-[60vh] overflow-hidden relative">
       <motion.img src={src} alt={alt} className="absolute inset-0 w-full h-[130%] object-cover" style={{ y }} />
+      <div className="absolute inset-0 bg-black/0 dark:bg-black/40 transition-colors duration-300" />
     </div>
   )
 }
