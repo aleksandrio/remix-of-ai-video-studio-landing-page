@@ -28,13 +28,11 @@ export function AboutSection() {
                 narzędziom AI.
               </p>
             </div>
-            <div className="items-center  content-center">
-              <img
-                src={profileImage}
-                alt="Zdjęcie prowadzącego"
-                className="w-72 h-72 rounded-full object-cover flex-shrink-0 ring-2 ring-border"
-              />
-            </div>
+            <img
+              src={profileImage}
+              alt="Zdjęcie prowadzącego"
+              className="w-72 h-72 rounded-full object-cover flex-shrink-0 ring-2 ring-border"
+            />
           </div>
         </motion.div>
       </div>
