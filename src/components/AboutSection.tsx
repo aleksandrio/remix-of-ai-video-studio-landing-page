@@ -31,7 +31,7 @@ export function AboutSection() {
             <img
               src={profileImage}
               alt="Zdjęcie prowadzącego"
-              className="w-24 h-24 rounded-full object-cover flex-shrink-0 ring-2 ring-border"
+              className="w-96 h-96 rounded-full object-cover flex-shrink-0 ring-2 ring-border"
             />
           </div>
         </motion.div>
