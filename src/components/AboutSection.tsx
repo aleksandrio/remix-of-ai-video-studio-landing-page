@@ -16,7 +16,7 @@ export function AboutSection() {
         >
           <p className="text-xs font-medium tracking-editorial uppercase text-muted-foreground mb-8">Prowadzący</p>
 
-          <div className="flex flex-col sm:flex-row items-start gap-8 max-w-5xl content-center">
+          <div className="flex flex-col sm:flex-row items-start gap-8 max-w-5xl">
             <div>
               <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-6">
                 O mnie
@@ -28,11 +28,13 @@ export function AboutSection() {
                 narzędziom AI.
               </p>
             </div>
-            <img
-              src={profileImage}
-              alt="Zdjęcie prowadzącego"
-              className="w-72 h-72 rounded-full object-cover flex-shrink-0 ring-2 ring-border"
-            />
+            <div className="items-center  content-center">
+              <img
+                src={profileImage}
+                alt="Zdjęcie prowadzącego"
+                className="w-72 h-72 rounded-full object-cover flex-shrink-0 ring-2 ring-border"
+              />
+            </div>
           </div>
         </motion.div>
       </div>
