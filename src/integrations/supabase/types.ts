@@ -14,6 +14,100 @@ export type Database = {
   }
   public: {
     Tables: {
+      lesson_configs: {
+        Row: {
+          created_at: string
+          feedback_survey_enabled: boolean
+          lesson_slug: string
+          start_survey_enabled: boolean
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          feedback_survey_enabled?: boolean
+          lesson_slug: string
+          start_survey_enabled?: boolean
+          title?: string
+        }
+        Update: {
+          created_at?: string
+          feedback_survey_enabled?: boolean
+          lesson_slug?: string
+          start_survey_enabled?: boolean
+          title?: string
+        }
+        Relationships: []
+      }
+      survey_responses: {
+        Row: {
+          created_at: string
+          id: string
+          lesson_slug: string
+          payload: Json
+          session_id: string
+          survey_type: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          lesson_slug: string
+          payload?: Json
+          session_id: string
+          survey_type: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          lesson_slug?: string
+          payload?: Json
+          session_id?: string
+          survey_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "survey_responses_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "survey_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      survey_sessions: {
+        Row: {
+          archived_at: string | null
+          created_at: string
+          id: string
+          lesson_slug: string
+          name: string | null
+          status: string
+        }
+        Insert: {
+          archived_at?: string | null
+          created_at?: string
+          id?: string
+          lesson_slug: string
+          name?: string | null
+          status?: string
+        }
+        Update: {
+          archived_at?: string | null
+          created_at?: string
+          id?: string
+          lesson_slug?: string
+          name?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "survey_sessions_lesson_slug_fkey"
+            columns: ["lesson_slug"]
+            isOneToOne: false
+            referencedRelation: "lesson_configs"
+            referencedColumns: ["lesson_slug"]
+          },
+        ]
+      }
       waitlist: {
         Row: {
           created_at: string
