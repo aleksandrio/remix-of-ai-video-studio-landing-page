@@ -1,18 +1,8 @@
 import { useState, useCallback } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 
-const FEEDBACK_QUESTIONS = [
-  {
-    id: 'rating',
-    type: 'scale' as const,
-    question: 'Jak oceniasz dzisiejsze zajęcia?',
-    min: 1,
-    max: 5,
-    labels: { 1: 'Słabo', 3: 'OK', 5: 'Super' },
-  },
-  { id: 'best', type: 'text' as const, question: 'Co było najciekawsze?' },
-  { id: 'improve', type: 'text' as const, question: 'Co można poprawić?' },
-]
+const BEST_WORKED_OPTIONS = ['Gemini', 'Nano Banana', 'Veo', 'Lyra/Lyria', 'Gotowe prompty do kopiowania', 'Ankieta live']
+const PACE_OPTIONS = ['Za szybko', 'W sam raz', 'Za wolno']
 
 interface Props {
   lessonSlug: string
@@ -22,11 +12,20 @@ interface Props {
 export function FeedbackSurveyModule({ lessonSlug, sessionId }: Props) {
   const storageKey = `feedback_survey_${lessonSlug}_${sessionId}`
   const [submitted, setSubmitted] = useState(() => localStorage.getItem(storageKey) === '1')
-  const [answers, setAnswers] = useState<Record<string, string | number>>({})
+  const [answers, setAnswers] = useState<Record<string, unknown>>({})
   const [submitting, setSubmitting] = useState(false)
 
+  const toggleMulti = (field: string, val: string) => {
+    setAnswers((a) => {
+      const arr = (a[field] as string[]) || []
+      return { ...a, [field]: arr.includes(val) ? arr.filter((v) => v !== val) : [...arr, val] }
+    })
+  }
+
+  const isComplete = ((answers.best_worked as string[])?.length || 0) > 0 && answers.pace && answers.rating
+
   const handleSubmit = useCallback(async () => {
-    if (!answers.rating) return
+    if (!isComplete) return
     setSubmitting(true)
     try {
       const { error } = await supabase.from('survey_responses').insert([{
@@ -42,7 +41,7 @@ export function FeedbackSurveyModule({ lessonSlug, sessionId }: Props) {
     } finally {
       setSubmitting(false)
     }
-  }, [answers, lessonSlug, sessionId, storageKey])
+  }, [answers, isComplete, lessonSlug, sessionId, storageKey])
 
   if (submitted) {
     return (
@@ -56,51 +55,113 @@ export function FeedbackSurveyModule({ lessonSlug, sessionId }: Props) {
     <div className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-8">
       <div>
         <h3 className="font-heading text-xl font-bold text-foreground">Feedback po zajęciach</h3>
-        <p className="text-muted-foreground text-sm mt-1">
-          Ankieta anonimowa — nie wpisuj imienia, nazwiska ani danych wrażliwych.
-        </p>
+        <p className="text-muted-foreground text-sm mt-1">Ankieta anonimowa — nie wpisuj danych osobowych.</p>
       </div>
 
-      {FEEDBACK_QUESTIONS.map((q) => (
-        <div key={q.id} className="space-y-3">
-          <p className="font-medium text-foreground">{q.question}</p>
-          {q.type === 'scale' && (
-            <div className="flex gap-2 flex-wrap">
-              {Array.from({ length: q.max - q.min + 1 }, (_, i) => q.min + i).map((v) => (
-                <button
-                  key={v}
-                  onClick={() => setAnswers((a) => ({ ...a, [q.id]: v }))}
-                  className={`w-12 h-12 rounded-lg border-2 text-lg font-bold transition-all ${
-                    answers[q.id] === v
-                      ? 'border-primary bg-primary text-primary-foreground'
-                      : 'border-border bg-background text-foreground hover:border-primary/50'
-                  }`}
-                >
-                  {v}
-                </button>
-              ))}
-              <div className="w-full flex justify-between text-xs text-muted-foreground mt-1">
-                <span>{q.labels?.[q.min]}</span>
-                <span>{q.labels?.[q.max]}</span>
-              </div>
-            </div>
-          )}
-          {q.type === 'text' && (
-            <textarea
-              className="w-full border border-border bg-background text-foreground rounded-lg p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-              rows={3}
-              maxLength={500}
-              placeholder="Twoja odpowiedź..."
-              value={(answers[q.id] as string) || ''}
-              onChange={(e) => setAnswers((a) => ({ ...a, [q.id]: e.target.value }))}
-            />
-          )}
+      {/* best_worked multi */}
+      <div className="space-y-3">
+        <p className="font-medium text-foreground">Co działało najlepiej? (zaznacz wszystkie)</p>
+        <div className="flex flex-wrap gap-2">
+          {BEST_WORKED_OPTIONS.map((opt) => (
+            <button
+              key={opt}
+              onClick={() => toggleMulti('best_worked', opt)}
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
+                ((answers.best_worked as string[]) || []).includes(opt)
+                  ? 'border-primary bg-primary/10 text-foreground'
+                  : 'border-border bg-background text-foreground hover:border-primary/50'
+              }`}
+            >
+              {opt}
+            </button>
+          ))}
         </div>
-      ))}
+      </div>
+
+      {/* liked_most */}
+      <div className="space-y-3">
+        <p className="font-medium text-foreground">Co najbardziej Ci się podobało?</p>
+        <input
+          value={(answers.liked_most as string) || ''}
+          onChange={(e) => setAnswers((a) => ({ ...a, liked_most: e.target.value }))}
+          className="w-full border border-border bg-background text-foreground rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+          maxLength={300}
+          placeholder="Krótka odpowiedź..."
+        />
+      </div>
+
+      {/* want_more */}
+      <div className="space-y-3">
+        <p className="font-medium text-foreground">Czego chcesz więcej?</p>
+        <input
+          value={(answers.want_more as string) || ''}
+          onChange={(e) => setAnswers((a) => ({ ...a, want_more: e.target.value }))}
+          className="w-full border border-border bg-background text-foreground rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+          maxLength={300}
+          placeholder="Krótka odpowiedź..."
+        />
+      </div>
+
+      {/* pace */}
+      <div className="space-y-3">
+        <p className="font-medium text-foreground">Tempo zajęć:</p>
+        <div className="flex gap-2 flex-wrap">
+          {PACE_OPTIONS.map((opt) => (
+            <button
+              key={opt}
+              onClick={() => setAnswers((a) => ({ ...a, pace: opt }))}
+              className={`px-4 py-3 rounded-lg border-2 transition-all ${
+                answers.pace === opt
+                  ? 'border-primary bg-primary/10 text-foreground'
+                  : 'border-border bg-background text-foreground hover:border-primary/50'
+              }`}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* rating */}
+      <div className="space-y-3">
+        <p className="font-medium text-foreground">Ocena zajęć (1–5)</p>
+        <div className="flex gap-2">
+          {[1, 2, 3, 4, 5].map((v) => (
+            <button
+              key={v}
+              onClick={() => setAnswers((a) => ({ ...a, rating: v }))}
+              className={`w-12 h-12 rounded-lg border-2 text-lg font-bold transition-all ${
+                answers.rating === v
+                  ? 'border-primary bg-primary text-primary-foreground'
+                  : 'border-border bg-background text-foreground hover:border-primary/50'
+              }`}
+            >
+              {v}
+            </button>
+          ))}
+          <div className="w-full flex justify-between text-xs text-muted-foreground mt-1">
+            <span>Słabo</span>
+            <span>Super</span>
+          </div>
+        </div>
+      </div>
+
+      {/* other_comments */}
+      <div className="space-y-3">
+        <p className="font-medium text-foreground">Inne uwagi (opcjonalne)</p>
+        <textarea
+          className="w-full border border-border bg-background text-foreground rounded-lg p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+          rows={3}
+          maxLength={500}
+          placeholder="Twoje uwagi..."
+          value={(answers.other_comments as string) || ''}
+          onChange={(e) => setAnswers((a) => ({ ...a, other_comments: e.target.value }))}
+        />
+      </div>
 
       <button
         onClick={handleSubmit}
-        disabled={submitting || !answers.rating}
+        disabled={submitting || !isComplete}
         className="w-full py-3 px-6 bg-primary text-primary-foreground font-heading font-semibold rounded-lg transition-all disabled:opacity-50 hover:opacity-90"
       >
         {submitting ? 'Wysyłanie...' : 'Wyślij feedback'}

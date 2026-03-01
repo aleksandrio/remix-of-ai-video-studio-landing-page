@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 import { StartSurveyModule } from '@/components/lesson/StartSurveyModule'
 import { FeedbackSurveyModule } from '@/components/lesson/FeedbackSurveyModule'
+import { ToolSection } from '@/components/lesson/ToolSection'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { LESSON_TOOLS } from '@/data/lessonTools'
 
 interface LessonConfig {
   lesson_slug: string
@@ -33,7 +35,7 @@ export default function LessonPage() {
         .from('lesson_configs')
         .select('*')
         .eq('lesson_slug', slug)
-        .single()
+        .maybeSingle()
 
       if (!lessonData) {
         setNotFound(true)
@@ -43,12 +45,24 @@ export default function LessonPage() {
 
       setLesson(lessonData as unknown as LessonConfig)
 
-      const { data: sessionData } = await supabase
+      // Find active session
+      let { data: sessionData } = await supabase
         .from('survey_sessions')
         .select('*')
         .eq('lesson_slug', slug)
         .eq('status', 'active')
-        .single()
+        .maybeSingle()
+
+      // Auto-create if none exists
+      if (!sessionData) {
+        const name = `Auto: ${new Date().toLocaleString('pl')}`
+        const { data: newSession } = await supabase
+          .from('survey_sessions')
+          .insert({ lesson_slug: slug, name, status: 'active' })
+          .select()
+          .single()
+        sessionData = newSession
+      }
 
       if (sessionData) setSession(sessionData as unknown as Session)
       setLoading(false)
@@ -78,11 +92,10 @@ export default function LessonPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Minimal header */}
       <header className="border-b border-border bg-card">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold tracking-editorial uppercase text-muted-foreground">AI w szkole</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">AI w szkole</p>
             <h1 className="font-heading text-lg font-bold text-foreground">{lesson?.title}</h1>
           </div>
           <ThemeToggle />
@@ -90,18 +103,37 @@ export default function LessonPage() {
       </header>
 
       <main className="max-w-3xl mx-auto px-4 py-8 space-y-12">
+        {/* A) Start survey */}
         {lesson?.start_survey_enabled && session && (
           <StartSurveyModule lessonSlug={slug!} sessionId={session.id} />
         )}
 
+        {/* B) Mini-instruction */}
+        <section className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-4">
+          <h2 className="font-heading text-xl font-bold text-foreground">Jak korzystać z promptów</h2>
+          <ol className="space-y-2 text-sm text-foreground">
+            <li className="flex gap-2"><span className="font-bold text-primary">1.</span> Wybierz prompt</li>
+            <li className="flex gap-2"><span className="font-bold text-primary">2.</span> Kliknij „Kopiuj"</li>
+            <li className="flex gap-2"><span className="font-bold text-primary">3.</span> Podmień [NAWIASY] i uruchom</li>
+          </ol>
+          <div className="bg-muted/50 rounded-lg p-4 space-y-1 text-xs text-muted-foreground">
+            <p>⚠️ AI to asystent — nie zastępuje myślenia.</p>
+            <p>⚠️ Nie wklejaj danych wrażliwych.</p>
+            <p>⚠️ Jeśli używasz do szkoły — sprawdzaj fakty.</p>
+          </div>
+        </section>
+
+        {/* C) Tools */}
+        <section className="space-y-4">
+          <h2 className="font-heading text-xl font-bold text-foreground">Narzędzia Google AI</h2>
+          {LESSON_TOOLS.map((tool) => (
+            <ToolSection key={tool.name} {...tool} />
+          ))}
+        </section>
+
+        {/* D) Feedback */}
         {lesson?.feedback_survey_enabled && session && (
           <FeedbackSurveyModule lessonSlug={slug!} sessionId={session.id} />
-        )}
-
-        {!lesson?.start_survey_enabled && !lesson?.feedback_survey_enabled && (
-          <div className="text-center py-16">
-            <p className="text-muted-foreground text-lg">Brak aktywnych modułów dla tej lekcji.</p>
-          </div>
         )}
       </main>
     </div>
