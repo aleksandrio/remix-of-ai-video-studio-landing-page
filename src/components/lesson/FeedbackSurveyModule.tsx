@@ -125,7 +125,8 @@ export function FeedbackSurveyModule({ lessonSlug, sessionId }: Props) {
       {/* rating */}
       <div className="space-y-3">
         <p className="font-medium text-foreground">Ocena zajęć (1–5)</p>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-muted-foreground whitespace-nowrap">Słabo</span>
           {[1, 2, 3, 4, 5].map((v) => (
             <button
               key={v}
@@ -139,10 +140,7 @@ export function FeedbackSurveyModule({ lessonSlug, sessionId }: Props) {
               {v}
             </button>
           ))}
-          <div className="w-full flex justify-between text-xs text-muted-foreground mt-1">
-            <span>Słabo</span>
-            <span>Super</span>
-          </div>
+          <span className="text-xs text-muted-foreground whitespace-nowrap">Super</span>
         </div>
       </div>
 
