@@ -1,8 +1,21 @@
-export const LESSON_TOOLS = [
+export interface LessonTool {
+  emoji: string
+  name: string
+  description: string
+  link: string
+  whenToUse: string[]
+  prompts: {
+    title: string
+    text: string
+  }[]
+}
+
+export const LESSON_TOOLS: LessonTool[] = [
   {
     emoji: '💎',
     name: 'Gemini',
     description: 'Gemini możesz używać do ulepszania promptów albo do kreatywnego tworzenia promptów, gdy nie masz pomysłu. Może przeprowadzić Cię przez proces myślenia i generowania promptu dla kolejnych narzędzi.',
+    link: 'https://gemini.google.com',
     whenToUse: [
       'Gdy chcesz przerobić słaby prompt na lepszy',
       'Gdy nie wiesz, jak zacząć i potrzebujesz szkicu promptu',
@@ -11,7 +24,7 @@ export const LESSON_TOOLS = [
     prompts: [
       {
         title: 'Generator promptu dla narzędzia (prowadź mnie krok po kroku)',
-        text: 'Chcę wygenerować świetny prompt do narzędzia: [NANO BANANA / VEO / LYRA]. Najpierw zadaj mi maks. 6 krótkich pytań doprecyzowujących. Potem przygotuj 3 wersje promptu: (1) krótka, (2) standard, (3) ambitna. Na końcu podaj checklistę 5 rzeczy do sprawdzenia przed uruchomieniem.',
+        text: 'Chcę wygenerować świetny prompt do narzędzia: [NANO BANANA / FLOW / LYRA]. Najpierw zadaj mi maks. 6 krótkich pytań doprecyzowujących. Potem przygotuj 3 wersje promptu: (1) krótka, (2) standard, (3) ambitna. Na końcu podaj checklistę 5 rzeczy do sprawdzenia przed uruchomieniem.',
       },
       {
         title: 'Ulepszacz promptu',
@@ -31,6 +44,7 @@ export const LESSON_TOOLS = [
     emoji: '🍌',
     name: 'Nano Banana (Google)',
     description: 'Szybkie przeróbki zdjęć i obrazów: style, tła, warianty. Efekt WOW w minutę.',
+    link: 'https://aistudio.google.com',
     whenToUse: [
       'Przeróbka zdjęcia na epokę/styl do projektu',
       'Plakat/grafika do prezentacji',
@@ -56,30 +70,31 @@ export const LESSON_TOOLS = [
     ],
   },
   {
-    emoji: '🎥',
-    name: 'Veo (Google)',
-    description: 'Tworzy krótkie klipy wideo na podstawie opisu sceny. Idealne na "wow" i ujęcia do projektów.',
+    emoji: '🎬',
+    name: 'Google Flow',
+    description: 'Narzędzie AI do tworzenia filmów — generuj klipy, sceny i całe historie z zachowaniem spójności postaci i stylu.',
+    link: 'https://flow.google.com',
     whenToUse: [
       'Ujęcie do prezentacji bez kręcenia',
       'Scenki do projektów tematycznych',
-      'Intro do materiału',
+      'Intro/outro do materiału wideo',
     ],
     prompts: [
       {
         title: 'A) Szkoła przyszłości (cinematic)',
-        text: 'Realistyczny klip: nowoczesna klasa, poranne światło, uczniowie przy tabletach, na ścianie hologram. Kamera: cinematic slow pan. Długość [8s]. Bez napisów.',
+        text: 'Nowoczesna klasa, poranne światło, uczniowie przy tabletach, na ścianie hologram. Styl: cinematic, slow pan. Długość: [8s]. Bez napisów.',
       },
       {
         title: 'B) Średniowieczne miasto',
-        text: 'Realistycznie: miasto o świcie, bruk, stragany, dym z kominów. Kamera: ujęcie z góry → płynny zjazd na ulicę. Długość [czas]. Bez napisów.',
+        text: 'Miasto o świcie, bruk, stragany, dym z kominów. Ujęcie z góry → płynny zjazd na ulicę. Styl realistyczny. Długość: [czas]. Bez napisów.',
       },
       {
         title: 'C) Podróż w komórce (edukacyjna animacja 3D)',
-        text: 'Wnętrze komórki, mitochondria, jądro, ruch cząsteczek. Styl: czysta edukacyjna animacja 3D. Kamera: płynny lot. Długość [czas]. Bez napisów.',
+        text: 'Wnętrze komórki, mitochondria, jądro, ruch cząsteczek. Styl: czysta edukacyjna animacja 3D. Kamera: płynny lot. Długość: [czas]. Bez napisów.',
       },
       {
         title: 'D) 3 warianty jednego ujęcia',
-        text: 'Wygeneruj 3 warianty: temat [TEMAT], styl [realistyczny/animowany]. Zmieniaj porę dnia, pogodę i kąt kamery. Długość [czas].',
+        text: 'Wygeneruj 3 warianty: temat [TEMAT], styl [realistyczny/animowany]. Zmieniaj porę dnia, pogodę i kąt kamery. Długość: [czas].',
       },
     ],
   },
@@ -87,6 +102,7 @@ export const LESSON_TOOLS = [
     emoji: '🎵',
     name: 'Lyra/Lyria (Google)',
     description: 'Generuje krótkie podkłady do filmów i prezentacji (najlepiej instrumentalne).',
+    link: 'https://aistudio.google.com',
     whenToUse: [
       'Intro/outro do prezentacji',
       'Tło do wideo',

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Copy, Check, ChevronDown, ChevronUp } from 'lucide-react'
+import { Copy, Check, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react'
 
 interface Prompt {
   title: string
@@ -10,6 +10,7 @@ interface ToolProps {
   emoji: string
   name: string
   description: string
+  link: string
   whenToUse: string[]
   prompts: Prompt[]
 }
@@ -47,7 +48,7 @@ function PromptBlock({ prompt }: { prompt: Prompt }) {
   )
 }
 
-export function ToolSection({ emoji, name, description, whenToUse, prompts }: ToolProps) {
+export function ToolSection({ emoji, name, description, link, whenToUse, prompts }: ToolProps) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -67,6 +68,14 @@ export function ToolSection({ emoji, name, description, whenToUse, prompts }: To
 
       {open && (
         <div className="px-6 pb-6 space-y-6 border-t border-border pt-4">
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+          >
+            Otwórz {name} <ExternalLink className="w-3.5 h-3.5" />
+          </a>
           <div>
             <p className="text-sm font-semibold text-foreground mb-2">Kiedy używać?</p>
             <ul className="space-y-1">
