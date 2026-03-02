@@ -10,7 +10,8 @@ export interface LessonTool {
   }[]
 }
 
-export const LESSON_TOOLS: LessonTool[] = [
+// Lesson 1: Google AI intro
+const LESSON_1_TOOLS: LessonTool[] = [
   {
     emoji: '💎',
     name: 'Gemini',
@@ -128,3 +129,132 @@ export const LESSON_TOOLS: LessonTool[] = [
     ],
   },
 ]
+
+// Lesson 2: NotebookLM na telefonie
+const LESSON_2_TOOLS: LessonTool[] = [
+  {
+    emoji: '📓',
+    name: 'NotebookLM — Chat ze źródłami',
+    description: 'Wgraj źródła (PDF, YouTube, strony WWW, tekst) i zadawaj pytania. AI odpowiada TYLKO na podstawie Twoich materiałów — z cytatami i odniesieniami.',
+    link: 'https://notebooklm.google.com',
+    whenToUse: [
+      'Przygotowanie do sprawdzianu z notatek/podręcznika',
+      'Szybkie streszczenie długiego artykułu lub filmu',
+      'Szukanie konkretnych informacji w wielu źródłach naraz',
+    ],
+    prompts: [
+      {
+        title: 'A) Streszczenie w 5 punktach',
+        text: 'Podsumuj najważniejsze wnioski z moich źródeł w 5 krótkich punktach. Przy każdym punkcie podaj, z którego źródła pochodzi.',
+      },
+      {
+        title: 'B) Wyjaśnij jak dla ucznia',
+        text: 'Wyjaśnij temat [TEMAT Z MOICH ŹRÓDEŁ] prostym językiem, jakbyś tłumaczył licealiście. Użyj przykładów i analogii.',
+      },
+      {
+        title: 'C) Porównaj dwa źródła',
+        text: 'Porównaj główne tezy źródła 1 i źródła 2. Co mają wspólnego? Czym się różnią? Podaj w formie tabeli.',
+      },
+      {
+        title: 'D) Znajdź luki w wiedzy',
+        text: 'Na podstawie moich źródeł — jakich informacji brakuje, żeby dobrze zrozumieć temat [TEMAT]? Co powinienem doczytać?',
+      },
+    ],
+  },
+  {
+    emoji: '🎧',
+    name: 'NotebookLM — Audio Overview (podcast AI)',
+    description: 'Zamień swoje źródła w podcast prowadzony przez dwóch AI-gospodarzy. Słuchaj streszczenia w drodze do szkoły. Możesz nawet dołączyć do rozmowy i zadawać pytania głosowo!',
+    link: 'https://notebooklm.google.com',
+    whenToUse: [
+      'Powtórka materiału w autobusie / na spacerze',
+      'Szybkie zrozumienie tematu bez czytania',
+      'Przygotowanie do dyskusji na lekcji',
+    ],
+    prompts: [
+      {
+        title: 'A) Deep Dive (domyślny)',
+        text: 'Wgraj źródła → zakładka Studio → Generate → Deep Dive. Dwóch AI-gospodarzy omówi Twoje materiały w formie rozmowy.',
+      },
+      {
+        title: 'B) Brief (krótkie streszczenie)',
+        text: 'Studio → Generate → Brief. Jeden AI-gospodarz poda krótkie streszczenie najważniejszych punktów. Idealne na 2-3 minuty przed lekcją.',
+      },
+      {
+        title: 'C) Debate (dwie strony tematu)',
+        text: 'Studio → Generate → Debate. Dwóch AI-gospodarzy będzie dyskutować za i przeciw tematowi z Twoich źródeł. Świetne przed dyskusją w klasie.',
+      },
+      {
+        title: 'D) Dołącz do rozmowy (Interactive)',
+        text: 'Podczas odtwarzania Audio Overview kliknij "Interactive" → "Join". Zadaj pytanie głosowo — AI-gospodarze odpowiedzą na żywo na podstawie Twoich źródeł.',
+      },
+    ],
+  },
+  {
+    emoji: '🃏',
+    name: 'NotebookLM — Fiszki i Quizy',
+    description: 'AI tworzy fiszki i quizy bezpośrednio z Twoich materiałów. Idealne do aktywnej powtórki — nie musisz nic pisać ręcznie.',
+    link: 'https://notebooklm.google.com',
+    whenToUse: [
+      'Powtórka przed sprawdzianem z notatek',
+      'Zapamiętanie kluczowych pojęć i dat',
+      'Testowanie swojej wiedzy przed egzaminem',
+    ],
+    prompts: [
+      {
+        title: 'A) Generuj fiszki',
+        text: 'W NotebookLM kliknij "Flashcards" w zakładce Studio. AI stworzy fiszki z kluczowymi pojęciami z Twoich źródeł. Możesz wybrać temat i poziom trudności.',
+      },
+      {
+        title: 'B) Quiz z materiału',
+        text: 'W zakładce Studio kliknij "Quiz". AI wygeneruje pytania testowe na podstawie Twoich źródeł. Po każdym błędzie kliknij "Explain" — AI wyjaśni odpowiedź z cytowaniem źródła.',
+      },
+      {
+        title: 'C) Udostępnij znajomemu',
+        text: 'Po wygenerowaniu fiszek/quizu kliknij "Share" — możesz wysłać link znajomemu, żeby też mógł się uczyć z Twoich materiałów.',
+      },
+      {
+        title: 'D) Chat: doprecyzuj quiz',
+        text: 'Stwórz quiz 10 pytań TYLKO z rozdziału [NUMER/NAZWA]. Pytania powinny być na poziomie [łatwy / średni / trudny]. Dodaj wyjaśnienie do każdej odpowiedzi.',
+      },
+    ],
+  },
+  {
+    emoji: '📋',
+    name: 'NotebookLM — Raporty i Notatki',
+    description: 'Generuj gotowe dokumenty ze swoich źródeł: streszczenia, przewodniki, wpisy blogowe, analizy. AI dopasuje format do Twojego tematu.',
+    link: 'https://notebooklm.google.com',
+    whenToUse: [
+      'Pisanie wypracowania na podstawie kilku źródeł',
+      'Tworzenie notatki/ściągawki przed sprawdzianem',
+      'Przygotowanie prezentacji z zebranych materiałów',
+    ],
+    prompts: [
+      {
+        title: 'A) Study Guide',
+        text: 'W zakładce Studio kliknij "Study Guide". AI stworzy kompletny przewodnik do nauki z Twoich źródeł — z podziałem na sekcje, kluczowe pojęcia i pytania kontrolne.',
+      },
+      {
+        title: 'B) Briefing Doc',
+        text: 'Studio → "Briefing Doc". Otrzymasz profesjonalne streszczenie wszystkich źródeł w jednym dokumencie — idealne do szybkiego przeglądu.',
+      },
+      {
+        title: 'C) Blog Post',
+        text: 'Studio → "Blog Post". AI zamieni Twoje źródła w przystępny artykuł blogowy — świetne jako baza do prezentacji lub wypracowania.',
+      },
+      {
+        title: 'D) Chat: własny format',
+        text: 'Na podstawie moich źródeł przygotuj [NOTATKI / ŚCIĄGAWKĘ / PLAN PREZENTACJI] na temat [TEMAT]. Format: [punkty / tabela / mindmapa tekstowa]. Maksymalnie [1 strona / 500 słów].',
+      },
+    ],
+  },
+]
+
+// Map lesson slugs to their tools
+export const LESSON_TOOLS_MAP: Record<string, LessonTool[]> = {
+  '1-google-intro': LESSON_1_TOOLS,
+  '2-notebooklm': LESSON_2_TOOLS,
+}
+
+// Default export for backward compatibility
+export const LESSON_TOOLS = LESSON_1_TOOLS
