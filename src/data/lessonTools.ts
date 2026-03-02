@@ -269,7 +269,7 @@ const LESSON_3_TOOLS: LessonTool[] = [
       },
       {
         title: 'B) Nauczyciel na podstawie zdjęcia',
-        text: 'Look at this photo I'm sending you. Describe what you see in simple English (A2/B1 level). Then ask me 5 questions about the photo — start easy, then make them harder. After each of my answers, correct my English and teach me 2 new words related to the picture.',
+        text: "Look at this photo I'm sending you. Describe what you see in simple English (A2/B1 level). Then ask me 5 questions about the photo — start easy, then make them harder. After each of my answers, correct my English and teach me 2 new words related to the picture.",
       },
       {
         title: 'C) Powtórka z notatek/materiałów',
@@ -277,7 +277,7 @@ const LESSON_3_TOOLS: LessonTool[] = [
       },
       {
         title: 'D) Scenka sytuacyjna (role-play)',
-        text: 'Let\\'s do a role-play in English. Scenario: [CHOOSE: ordering food in a restaurant / buying a ticket / asking for directions / job interview for a summer job / meeting a new classmate]. You play the other person. My level is A2/B1. If I make a mistake, gently correct me after the exchange. Start the conversation.',
+        text: "Let's do a role-play in English. Scenario: [CHOOSE: ordering food in a restaurant / buying a ticket / asking for directions / job interview for a summer job / meeting a new classmate]. You play the other person. My level is A2/B1. If I make a mistake, gently correct me after the exchange. Start the conversation.",
       },
     ],
   },
@@ -294,19 +294,19 @@ const LESSON_3_TOOLS: LessonTool[] = [
     prompts: [
       {
         title: 'A) Trener wymowy',
-        text: 'You are my English pronunciation coach. My level is A2/B1 (8th grade). I will say words and sentences — tell me if my pronunciation is correct. If not, break the word into syllables and show me how to say it. Focus on these sounds I struggle with: [TH / R / W / V — or say "general"]. Let\\'s start with 10 common words I might mispronounce.',
+        text: "You are my English pronunciation coach. My level is A2/B1 (8th grade). I will say words and sentences — tell me if my pronunciation is correct. If not, break the word into syllables and show me how to say it. Focus on these sounds I struggle with: [TH / R / W / V — or say 'general']. Let's start with 10 common words I might mispronounce.",
       },
       {
         title: 'B) Konwersacja z materiału lekcyjnego',
-        text: 'I\\'m preparing for my English class about [TOPIC FROM TEXTBOOK — e.g. environment, technology, healthy lifestyle]. My level is A2/B1. Have a conversation with me about this topic. Use vocabulary from this word list: [WKLEJ SŁÓWKA]. After every 3 exchanges, summarize new words I should remember.',
+        text: "I'm preparing for my English class about [TOPIC FROM TEXTBOOK — e.g. environment, technology, healthy lifestyle]. My level is A2/B1. Have a conversation with me about this topic. Use vocabulary from this word list: [WKLEJ SŁÓWKA]. After every 3 exchanges, summarize new words I should remember.",
       },
       {
         title: 'C) Opisywanie obrazka (matura/egzamin)',
-        text: 'I\\'m practicing describing pictures for my English exam. I will describe a photo to you. Listen and then: 1) rate my description 1-5, 2) point out grammar mistakes, 3) give me useful phrases I could have used, 4) ask me 3 follow-up questions about the photo. My level is A2/B1.',
+        text: "I'm practicing describing pictures for my English exam. I will describe a photo to you. Listen and then: 1) rate my description 1-5, 2) point out grammar mistakes, 3) give me useful phrases I could have used, 4) ask me 3 follow-up questions about the photo. My level is A2/B1.",
       },
       {
         title: 'D) Codzienne sytuacje',
-        text: 'Let\\'s practice everyday English conversations. My level is A2/B1 (8th grade). Pick a random everyday situation (shopping, doctor visit, asking for help, talking to a friend) and start a dialogue with me. After each of my responses, give me a score (1-5) and one tip to sound more natural. Switch situations every 5 minutes.',
+        text: "Let's practice everyday English conversations. My level is A2/B1 (8th grade). Pick a random everyday situation (shopping, doctor visit, asking for help, talking to a friend) and start a dialogue with me. After each of my responses, give me a score (1-5) and one tip to sound more natural. Switch situations every 5 minutes.",
       },
     ],
   },
@@ -331,7 +331,7 @@ const LESSON_3_TOOLS: LessonTool[] = [
       },
       {
         title: 'C) Nauczyciel ze zdjęcia notatek',
-        text: 'I\\'m sending you a photo of my English class notes. Please: 1) Read and organize the notes clearly, 2) Correct any mistakes in the notes, 3) Add 3 examples for each grammar rule, 4) Create 5 practice sentences for me to translate (Polish → English). My level is A2/B1.',
+        text: "I'm sending you a photo of my English class notes. Please: 1) Read and organize the notes clearly, 2) Correct any mistakes in the notes, 3) Add 3 examples for each grammar rule, 4) Create 5 practice sentences for me to translate (Polish → English). My level is A2/B1.",
       },
       {
         title: 'D) Przygotowanie do sprawdzianu',
@@ -352,11 +352,11 @@ const LESSON_3_TOOLS: LessonTool[] = [
     prompts: [
       {
         title: 'A) Słówka z otoczenia',
-        text: 'Look at this photo of [MY ROOM / STREET / KITCHEN / CLASSROOM]. Name every object you can see in English. For each object give: 1) English word, 2) pronunciation guide, 3) example sentence a student would use. My level is A2/B1. Then quiz me — describe an object and I\\'ll guess the English word.',
+        text: "Look at this photo of [MY ROOM / STREET / KITCHEN / CLASSROOM]. Name every object you can see in English. For each object give: 1) English word, 2) pronunciation guide, 3) example sentence a student would use. My level is A2/B1. Then quiz me — describe an object and I'll guess the English word.",
       },
       {
         title: 'B) Strona z podręcznika → interaktywna lekcja',
-        text: 'I\\'m sending a photo of a page from my English textbook. Read it and turn it into an interactive lesson for me: 1) Summarize the main topic, 2) Explain new vocabulary, 3) Create a dialogue using the grammar from this page, 4) Give me 5 exercises. My level is A2/B1 (8th grade, Polish school).',
+        text: "I'm sending a photo of a page from my English textbook. Read it and turn it into an interactive lesson for me: 1) Summarize the main topic, 2) Explain new vocabulary, 3) Create a dialogue using the grammar from this page, 4) Give me 5 exercises. My level is A2/B1 (8th grade, Polish school).",
       },
       {
         title: 'C) Zdjęcie → opowiadanie',
@@ -364,7 +364,7 @@ const LESSON_3_TOOLS: LessonTool[] = [
       },
       {
         title: 'D) Zdjęcie notatek → fiszki',
-        text: 'I\\'m sending a photo of my English notes from class. Please: 1) Read all the content, 2) Create 15 flashcards (English word/phrase → Polish translation + example sentence), 3) Group them by topic, 4) Mark which ones are most important for a test. Format each flashcard clearly.',
+        text: "I'm sending a photo of my English notes from class. Please: 1) Read all the content, 2) Create 15 flashcards (English word/phrase → Polish translation + example sentence), 3) Group them by topic, 4) Mark which ones are most important for a test. Format each flashcard clearly.",
       },
     ],
   },
