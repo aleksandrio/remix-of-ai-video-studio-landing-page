@@ -250,10 +250,131 @@ const LESSON_2_TOOLS: LessonTool[] = [
   },
 ]
 
+// Lesson 3: Asystenci głosowi AI do nauki języków
+const LESSON_3_TOOLS: LessonTool[] = [
+  {
+    emoji: '🎙️',
+    name: 'Gemini Live — rozmowa głosowa',
+    description: 'Tryb głosowy Gemini pozwala prowadzić naturalną konwersację po angielsku. Możesz mówić i słuchać — AI odpowiada głosem, poprawia błędy i dostosowuje się do Twojego poziomu.',
+    link: 'https://gemini.google.com',
+    whenToUse: [
+      'Ćwiczenie mówienia po angielsku bez stresu',
+      'Przygotowanie do odpowiedzi ustnej',
+      'Symulacja rozmowy na konkretny temat z lekcji',
+    ],
+    prompts: [
+      {
+        title: 'A) Nauczyciel konwersacji (ogólny)',
+        text: 'You are my English conversation teacher. My level is A2/B1 (8th grade, Polish school). Speak slowly and clearly. After each of my responses: 1) correct grammar mistakes gently, 2) suggest a better way to say it, 3) ask a follow-up question to keep the conversation going. Start with a simple topic: [TOPIC — e.g. hobbies, school, weekend plans].',
+      },
+      {
+        title: 'B) Nauczyciel na podstawie zdjęcia',
+        text: 'Look at this photo I'm sending you. Describe what you see in simple English (A2/B1 level). Then ask me 5 questions about the photo — start easy, then make them harder. After each of my answers, correct my English and teach me 2 new words related to the picture.',
+      },
+      {
+        title: 'C) Powtórka z notatek/materiałów',
+        text: 'Here are my English class notes: [WKLEJ NOTATKI LUB OPISZ TEMAT]. Act as my teacher. First, explain the grammar rule in simple terms with 3 examples. Then test me — ask me 5 questions using this grammar. Correct my mistakes and explain why.',
+      },
+      {
+        title: 'D) Scenka sytuacyjna (role-play)',
+        text: 'Let\\'s do a role-play in English. Scenario: [CHOOSE: ordering food in a restaurant / buying a ticket / asking for directions / job interview for a summer job / meeting a new classmate]. You play the other person. My level is A2/B1. If I make a mistake, gently correct me after the exchange. Start the conversation.',
+      },
+    ],
+  },
+  {
+    emoji: '🤖',
+    name: 'ChatGPT Voice — asystent głosowy',
+    description: 'Tryb głosowy ChatGPT (Advanced Voice) pozwala na naturalną konwersację. Świetny do ćwiczeń wymowy, bo rozumie nawet niedoskonały akcent i cierpliwie poprawia.',
+    link: 'https://chat.openai.com',
+    whenToUse: [
+      'Ćwiczenie wymowy i intonacji',
+      'Rozmowa na temat z lekcji lub podręcznika',
+      'Tłumaczenie i wyjaśnianie zwrotów „na żywo"',
+    ],
+    prompts: [
+      {
+        title: 'A) Trener wymowy',
+        text: 'You are my English pronunciation coach. My level is A2/B1 (8th grade). I will say words and sentences — tell me if my pronunciation is correct. If not, break the word into syllables and show me how to say it. Focus on these sounds I struggle with: [TH / R / W / V — or say "general"]. Let\\'s start with 10 common words I might mispronounce.',
+      },
+      {
+        title: 'B) Konwersacja z materiału lekcyjnego',
+        text: 'I\\'m preparing for my English class about [TOPIC FROM TEXTBOOK — e.g. environment, technology, healthy lifestyle]. My level is A2/B1. Have a conversation with me about this topic. Use vocabulary from this word list: [WKLEJ SŁÓWKA]. After every 3 exchanges, summarize new words I should remember.',
+      },
+      {
+        title: 'C) Opisywanie obrazka (matura/egzamin)',
+        text: 'I\\'m practicing describing pictures for my English exam. I will describe a photo to you. Listen and then: 1) rate my description 1-5, 2) point out grammar mistakes, 3) give me useful phrases I could have used, 4) ask me 3 follow-up questions about the photo. My level is A2/B1.',
+      },
+      {
+        title: 'D) Codzienne sytuacje',
+        text: 'Let\\'s practice everyday English conversations. My level is A2/B1 (8th grade). Pick a random everyday situation (shopping, doctor visit, asking for help, talking to a friend) and start a dialogue with me. After each of my responses, give me a score (1-5) and one tip to sound more natural. Switch situations every 5 minutes.',
+      },
+    ],
+  },
+  {
+    emoji: '🟠',
+    name: 'Claude Voice — cierpliwy nauczyciel',
+    description: 'Claude od Anthropic wyróżnia się cierpliwością i dokładnymi wyjaśnieniami gramatyki. Idealny, gdy chcesz zrozumieć DLACZEGO tak się mówi, nie tylko CO powiedzieć.',
+    link: 'https://claude.ai',
+    whenToUse: [
+      'Dokładne wyjaśnienie reguły gramatycznej',
+      'Analiza tekstu z podręcznika krok po kroku',
+      'Przygotowanie do sprawdzianu z konkretnego działu',
+    ],
+    prompts: [
+      {
+        title: 'A) Analiza tekstu z lekcji',
+        text: 'Here is a text from my English textbook: [WKLEJ TEKST LUB OPISZ GO]. My level is A2/B1 (8th grade). Please: 1) Explain 5 most difficult words in simple English + Polish translation, 2) Find 3 grammar structures and explain them, 3) Write 5 comprehension questions, 4) Create a mini-dialogue using vocabulary from this text.',
+      },
+      {
+        title: 'B) Gramatyka krok po kroku',
+        text: 'Explain this English grammar topic to me: [TOPIC — e.g. Present Perfect vs Past Simple / conditionals / passive voice / reported speech]. My level is A2/B1. Use: 1) Simple explanation in English, 2) 5 clear examples, 3) Common mistakes Polish students make, 4) A quick 5-question quiz to test me. Be patient and encouraging.',
+      },
+      {
+        title: 'C) Nauczyciel ze zdjęcia notatek',
+        text: 'I\\'m sending you a photo of my English class notes. Please: 1) Read and organize the notes clearly, 2) Correct any mistakes in the notes, 3) Add 3 examples for each grammar rule, 4) Create 5 practice sentences for me to translate (Polish → English). My level is A2/B1.',
+      },
+      {
+        title: 'D) Przygotowanie do sprawdzianu',
+        text: 'I have an English test about [TOPIC/UNIT] on [KIEDY]. My level is A2/B1 (8th grade). Help me prepare: 1) List the most important vocabulary (20 words with examples), 2) Explain key grammar rules, 3) Create a practice test (10 questions: 5 grammar, 3 vocabulary, 2 writing). After I answer, grade me and explain mistakes.',
+      },
+    ],
+  },
+  {
+    emoji: '📸',
+    name: 'AI + zdjęcie = lekcja angielskiego',
+    description: 'Zrób zdjęcie czegokolwiek — notatek, strony z podręcznika, ulicy, jedzenia — i użyj AI do nauki angielskiego na podstawie tego, co widzisz. Działa we wszystkich trzech asystentach!',
+    link: 'https://gemini.google.com',
+    whenToUse: [
+      'Nauka słówek z otoczenia (zdjęcie ulicy, sklepu, kuchni)',
+      'Tłumaczenie i analiza strony z podręcznika',
+      'Ćwiczenie opisywania zdjęć na egzamin',
+    ],
+    prompts: [
+      {
+        title: 'A) Słówka z otoczenia',
+        text: 'Look at this photo of [MY ROOM / STREET / KITCHEN / CLASSROOM]. Name every object you can see in English. For each object give: 1) English word, 2) pronunciation guide, 3) example sentence a student would use. My level is A2/B1. Then quiz me — describe an object and I\\'ll guess the English word.',
+      },
+      {
+        title: 'B) Strona z podręcznika → interaktywna lekcja',
+        text: 'I\\'m sending a photo of a page from my English textbook. Read it and turn it into an interactive lesson for me: 1) Summarize the main topic, 2) Explain new vocabulary, 3) Create a dialogue using the grammar from this page, 4) Give me 5 exercises. My level is A2/B1 (8th grade, Polish school).',
+      },
+      {
+        title: 'C) Zdjęcie → opowiadanie',
+        text: 'Look at this photo. Help me write a short story (100-150 words) in English based on what you see. First, help me brainstorm: who, where, when, what happened? Then we write it together sentence by sentence — you suggest, I try, you correct. Level: A2/B1.',
+      },
+      {
+        title: 'D) Zdjęcie notatek → fiszki',
+        text: 'I\\'m sending a photo of my English notes from class. Please: 1) Read all the content, 2) Create 15 flashcards (English word/phrase → Polish translation + example sentence), 3) Group them by topic, 4) Mark which ones are most important for a test. Format each flashcard clearly.',
+      },
+    ],
+  },
+]
+
 // Map lesson slugs to their tools
 export const LESSON_TOOLS_MAP: Record<string, LessonTool[]> = {
   '1-google-intro': LESSON_1_TOOLS,
   '2-notebooklm': LESSON_2_TOOLS,
+  '3-ai-english': LESSON_3_TOOLS,
 }
 
 // Default export for backward compatibility
