@@ -5,7 +5,7 @@ import { StartSurveyModule } from '@/components/lesson/StartSurveyModule'
 import { FeedbackSurveyModule } from '@/components/lesson/FeedbackSurveyModule'
 import { ToolSection } from '@/components/lesson/ToolSection'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { LESSON_TOOLS } from '@/data/lessonTools'
+import { LESSON_TOOLS_MAP, LESSON_TOOLS } from '@/data/lessonTools'
 
 interface LessonConfig {
   lesson_slug: string
@@ -125,8 +125,8 @@ export default function LessonPage() {
 
         {/* C) Tools */}
         <section className="space-y-4">
-          <h2 className="font-heading text-xl font-bold text-foreground">Narzędzia Google AI</h2>
-          {LESSON_TOOLS.map((tool) => (
+          <h2 className="font-heading text-xl font-bold text-foreground">Narzędzia</h2>
+          {(slug && LESSON_TOOLS_MAP[slug] ? LESSON_TOOLS_MAP[slug] : LESSON_TOOLS).map((tool) => (
             <ToolSection key={tool.name} {...tool} />
           ))}
         </section>
