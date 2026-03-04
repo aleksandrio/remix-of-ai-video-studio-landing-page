@@ -53,8 +53,8 @@ const LESSON_1_TOOLS: LessonTool[] = [
         text: 'Wnętrze komórki, mitochondria, jądro, ruch cząsteczek. Styl: czysta edukacyjna animacja 3D. Kamera: płynny lot. Bez napisów. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
       },
       {
-        title: 'D) 3 warianty jednego ujęcia',
-        text: 'Wygeneruj 3 warianty: temat [TEMAT], styl [realistyczny/animowany]. Zmieniaj porę dnia, pogodę i kąt kamery. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
+        title: 'D) Kosmiczny przelot',
+        text: 'Lot statku kosmicznego przez kolorową mgławicę i pole asteroid. Kamera podąża za statkiem z lekkim ruchem bocznym. Styl: cinematic, realistyczne światło, dużo detali. Bez napisów. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
       },
     ],
   },
@@ -67,12 +67,11 @@ const LESSON_1_TOOLS: LessonTool[] = [
     whenToUse: [
       'Gdy chcesz przerobić słaby prompt na lepszy',
       'Gdy nie wiesz, jak zacząć i potrzebujesz szkicu promptu',
-      'Gdy chcesz szybko zrobić quiz lub plan nauki',
     ],
     prompts: [
       {
         title: 'Generator promptu dla narzędzia (prowadź mnie krok po kroku)',
-        text: 'Chcę wygenerować świetny prompt do narzędzia: [NANO BANANA / FLOW / LYRA]. Najpierw zadaj mi maks. 6 krótkich pytań doprecyzowujących. Potem przygotuj 3 wersje promptu: (1) krótka, (2) standard, (3) ambitna. Na końcu podaj checklistę 5 rzeczy do sprawdzenia przed uruchomieniem.',
+        text: 'Chcę wygenerować świetny prompt do narzędzia: [NANO BANANA / FLOW / LYRA / CANVAS]. Najpierw zadaj mi maks. 6 krótkich pytań doprecyzowujących. Potem przygotuj 3 wersje promptu: (1) krótka, (2) standard, (3) ambitna. Na końcu podaj checklistę 5 rzeczy do sprawdzenia przed uruchomieniem.',
       },
       {
         title: 'Ulepszacz promptu',
@@ -84,7 +83,7 @@ const LESSON_1_TOOLS: LessonTool[] = [
     emoji: '🎵',
     name: 'Lyra',
     description: 'Generuje krótkie podkłady do filmów i prezentacji (najlepiej instrumentalne).',
-    link: 'https://aistudio.google.com',
+    link: 'https://gemini.google.com',
     whenToUse: ['Intro/outro do prezentacji', 'Tło do wideo', 'Klimat do projektu'],
     prompts: [
       {
@@ -92,7 +91,7 @@ const LESSON_1_TOOLS: LessonTool[] = [
         text: 'Instrumentalny lo-fi. Tempo [70–90 BPM]. Pianino, miękki bas, delikatne bębny. Zero wokalu.',
       },
       {
-        title: 'B) Heroiczne intro (10–15s)',
+        title: 'B) Heroiczne intro',
         text: 'Filmowe intro: bębny, smyczki, narastanie, finał na 1 mocnym akordzie. Bez wokalu.',
       },
       {
@@ -126,12 +125,16 @@ const LESSON_1_TOOLS: LessonTool[] = [
         text: 'Stwórz prostą grę z postacią, która skacze po platformach i zbiera monety. Krótko opisz po polsku: cel gry, przykładowe przeszkody i co daje zebranie monet.',
       },
       {
-        title: 'C) Gra o życiu w szkole',
-        text: 'Stwórz prostą grę fabularną o życiu w szkole, w której gracz podejmuje decyzje (np. uczyć się czy scrollować). Krótko opisz po polsku 3 sytuacje i po 2 możliwe wybory w każdej.',
+        title: 'C) Gra o ekipie na festiwalu',
+        text: 'Stwórz prostą grę fabularną o ekipie znajomych, która próbuje dostać się na wymarzony festiwal muzyczny. Krótko opisz po polsku 3 sytuacje (np. kupowanie biletów, dojazd, wejście na teren) i po 2 możliwe wybory w każdej.',
       },
       {
         title: 'D) Mini gra rytmiczna',
         text: 'Stwórz prostą grę rytmiczną, w której trzeba klikać w odpowiednim momencie do muzyki. Krótko opisz po polsku: na czym polega gra, jak gracz zdobywa punkty i kiedy przegrywa.',
+      },
+      {
+        title: 'E) Latanie orłem w 3D',
+        text: 'Stwórz pomysł na grę 3D, w której gracz steruje orłem lecącym nad górami, lasami i jeziorami (widok z trzeciej osoby, zza ptaka). Krótko opisz po polsku: jak wygląda świat z góry, co orzeł może robić (np. szybować, pikować, omijać skały i drzewa), jakie przeszkody pojawiają się w powietrzu oraz kiedy gracz wygrywa, a kiedy przegrywa.',
       },
     ],
   },
