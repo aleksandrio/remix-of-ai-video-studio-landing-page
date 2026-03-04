@@ -56,6 +56,10 @@ const LESSON_1_TOOLS: LessonTool[] = [
         title: 'D) Kosmiczny przelot',
         text: 'Lot statku kosmicznego przez kolorową mgławicę i pole asteroid. Kamera podąża za statkiem z lekkim ruchem bocznym. Styl: cinematic, realistyczne światło, dużo detali. Bez napisów. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
       },
+      {
+        title: 'E) Mechanik',
+        text: 'Mechanik w brudnym kombinezonie naprawia silnik pod maską starego samochodu. Śrubokręt, klucze, dym z komina. Nagle silnik wybucha — błysk, dym, mechanik wyskakuje z czarną twarzą i nastroszonymi włosami. Styl: lekka komedia, wyraźna mimika, krótka scena. Bez napisów. Bez przekleństw. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
+      },
     ],
   },
   {
@@ -64,10 +68,7 @@ const LESSON_1_TOOLS: LessonTool[] = [
     description:
       'Gemini możesz używać do ulepszania promptów albo do kreatywnego tworzenia promptów, gdy nie masz pomysłu. Może przeprowadzić Cię przez proces myślenia i generowania promptu dla kolejnych narzędzi.',
     link: 'https://gemini.google.com',
-    whenToUse: [
-      'Gdy chcesz przerobić słaby prompt na lepszy',
-      'Gdy nie wiesz, jak zacząć i potrzebujesz szkicu promptu',
-    ],
+    whenToUse: ['Gdy chcesz przerobić słaby prompt na lepszy', 'Gdy nie wiesz, jak zacząć i potrzebujesz szkicu promptu'],
     prompts: [
       {
         title: 'Generator promptu dla narzędzia (prowadź mnie krok po kroku)',
@@ -134,7 +135,7 @@ const LESSON_1_TOOLS: LessonTool[] = [
       },
       {
         title: 'E) Latanie orłem w 3D',
-        text: 'Stwórz pomysł na grę 3D, w której gracz steruje orłem lecącym nad górami, lasami i jeziorami (widok z trzeciej osoby, zza ptaka). Krótko opisz po polsku: jak wygląda świat z góry, co orzeł może robić (np. szybować, pikować, omijać skały i drzewa), jakie przeszkody pojawiają się w powietrzu oraz kiedy gracz wygrywa, a kiedy przegrywa.',
+        text: 'Stwórz grę 3D, w której gracz steruje orłem lecącym nad górami, lasami i jeziorami (widok z trzeciej osoby, zza ptaka). Krótko opisz po polsku: jak wygląda świat z góry, co orzeł może robić (np. szybować, pikować, omijać skały i drzewa), jakie przeszkody pojawiają się w powietrzu oraz kiedy gracz wygrywa, a kiedy przegrywa.',
       },
     ],
   },

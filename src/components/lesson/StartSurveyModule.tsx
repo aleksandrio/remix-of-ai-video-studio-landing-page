@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 import { LiveStartResults } from './LiveStartResults'
 
-const USES_AI_OPTIONS = ['Tak, często', 'Tak, czasem', 'Nie', 'Dopiero zaczynam']
+const USES_AI_OPTIONS = ['Tak, często', 'Tak, czasem', 'Nie'];
 const TOOLS_OPTIONS = ['Gemini', 'ChatGPT', 'Claude', 'NotebookLM', 'Perplexity', 'Inne']
 const USE_CASES_OPTIONS = [
   'Nauka / tłumaczenie tematów',
@@ -74,19 +74,17 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
       <div className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-8">
         <div>
           <h3 className="font-heading text-xl font-bold text-foreground">Szybka ankieta na start (anonimowa)</h3>
-          <p className="text-muted-foreground text-sm mt-1">
-            Zanim zaczniemy — 30 sekund. Nie wpisuj danych osobowych.
-          </p>
+          <p className="text-muted-foreground text-sm mt-1">Zanim zaczniemy — 30 sekund. Nie wpisuj danych osobowych.</p>
         </div>
 
         {/* 1) uses_ai */}
         <div className="space-y-3">
           <p className="font-medium text-foreground">Czy korzystasz z narzędzi AI?</p>
           <div className="flex flex-col gap-2">
-            {USES_AI_OPTIONS.map((opt) => (
+            {USES_AI_OPTIONS.map(opt => (
               <button
                 key={opt}
-                onClick={() => setAnswers((a) => ({ ...a, uses_ai: opt }))}
+                onClick={() => setAnswers(a => ({ ...a, uses_ai: opt }))}
                 className={`text-left px-4 py-3 rounded-lg border-2 transition-all ${
                   answers.uses_ai === opt
                     ? 'border-primary bg-primary/10 text-foreground'
@@ -101,9 +99,9 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
 
         {/* 2) tools_known */}
         <div className="space-y-3">
-          <p className="font-medium text-foreground">Jakie narzędzia AI znasz? (zaznacz wszystkie)</p>
+          <p className="font-medium text-foreground">Jakie narzędzia AI znasz?</p>
           <div className="flex flex-wrap gap-2">
-            {TOOLS_OPTIONS.map((opt) => (
+            {TOOLS_OPTIONS.map(opt => (
               <button
                 key={opt}
                 onClick={() => toggleMulti('tools_known', opt)}
@@ -121,7 +119,7 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
             <input
               placeholder="Jakie inne narzędzia?"
               value={(answers.other_tools as string) || ''}
-              onChange={(e) => setAnswers((a) => ({ ...a, other_tools: e.target.value }))}
+              onChange={e => setAnswers(a => ({ ...a, other_tools: e.target.value }))}
               className="w-full border border-border bg-background text-foreground rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             />
           )}
@@ -129,9 +127,9 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
 
         {/* 3) use_cases */}
         <div className="space-y-3">
-          <p className="font-medium text-foreground">Do czego używasz AI? (zaznacz wszystkie)</p>
+          <p className="font-medium text-foreground">Do czego używasz AI?</p>
           <div className="flex flex-wrap gap-2">
-            {USE_CASES_OPTIONS.map((opt) => (
+            {USE_CASES_OPTIONS.map(opt => (
               <button
                 key={opt}
                 onClick={() => toggleMulti('use_cases', opt)}
@@ -149,7 +147,7 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
             <input
               placeholder="Inne zastosowania?"
               value={(answers.other_use_cases as string) || ''}
-              onChange={(e) => setAnswers((a) => ({ ...a, other_use_cases: e.target.value }))}
+              onChange={e => setAnswers(a => ({ ...a, other_use_cases: e.target.value }))}
               className="w-full border border-border bg-background text-foreground rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             />
           )}
@@ -159,10 +157,10 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
         <div className="space-y-3">
           <p className="font-medium text-foreground">Czy AI pomaga Ci „ściągać" w szkole?</p>
           <div className="flex flex-col gap-2">
-            {CHEATING_OPTIONS.map((opt) => (
+            {CHEATING_OPTIONS.map(opt => (
               <button
                 key={opt}
-                onClick={() => setAnswers((a) => ({ ...a, cheating: opt }))}
+                onClick={() => setAnswers(a => ({ ...a, cheating: opt }))}
                 className={`text-left px-4 py-3 rounded-lg border-2 transition-all ${
                   answers.cheating === opt
                     ? 'border-primary bg-primary/10 text-foreground'
@@ -180,10 +178,10 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
           <p className="font-medium text-foreground">Jak pomocne jest AI w nauce? (1–5)</p>
           <div className="flex items-center gap-2">
             <span className="text-xs text-muted-foreground whitespace-nowrap">Wcale</span>
-            {[1, 2, 3, 4, 5].map((v) => (
+            {[1, 2, 3, 4, 5].map(v => (
               <button
                 key={v}
-                onClick={() => setAnswers((a) => ({ ...a, helpfulness: v }))}
+                onClick={() => setAnswers(a => ({ ...a, helpfulness: v }))}
                 className={`w-12 h-12 rounded-lg border-2 text-lg font-bold transition-all ${
                   answers.helpfulness === v
                     ? 'border-primary bg-primary text-primary-foreground'
@@ -206,7 +204,7 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
             maxLength={500}
             placeholder="Twoja odpowiedź (opcjonalne)..."
             value={(answers.open_answer as string) || ''}
-            onChange={(e) => setAnswers((a) => ({ ...a, open_answer: e.target.value }))}
+            onChange={e => setAnswers(a => ({ ...a, open_answer: e.target.value }))}
           />
         </div>
 
@@ -221,5 +219,5 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
 
       <LiveStartResults lessonSlug={lessonSlug} sessionId={sessionId} />
     </div>
-  )
+  );
 }
