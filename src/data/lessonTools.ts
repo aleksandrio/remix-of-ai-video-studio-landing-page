@@ -13,9 +13,56 @@ export interface LessonTool {
 // Lesson 1: Google AI intro
 const LESSON_1_TOOLS: LessonTool[] = [
   {
+    emoji: '🍌',
+    name: 'Nano Banana',
+    description: 'Szybkie przeróbki zdjęć i obrazów: style, tła, warianty. Efekt WOW w minutę.',
+    link: 'https://labs.google/flow/about',
+    whenToUse: ['Przeróbka zdjęcia na epokę/styl do projektu', 'Plakat/grafika do prezentacji', 'Warianty jednego pomysłu'],
+    prompts: [
+      {
+        title: 'A) Inna epoka (realistycznie)',
+        text: 'Przerób to zdjęcie na styl z epoki staroytnego Rzymu. Zachowaj moją twarz i rysy, realistyczne światło, wysoka jakość, naturalne kolory. Tło: stara zabytkowa architektura Rzymu.',
+      },
+      {
+        title: 'B) Plakat szkolny',
+        text: 'Zrób z tego obrazka plakat w stylu [minimal / retro / manga] na temat [TEMAT]. Dodaj tytuł: "[TYTUŁ]" i podtytuł: [PODTYTUŁ]. Zostaw miejsce na datę i salę. Czytelna typografia, wysoki kontrast.',
+      },
+      {
+        title: 'D) 3 stylizacje tej samej osoby',
+        text: 'Wygeneruj 3 wersje stylu: [sportowy / elegancki / cyberpunk]. Zachowaj tę samą osobę i podobne ujęcie. Każdy wariant z inną kolorystyką i dodatkami.',
+      },
+    ],
+  },
+  {
+    emoji: '🎬',
+    name: 'Flow',
+    description: 'Narzędzie AI do tworzenia filmów — generuj klipy, sceny i całe historie z zachowaniem spójności postaci i stylu.',
+    link: 'https://labs.google/flow/about',
+    whenToUse: ['Ujęcie do prezentacji bez kręcenia', 'Scenki do projektów tematycznych', 'Intro/outro do materiału wideo'],
+    prompts: [
+      {
+        title: 'A) Szkoła przyszłości (cinematic)',
+        text: 'Nowoczesna klasa, poranne światło, uczniowie przy tabletach, na ścianie hologram. Styl: cinematic, slow pan. Bez napisów. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
+      },
+      {
+        title: 'B) Średniowieczne miasto',
+        text: 'Miasto o świcie, bruk, stragany, dym z kominów. Ujęcie z góry → płynny zjazd na ulicę. Styl realistyczny. Bez napisów. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
+      },
+      {
+        title: 'C) Podróż w komórce (edukacyjna animacja 3D)',
+        text: 'Wnętrze komórki, mitochondria, jądro, ruch cząsteczek. Styl: czysta edukacyjna animacja 3D. Kamera: płynny lot. Bez napisów. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
+      },
+      {
+        title: 'D) 3 warianty jednego ujęcia',
+        text: 'Wygeneruj 3 warianty: temat [TEMAT], styl [realistyczny/animowany]. Zmieniaj porę dnia, pogodę i kąt kamery. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
+      },
+    ],
+  },
+  {
     emoji: '💎',
     name: 'Gemini',
-    description: 'Gemini możesz używać do ulepszania promptów albo do kreatywnego tworzenia promptów, gdy nie masz pomysłu. Może przeprowadzić Cię przez proces myślenia i generowania promptu dla kolejnych narzędzi.',
+    description:
+      'Gemini możesz używać do ulepszania promptów albo do kreatywnego tworzenia promptów, gdy nie masz pomysłu. Może przeprowadzić Cię przez proces myślenia i generowania promptu dla kolejnych narzędzi.',
     link: 'https://gemini.google.com',
     whenToUse: [
       'Gdy chcesz przerobić słaby prompt na lepszy',
@@ -29,106 +76,66 @@ const LESSON_1_TOOLS: LessonTool[] = [
       },
       {
         title: 'Ulepszacz promptu',
-        text: 'Oto mój prompt: "[WKLEJ SWÓJ PROMPT]". Popraw go: dodaj szczegóły, uściślij styl, format i ograniczenia. Podaj 3 wersje: minimalna, standardowa, rozbudowana.',
-      },
-      {
-        title: 'Quiz z tematu',
-        text: 'Stwórz quiz 10 pytań (jednokrotnego wyboru, 4 odpowiedzi) z tematu: [TEMAT]. Poziom: [szkoła podstawowa / liceum]. Na końcu podaj klucz odpowiedzi.',
-      },
-      {
-        title: 'Plan nauki',
-        text: 'Przygotuj plan nauki na [LICZBA] dni do tematu: [TEMAT]. Każdy dzień: cel, materiały, ćwiczenie praktyczne. Poziom: [początkujący / średni / zaawansowany].',
-      },
-    ],
-  },
-  {
-    emoji: '🍌',
-    name: 'Nano Banana (Google)',
-    description: 'Szybkie przeróbki zdjęć i obrazów: style, tła, warianty. Efekt WOW w minutę.',
-    link: 'https://aistudio.google.com',
-    whenToUse: [
-      'Przeróbka zdjęcia na epokę/styl do projektu',
-      'Plakat/grafika do prezentacji',
-      'Warianty jednego pomysłu',
-    ],
-    prompts: [
-      {
-        title: 'A) Inna epoka (realistycznie)',
-        text: 'Przerób to zdjęcie na styl: [EPOKA / ROK]. Zachowaj moją twarz i rysy, realistyczne światło, wysoka jakość, naturalne kolory. Tło: [MIEJSCE]. Zrób 3 warianty.',
-      },
-      {
-        title: 'B) Plakat szkolny',
-        text: 'Zrób z tego obrazka plakat w stylu [minimal / retro / manga] na temat [TEMAT]. Dodaj tytuł: "[TYTUŁ]" i podtytuł: [PODTYTUŁ]. Zostaw miejsce na datę i salę. Czytelna typografia, wysoki kontrast.',
-      },
-      {
-        title: 'C) Czyste tło',
-        text: 'Usuń elementy tła i zostaw główną postać/obiekt. Tło ustaw na jednolite [KOLOR]. Zachowaj naturalne krawędzie, bez artefaktów.',
-      },
-      {
-        title: 'D) 3 stylizacje tej samej osoby',
-        text: 'Wygeneruj 3 wersje stylu: [sportowy / elegancki / cyberpunk]. Zachowaj tę samą osobę i podobne ujęcie. Każdy wariant z inną kolorystyką i dodatkami.',
-      },
-    ],
-  },
-  {
-    emoji: '🎬',
-    name: 'Google Flow',
-    description: 'Narzędzie AI do tworzenia filmów — generuj klipy, sceny i całe historie z zachowaniem spójności postaci i stylu.',
-    link: 'https://flow.google.com',
-    whenToUse: [
-      'Ujęcie do prezentacji bez kręcenia',
-      'Scenki do projektów tematycznych',
-      'Intro/outro do materiału wideo',
-    ],
-    prompts: [
-      {
-        title: 'A) Szkoła przyszłości (cinematic)',
-        text: 'Nowoczesna klasa, poranne światło, uczniowie przy tabletach, na ścianie hologram. Styl: cinematic, slow pan. Długość: [8s]. Bez napisów.',
-      },
-      {
-        title: 'B) Średniowieczne miasto',
-        text: 'Miasto o świcie, bruk, stragany, dym z kominów. Ujęcie z góry → płynny zjazd na ulicę. Styl realistyczny. Długość: [czas]. Bez napisów.',
-      },
-      {
-        title: 'C) Podróż w komórce (edukacyjna animacja 3D)',
-        text: 'Wnętrze komórki, mitochondria, jądro, ruch cząsteczek. Styl: czysta edukacyjna animacja 3D. Kamera: płynny lot. Długość: [czas]. Bez napisów.',
-      },
-      {
-        title: 'D) 3 warianty jednego ujęcia',
-        text: 'Wygeneruj 3 warianty: temat [TEMAT], styl [realistyczny/animowany]. Zmieniaj porę dnia, pogodę i kąt kamery. Długość: [czas].',
+        text: 'Oto mój prompt: "[WKLEJ SWÓJ PROMPT]". Popraw go: dodaj szczegóły, uściślij styl, format i ograniczenia.',
       },
     ],
   },
   {
     emoji: '🎵',
-    name: 'Lyra/Lyria (Google)',
+    name: 'Lyra',
     description: 'Generuje krótkie podkłady do filmów i prezentacji (najlepiej instrumentalne).',
     link: 'https://aistudio.google.com',
-    whenToUse: [
-      'Intro/outro do prezentacji',
-      'Tło do wideo',
-      'Klimat do projektu',
-    ],
+    whenToUse: ['Intro/outro do prezentacji', 'Tło do wideo', 'Klimat do projektu'],
     prompts: [
       {
         title: 'A) Lo-fi do nauki (bez wokalu)',
-        text: 'Instrumentalny lo-fi. Tempo [70–90 BPM]. Pianino, miękki bas, delikatne bębny. Zero wokalu. Długość [30s].',
+        text: 'Instrumentalny lo-fi. Tempo [70–90 BPM]. Pianino, miękki bas, delikatne bębny. Zero wokalu.',
       },
       {
         title: 'B) Heroiczne intro (10–15s)',
-        text: 'Filmowe intro: bębny, smyczki, narastanie, finał na 1 mocnym akordzie. Bez wokalu. Długość [10–15s].',
+        text: 'Filmowe intro: bębny, smyczki, narastanie, finał na 1 mocnym akordzie. Bez wokalu.',
       },
       {
         title: 'C) Cyberpunk / technologia',
-        text: 'Elektroniczny podkład: neon, syntezatory, rytm [BPM], ciemniejsza tonacja. Bez wokalu. Długość [czas].',
+        text: 'Elektroniczny podkład: neon, syntezatory, rytm [110 BPM], ciemniejsza tonacja. Bez wokalu.',
       },
       {
         title: 'D) Wersje A/B',
-        text: 'Dwie wersje: A spokojniej, B bardziej energicznie. Gatunek [GATUNEK], instrumenty [INSTRUMENTY], długość [czas]. Bez wokalu.',
+        text: 'Dwie wersje: A spokojniej, B bardziej energicznie. Gatunek [GATUNEK], instrumenty [INSTRUMENTY]. Bez wokalu.',
       },
     ],
   },
-]
+  {
+    emoji: '🖼️',
+    name: 'Canvas',
+    description:
+      'Canvas w Gemini to interaktywna przestrzeń robocza, w której możesz łączyć tekst, szkice, obrazy i notatki. Idealne do burzy mózgów, planowania projektu i wspólnej pracy w klasie.',
+    link: 'https://gemini.google.com',
+    whenToUse: [
+      'Wymyślanie i projektowanie własnych gier (planszowych, karcianych, fabularnych)',
+      'Planowanie prostych gier / historii interaktywnych pod Roblox, Scratch, Twine itp.',
+      'Wspólne projektowanie „escape roomu” lub gry terenowej na szkolny event',
+    ],
+    prompts: [
+      {
+        title: 'A) Prosta gra samochodowa',
+        text: 'Stwórz prostą grę samochodową, w której trzeba omijać przeszkody. Wypisz krótko po polsku: cel gry, przykłady przeszkód i co się dzieje, gdy gracz uderzy w przeszkodę.',
+      },
+      {
+        title: 'B) Skakanie po platformach',
+        text: 'Stwórz prostą grę z postacią, która skacze po platformach i zbiera monety. Krótko opisz po polsku: cel gry, przykładowe przeszkody i co daje zebranie monet.',
+      },
+      {
+        title: 'C) Gra o życiu w szkole',
+        text: 'Stwórz prostą grę fabularną o życiu w szkole, w której gracz podejmuje decyzje (np. uczyć się czy scrollować). Krótko opisz po polsku 3 sytuacje i po 2 możliwe wybory w każdej.',
+      },
+      {
+        title: 'D) Mini gra rytmiczna',
+        text: 'Stwórz prostą grę rytmiczną, w której trzeba klikać w odpowiednim momencie do muzyki. Krótko opisz po polsku: na czym polega gra, jak gracz zdobywa punkty i kiedy przegrywa.',
+      },
+    ],
+  },
+];
 
 // Lesson 2: NotebookLM na telefonie
 const LESSON_2_TOOLS: LessonTool[] = [
