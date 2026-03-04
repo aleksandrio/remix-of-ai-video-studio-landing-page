@@ -178,7 +178,8 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
         {/* 5) helpfulness */}
         <div className="space-y-3">
           <p className="font-medium text-foreground">Jak pomocne jest AI w nauce? (1–5)</p>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-muted-foreground whitespace-nowrap">Wcale</span>
             {[1, 2, 3, 4, 5].map((v) => (
               <button
                 key={v}
@@ -192,10 +193,7 @@ export function StartSurveyModule({ lessonSlug, sessionId }: Props) {
                 {v}
               </button>
             ))}
-            <div className="w-full flex justify-between text-xs text-muted-foreground mt-1">
-              <span>Wcale</span>
-              <span>Bardzo</span>
-            </div>
+            <span className="text-xs text-muted-foreground whitespace-nowrap">Bardzo</span>
           </div>
         </div>
 
