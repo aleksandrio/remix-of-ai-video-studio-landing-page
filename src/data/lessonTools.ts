@@ -45,8 +45,8 @@ const LESSON_1_TOOLS: LessonTool[] = [
         text: 'Nowoczesna klasa, poranne światło, uczniowie przy tabletach, na ścianie hologram. Styl: cinematic, slow pan. Bez napisów. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
       },
       {
-        title: 'B) Średniowieczne miasto',
-        text: 'Miasto o świcie, bruk, stragany, dym z kominów. Ujęcie z góry → płynny zjazd na ulicę. Styl realistyczny. Bez napisów. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
+        title: 'B) Disco Babcia',
+        text: 'Zbliżenie na dłonie starszej kobiety w kwiecistym fartuchu, która energicznie ugniata miękkie ciasto w rustykalnej, słonecznej kuchni. W powietrzu unosi się pył z mąki. Babcia z uśmiechem podrzuca wielką kulę ciasta wysoko do góry. Kamera podąża za ciastem (slow-motion), które w locie magicznie transformuje się – ciasto twardnieje i pokrywa się tysiącem lśniących lusterek, stając się wirującą kulą dyskotekową. Nagle światło w kuchni zmienia się z ciepłego słońca na pulsujące neony (fiolet i błękit). Babcia zdejmuje okulary i zaczyna profesjonalnie tańczyć boogie-woogie pod wirującą kulą, a mąka na blacie podskakuje w rytm basu. Jeśli pojawiają się jakiekolwiek napisy, tekst na ekranie lub dialogi, wszystko ma być w języku polskim.',
       },
       {
         title: 'C) Podróż w komórce (edukacyjna animacja 3D)',
