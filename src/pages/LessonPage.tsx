@@ -147,7 +147,39 @@ export default function LessonPage() {
           </section>
         )}
 
-        {/* C) Tools */}
+        {/* Possibilities section — lesson 1 */}
+        {slug === '1-google-intro' && (
+          <section className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-5">
+            <h2 className="font-heading text-xl font-bold text-foreground">🚀 Co możesz z tym zrobić?</h2>
+            <p className="text-sm text-foreground leading-relaxed">
+              Narzędzia, które dziś poznasz, to nie zabawki — to profesjonalne studio multimedialne w Twojej przeglądarce. Oto kilka pomysłów, jak możesz je wykorzystać:
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">🎓 W szkole</p>
+                <ul className="space-y-1.5 text-sm text-muted-foreground">
+                  <li className="flex gap-2"><span className="text-primary">•</span> Ilustracje i grafiki do prezentacji, które wyróżnią Twój projekt</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span> Krótkie filmy edukacyjne do projektów grupowych</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span> Plakaty na wydarzenia szkolne w kilka minut</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span> Podkład muzyczny do własnych materiałów wideo</li>
+                </ul>
+              </div>
+              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">🎥 Na własny kanał</p>
+                <ul className="space-y-1.5 text-sm text-muted-foreground">
+                  <li className="flex gap-2"><span className="text-primary">•</span> Intro i outro do filmów na YouTube czy TikToka</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span> Miniaturki (thumbnails), które przyciągają uwagę</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span> Oryginalna muzyka bez problemów z prawami autorskimi</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span> Wstawki wizualne i animacje, które podnoszą jakość treści</li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground italic">
+              Ludzie, którzy dziś prowadzą popularne kanały, zaczynali dokładnie od takich eksperymentów. Jedyna różnica? Oni zaczęli — a Ty właśnie zaczynasz. 🎯
+            </p>
+          </section>
+        )}
+
         <section className="space-y-4">
           <h2 className="font-heading text-xl font-bold text-foreground">Narzędzia</h2>
           {(slug && LESSON_TOOLS_MAP[slug] ? LESSON_TOOLS_MAP[slug] : LESSON_TOOLS).map((tool) => (
