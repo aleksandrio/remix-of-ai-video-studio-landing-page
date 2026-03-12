@@ -124,7 +124,7 @@ export default function LessonPage() {
         </section>
 
         {/* Ethical use note — lesson 1 */}
-        {slug === '1-gemini' && (
+        {slug === '1-google-intro' && (
           <section className="bg-card border border-primary/20 rounded-lg p-6 md:p-8 space-y-4">
             <h2 className="font-heading text-xl font-bold text-foreground">🤝 Tworzenie z szacunkiem</h2>
             <p className="text-sm text-foreground leading-relaxed">
