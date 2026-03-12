@@ -123,6 +123,30 @@ export default function LessonPage() {
           </div>
         </section>
 
+        {/* Ethical use note — lesson 1 */}
+        {slug === '1-gemini' && (
+          <section className="bg-card border border-primary/20 rounded-lg p-6 md:p-8 space-y-4">
+            <h2 className="font-heading text-xl font-bold text-foreground">🤝 Tworzenie z szacunkiem</h2>
+            <p className="text-sm text-foreground leading-relaxed">
+              Narzędzia generatywnej AI dają Ci ogromne możliwości twórcze — możesz tworzyć niesamowite grafiki, filmy i muzykę. Z taką mocą wiąże się jednak odpowiedzialność.
+            </p>
+            <p className="text-sm text-foreground leading-relaxed">
+              Każda osoba ma prawo do swojego wizerunku. Tworzenie treści z wykorzystaniem czyjejś twarzy lub zdjęć <strong>wymaga zawsze zgody tej osoby</strong>. To nie tylko kwestia prawa — to kwestia szacunku do drugiego człowieka.
+            </p>
+            <div className="bg-primary/5 border border-primary/10 rounded-lg p-4 space-y-2 text-sm text-foreground">
+              <p className="font-semibold">Co robić, gdy widzisz, że ktoś tworzy treści krzywdzące inne osoby?</p>
+              <ul className="space-y-1.5 text-muted-foreground">
+                <li className="flex gap-2"><span className="text-primary font-bold">→</span> Zareaguj — powiedz, że to nie jest OK</li>
+                <li className="flex gap-2"><span className="text-primary font-bold">→</span> Usuń takie treści, jeśli masz taką możliwość</li>
+                <li className="flex gap-2"><span className="text-primary font-bold">→</span> Zgłoś problem nauczycielowi lub innej zaufanej osobie dorosłej</li>
+              </ul>
+            </div>
+            <p className="text-xs text-muted-foreground italic">
+              Najlepsi twórcy potrafią tworzyć rzeczy, które inspirują — nie ranią. Bądź takim twórcą. 💪
+            </p>
+          </section>
+        )}
+
         {/* C) Tools */}
         <section className="space-y-4">
           <h2 className="font-heading text-xl font-bold text-foreground">Narzędzia</h2>
