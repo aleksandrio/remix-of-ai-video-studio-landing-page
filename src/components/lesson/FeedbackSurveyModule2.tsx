@@ -29,7 +29,7 @@ export function FeedbackSurveyModule2({ lessonSlug, sessionId }: Props) {
     })
   }
 
-  const isComplete = answers.favorite_method && answers.least_favorite && answers.most_effective && answers.pace && answers.rating
+  const isComplete = answers.favorite_method && answers.least_favorite && answers.most_effective && answers.pace && answers.learned_useful
 
   const handleSubmit = useCallback(async () => {
     if (!isComplete) return
@@ -146,25 +146,23 @@ export function FeedbackSurveyModule2({ lessonSlug, sessionId }: Props) {
         </div>
       </div>
 
-      {/* rating */}
+      {/* learned_useful */}
       <div className="space-y-3">
-        <p className="font-medium text-foreground">Ocena zajęć (1–5)</p>
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-muted-foreground whitespace-nowrap">Słabo</span>
-          {[1, 2, 3, 4, 5].map(v => (
+        <p className="font-medium text-foreground">Czy nauczyłeś/aś się czegoś, co przyda Ci się w nauce?</p>
+        <div className="flex gap-2 flex-wrap">
+          {['Tak, na pewno!', 'Raczej tak', 'Nie jestem pewien/a', 'Raczej nie'].map(opt => (
             <button
-              key={v}
-              onClick={() => setAnswers(a => ({ ...a, rating: v }))}
-              className={`w-12 h-12 rounded-lg border-2 text-lg font-bold transition-all ${
-                answers.rating === v
-                  ? 'border-primary bg-primary text-primary-foreground'
+              key={opt}
+              onClick={() => setAnswers(a => ({ ...a, learned_useful: opt }))}
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
+                answers.learned_useful === opt
+                  ? 'border-primary bg-primary/10 text-foreground'
                   : 'border-border bg-background text-foreground hover:border-primary/50'
               }`}
             >
-              {v}
+              {opt}
             </button>
           ))}
-          <span className="text-xs text-muted-foreground whitespace-nowrap">Super</span>
         </div>
       </div>
 
