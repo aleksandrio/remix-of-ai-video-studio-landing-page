@@ -29,7 +29,7 @@ export function FeedbackSurveyModule2({ lessonSlug, sessionId }: Props) {
     })
   }
 
-  const isComplete = answers.favorite_method && answers.least_favorite && answers.most_effective && answers.pace && answers.rating
+  const isComplete = answers.favorite_method && answers.least_favorite && answers.most_effective && answers.pace && answers.learned_useful
 
   const handleSubmit = useCallback(async () => {
     if (!isComplete) return
