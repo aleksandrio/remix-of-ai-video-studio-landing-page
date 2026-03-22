@@ -68,12 +68,12 @@ export function FeedbackSurveyModule2({ lessonSlug, sessionId }: Props) {
       {/* favorite_method */}
       <div className="space-y-3">
         <p className="font-medium text-foreground">Która metoda uczenia się najbardziej Ci się podoba?</p>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-wrap gap-2">
           {METHODS_OPTIONS.map(opt => (
             <button
               key={opt}
               onClick={() => setAnswers(a => ({ ...a, favorite_method: opt }))}
-              className={`text-left px-4 py-3 rounded-lg border-2 transition-all ${
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
                 answers.favorite_method === opt
                   ? 'border-primary bg-primary/10 text-foreground'
                   : 'border-border bg-background text-foreground hover:border-primary/50'
@@ -88,12 +88,12 @@ export function FeedbackSurveyModule2({ lessonSlug, sessionId }: Props) {
       {/* least_favorite */}
       <div className="space-y-3">
         <p className="font-medium text-foreground">Która metoda najmniej Ci odpowiada?</p>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-wrap gap-2">
           {METHODS_OPTIONS.map(opt => (
             <button
               key={opt}
               onClick={() => setAnswers(a => ({ ...a, least_favorite: opt }))}
-              className={`text-left px-4 py-3 rounded-lg border-2 transition-all ${
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
                 answers.least_favorite === opt
                   ? 'border-primary bg-primary/10 text-foreground'
                   : 'border-border bg-background text-foreground hover:border-primary/50'
@@ -108,12 +108,12 @@ export function FeedbackSurveyModule2({ lessonSlug, sessionId }: Props) {
       {/* most_effective */}
       <div className="space-y-3">
         <p className="font-medium text-foreground">Która metoda wg Ciebie może przynieść najlepsze efekty?</p>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-wrap gap-2">
           {METHODS_OPTIONS.map(opt => (
             <button
               key={opt}
               onClick={() => setAnswers(a => ({ ...a, most_effective: opt }))}
-              className={`text-left px-4 py-3 rounded-lg border-2 transition-all ${
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
                 answers.most_effective === opt
                   ? 'border-primary bg-primary/10 text-foreground'
                   : 'border-border bg-background text-foreground hover:border-primary/50'
