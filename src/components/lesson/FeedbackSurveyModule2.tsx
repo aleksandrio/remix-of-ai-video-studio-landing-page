@@ -125,25 +125,6 @@ export function FeedbackSurveyModule2({ lessonSlug, sessionId }: Props) {
         </div>
       </div>
 
-      {/* best_worked multi */}
-      <div className="space-y-3">
-        <p className="font-medium text-foreground">Co działało najlepiej na dzisiejszych zajęciach? (zaznacz wszystkie)</p>
-        <div className="flex flex-wrap gap-2">
-          {['NotebookLM', 'Podcasty AI', 'Fiszki / quizy', 'Gotowe prompty', 'Ankieta live', 'Sekcja o metodach nauki'].map(opt => (
-            <button
-              key={opt}
-              onClick={() => toggleMulti('best_worked', opt)}
-              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                ((answers.best_worked as string[]) || []).includes(opt)
-                  ? 'border-primary bg-primary/10 text-foreground'
-                  : 'border-border bg-background text-foreground hover:border-primary/50'
-              }`}
-            >
-              {opt}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* pace */}
       <div className="space-y-3">
