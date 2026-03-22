@@ -180,6 +180,64 @@ export default function LessonPage() {
           </section>
         )}
 
+        {/* Learning methods intro — lesson 2 */}
+        {slug === '2-notebooklm' && (
+          <section className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-6">
+            <h2 className="font-heading text-xl font-bold text-foreground">🧠 Sprawdzone metody uczenia się</h2>
+            <p className="text-sm text-foreground leading-relaxed">
+              Zanim przejdziemy do narzędzi, warto wiedzieć <strong>dlaczego</strong> działają. Każda z funkcji NotebookLM opiera się na technikach, które naukowcy badają od dekad — i które naprawdę pomagają zapamiętywać.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">🗺️ Mapy myśli</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Łączą pojęcia w wizualną sieć zamiast liniowych notatek. Pomagają zobaczyć związki między tematami i budują głębsze zrozumienie — zamiast mechanicznego wkuwania.
+                </p>
+              </div>
+
+              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">📇 Fiszki (active recall)</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Pytanie → próba odpowiedzi → sprawdzenie. Ten prosty cykl zmusza mózg do aktywnego wydobywania wiedzy, co jest jedną z najskuteczniejszych technik utrwalania materiału.
+                </p>
+              </div>
+
+              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">🎧 Podcasty i słuchanie</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Uczenie się przez słuchanie aktywuje inny kanał percepcji. Możesz powtarzać materiał w drodze do szkoły, na spacerze — wtedy, kiedy czytanie jest niemożliwe.
+                </p>
+              </div>
+
+              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">❓ Quizy (self-testing)</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Testowanie siebie nie służy tylko ocenianiu — to potężna metoda nauki. Quizy pomagają wykryć luki w wiedzy i wzmacniają to, co już wiesz.
+                </p>
+              </div>
+
+              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">📝 Streszczenia i notatki</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Przetwarzanie materiału własnymi słowami (lub czytanie dobrych streszczeń) pomaga wyłowić najważniejsze informacje i zorganizować wiedzę w głowie.
+                </p>
+              </div>
+
+              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">🔁 Powtórki rozłożone w czasie</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Powtarzanie materiału w rosnących odstępach czasu (np. po 1, 3, 7 dniach) drastycznie zwiększa trwałość wiedzy — to tzw. <em>spaced repetition</em>.
+                </p>
+              </div>
+            </div>
+
+            <p className="text-xs text-muted-foreground italic">
+              NotebookLM łączy te metody w jednym narzędziu — i robi to automatycznie na podstawie Twoich materiałów. Zobaczmy jak. 👇
+            </p>
+          </section>
+        )}
+
         <section className="space-y-4">
           <h2 className="font-heading text-xl font-bold text-foreground">Narzędzia</h2>
           {(slug && LESSON_TOOLS_MAP[slug] ? LESSON_TOOLS_MAP[slug] : LESSON_TOOLS).map((tool) => (
