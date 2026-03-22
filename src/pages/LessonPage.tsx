@@ -2,7 +2,9 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 import { StartSurveyModule } from '@/components/lesson/StartSurveyModule'
+import { StartSurveyModule2 } from '@/components/lesson/StartSurveyModule2'
 import { FeedbackSurveyModule } from '@/components/lesson/FeedbackSurveyModule'
+import { FeedbackSurveyModule2 } from '@/components/lesson/FeedbackSurveyModule2'
 import { ToolSection } from '@/components/lesson/ToolSection'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { LESSON_TOOLS_MAP, LESSON_TOOLS } from '@/data/lessonTools'
@@ -105,7 +107,9 @@ export default function LessonPage() {
       <main className="max-w-3xl mx-auto px-4 py-8 space-y-12">
         {/* A) Start survey */}
         {lesson?.start_survey_enabled && session && (
-          <StartSurveyModule lessonSlug={slug!} sessionId={session.id} />
+          slug === '2-notebooklm'
+            ? <StartSurveyModule2 lessonSlug={slug} sessionId={session.id} />
+            : <StartSurveyModule lessonSlug={slug!} sessionId={session.id} />
         )}
 
         {/* B) Mini-instruction */}
@@ -247,7 +251,9 @@ export default function LessonPage() {
 
         {/* D) Feedback */}
         {lesson?.feedback_survey_enabled && session && (
-          <FeedbackSurveyModule lessonSlug={slug!} sessionId={session.id} />
+          slug === '2-notebooklm'
+            ? <FeedbackSurveyModule2 lessonSlug={slug} sessionId={session.id} />
+            : <FeedbackSurveyModule lessonSlug={slug!} sessionId={session.id} />
         )}
       </main>
     </div>
