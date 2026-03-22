@@ -251,7 +251,9 @@ export default function LessonPage() {
 
         {/* D) Feedback */}
         {lesson?.feedback_survey_enabled && session && (
-          <FeedbackSurveyModule lessonSlug={slug!} sessionId={session.id} />
+          slug === '2-notebooklm'
+            ? <FeedbackSurveyModule2 lessonSlug={slug} sessionId={session.id} />
+            : <FeedbackSurveyModule lessonSlug={slug!} sessionId={session.id} />
         )}
       </main>
     </div>
