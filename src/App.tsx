@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react'
 
 import Index from './pages/Index'
 const LessonPage = lazy(() => import('./pages/LessonPage'))
+const MetodyNaukiPage = lazy(() => import('./pages/MetodyNaukiPage'))
 const AdminPage = lazy(() => import('./pages/AdminPage'))
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/lekcja/:slug" element={<LessonPage />} />
+          <Route path="/lekcja/2-metody-nauki" element={<MetodyNaukiPage />} />
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </Suspense>
