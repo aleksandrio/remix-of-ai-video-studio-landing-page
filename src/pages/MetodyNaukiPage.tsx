@@ -187,38 +187,6 @@ export default function MetodyNaukiPage() {
             </div>
 
             <div className="space-y-2">
-              <div className="flex items-center justify-between gap-4">
-                <p className="text-sm font-semibold text-foreground">2. Wklej tekst</p>
-                <button
-                  id="copy-example-source-btn"
-                  onClick={handleCopy}
-                  className="shrink-0 inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/50 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted active:scale-95"
-                >
-                  {copied ? (
-                    <>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Skopiowano!
-                    </>
-                  ) : (
-                    <>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                      </svg>
-                      Kopiuj tekst
-                    </>
-                  )}
-                </button>
-              </div>
-              <p className="text-sm text-foreground leading-relaxed">
-                Dodaj źródło → „Skopiowany tekst" → wklej fragment podręcznika, notatki lub artykułu → Wstaw. Minimum ok. 100 słów.
-              </p>
-              <p className="text-xs text-muted-foreground">Idealne gdy masz gotowy tekst — np. fragment z podręcznika podany przez nauczyciela.</p>
-            </div>
-
-            <div className="space-y-2">
               <p className="text-sm font-semibold text-foreground">3. Wgraj plik</p>
               <p className="text-sm text-foreground leading-relaxed">
                 Dodaj źródło → „Prześlij pliki" → wybierz PDF, zdjęcie lub dokument. NotebookLM odczyta nawet zdjęcie strony podręcznika (OCR).
@@ -233,6 +201,38 @@ export default function MetodyNaukiPage() {
               </p>
               <p className="text-xs text-muted-foreground">Działa z Wikipedia, stronami edukacyjnymi i filmami na YouTube (NotebookLM odczyta transkrypcję).</p>
             </div>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-sm font-semibold text-foreground">2. Wklej tekst</p>
+              <button
+                id="copy-example-source-btn"
+                onClick={handleCopy}
+                className="shrink-0 inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/50 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted active:scale-95"
+              >
+                {copied ? (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Skopiowano!
+                  </>
+                ) : (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
+                      <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
+                    </svg>
+                    Kopiuj tekst
+                  </>
+                )}
+              </button>
+            </div>
+            <p className="text-sm text-foreground leading-relaxed">
+              Dodaj źródło → „Skopiowany tekst" → wklej fragment podręcznika, notatki lub artykułu → Wstaw. Minimum ok. 100 słów.
+            </p>
+            <p className="text-xs text-muted-foreground">Idealne gdy masz gotowy tekst — np. fragment z podręcznika podany przez nauczyciela.</p>
           </div>
         </section>
 
@@ -337,8 +337,8 @@ export default function MetodyNaukiPage() {
 
           <NotebookToolCard
             emoji="🗺️"
-            title="Mapa myśli (Mind Map)"
-            description="Interaktywny diagram pokazujący strukturę i powiązania między wszystkimi tematami w Twoich źródłach."
+            title="Mapa myśli (Mind Map) "
+            description="Interaktywny diagram pokazujący strukturę i powiązania między wszystkimi tematami w Twoich źródłach. Aktualnie dostępna tylko na laptopie."
             details={
               <>
                 <p><strong>Co robi:</strong> Generuje klikalne drzewo pojęć — główne tematy jako węzły, szczegóły jako gałęzie. Kliknięcie węzła otwiera czat z pytaniami dotyczącymi tylko tego fragmentu.</p>
@@ -420,7 +420,7 @@ export default function MetodyNaukiPage() {
 
           <div className="bg-primary/5 border border-primary/10 rounded-lg p-4">
             <p className="text-sm text-foreground">
-              💡 <strong>Złota zasada:</strong> Użyj NotebookLM żeby zobaczyć jak powinny wyglądać Twoje materiały do nauki — a potem spróbuj je zrobić sam. Różnica w efektach będzie ogromna.
+              💡 <strong>Złota zasada:</strong> Używaj NotebookLM do szybkich efektów i żeby zobaczyć jak powinny wyglądać Twoje materiały do nauki — a potem spróbuj je zrobić sam. Obserwuj efekty i porównuj.
             </p>
           </div>
         </section>
