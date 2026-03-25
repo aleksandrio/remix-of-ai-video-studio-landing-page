@@ -12,8 +12,8 @@ export default function App() {
       <Suspense fallback={<div className="min-h-screen bg-background" />}>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/lekcja/:slug" element={<LessonPage />} />
           <Route path="/lekcja/2-metody-nauki" element={<MetodyNaukiPage />} />
+          <Route path="/lekcja/:slug" element={<LessonPage />} />
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </Suspense>
