@@ -18,7 +18,6 @@ const METHOD_OPTIONS = [
   'Mapa myśli na kartce',
   'Wytłumaczę temat komuś innemu',
   'Technika Feynmana',
-  'NotebookLM jako podgląd + własna praca',
 ]
 
 const PACE_OPTIONS = ['Za szybko', 'W sam raz', 'Za wolno']
@@ -91,11 +90,10 @@ export function FeedbackSurveyMetody({ sessionId }: Props) {
             <button
               key={opt}
               onClick={() => toggleMulti('favorite_tool', opt)}
-              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                ((answers.favorite_tool as string[]) || []).includes(opt)
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${((answers.favorite_tool as string[]) || []).includes(opt)
                   ? 'border-primary bg-primary/10 text-foreground'
                   : 'border-border bg-background text-foreground hover:border-primary/50'
-              }`}
+                }`}
             >
               {opt}
             </button>
@@ -111,11 +109,10 @@ export function FeedbackSurveyMetody({ sessionId }: Props) {
             <button
               key={opt}
               onClick={() => toggleMulti('method_to_try', opt)}
-              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                ((answers.method_to_try as string[]) || []).includes(opt)
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${((answers.method_to_try as string[]) || []).includes(opt)
                   ? 'border-primary bg-primary/10 text-foreground'
                   : 'border-border bg-background text-foreground hover:border-primary/50'
-              }`}
+                }`}
             >
               {opt}
             </button>
@@ -131,11 +128,10 @@ export function FeedbackSurveyMetody({ sessionId }: Props) {
             <button
               key={opt}
               onClick={() => setAnswers(a => ({ ...a, pace: opt }))}
-              className={`px-4 py-3 rounded-lg border-2 transition-all ${
-                answers.pace === opt
+              className={`px-4 py-3 rounded-lg border-2 transition-all ${answers.pace === opt
                   ? 'border-primary bg-primary/10 text-foreground'
                   : 'border-border bg-background text-foreground hover:border-primary/50'
-              }`}
+                }`}
             >
               {opt}
             </button>
@@ -151,11 +147,10 @@ export function FeedbackSurveyMetody({ sessionId }: Props) {
             <button
               key={opt}
               onClick={() => setAnswers(a => ({ ...a, learned_useful: opt }))}
-              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                answers.learned_useful === opt
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${answers.learned_useful === opt
                   ? 'border-primary bg-primary/10 text-foreground'
                   : 'border-border bg-background text-foreground hover:border-primary/50'
-              }`}
+                }`}
             >
               {opt}
             </button>

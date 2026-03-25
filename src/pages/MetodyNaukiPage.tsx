@@ -5,12 +5,21 @@ import { StartSurveyMetody } from '@/components/metody-nauki/StartSurveyMetody'
 import { FeedbackSurveyMetody } from '@/components/metody-nauki/FeedbackSurveyMetody'
 import { MethodCard } from '@/components/metody-nauki/MethodCard'
 import { NotebookToolCard } from '@/components/metody-nauki/NotebookToolCard'
+import { EXAMPLE_SOURCE_TEXT } from '@/data/exampleSource'
 
 const LESSON_SLUG = '2-metody-nauki'
 
 export default function MetodyNaukiPage() {
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [copied, setCopied] = useState(false)
+
+  function handleCopy() {
+    navigator.clipboard.writeText(EXAMPLE_SOURCE_TEXT).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
 
   useEffect(() => {
     async function load() {
@@ -119,20 +128,6 @@ export default function MetodyNaukiPage() {
           />
 
           <MethodCard
-            emoji="🗺️"
-            title="Mapa myśli"
-            subtitle=""
-            description="Wizualne organizowanie wiedzy — temat w centrum, gałęzie z kategoriami, szczegóły na końcach."
-            details={
-              <>
-                <p><strong>Na czym polega:</strong> Rysując mapę musisz zdecydować co jest ważne i jak rzeczy się łączą. To aktywne przetwarzanie, nie kopiowanie.</p>
-                <p><strong>Jak to zrobić:</strong> Weź kartkę A4. Napisz temat w środku. Zrób 3–5 głównych gałęzi (kategorie). Każdą rozgałęziaj na szczegóły. Używaj kolorów.</p>
-                <p><strong>Efekt:</strong> Świetna do przeglądania całości tematu przed klasówką. Dwa kanały percepcji naraz: tekst + obraz.</p>
-              </>
-            }
-          />
-
-          <MethodCard
             emoji="🧑‍🏫"
             title="Metoda nauczyciela"
             subtitle="efekt protegé"
@@ -162,9 +157,86 @@ export default function MetodyNaukiPage() {
               </>
             }
           />
+
+          <MethodCard
+            emoji="🗺️"
+            title="Mapa myśli"
+            subtitle=""
+            description="Wizualne organizowanie wiedzy — temat w centrum, gałęzie z kategoriami, szczegóły na końcach."
+            details={
+              <>
+                <p><strong>Na czym polega:</strong> Rysując mapę musisz zdecydować co jest ważne i jak rzeczy się łączą. To aktywne przetwarzanie, nie kopiowanie.</p>
+                <p><strong>Jak to zrobić:</strong> Weź kartkę A4. Napisz temat w środku. Zrób 3–5 głównych gałęzi (kategorie). Każdą rozgałęziaj na szczegóły. Używaj kolorów.</p>
+                <p><strong>Efekt:</strong> Świetna do przeglądania całości tematu przed klasówką. Dwa kanały percepcji naraz: tekst + obraz.</p>
+              </>
+            }
+          />
         </section>
 
-        {/* SEKCJA 4 - NotebookLM narzędzia */}
+        {/* SEKCJA 4 - Jak dodać materiał */}
+        <section className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-6">
+          <h2 className="font-heading text-xl font-bold text-foreground">📥 Jak dodać materiał do NotebookLM</h2>
+
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <p className="text-sm font-semibold text-foreground">1. Wyszukaj temat automatycznie (Discover Sources)</p>
+              <p className="text-sm text-foreground leading-relaxed">
+                Wpisz temat w pasku wyszukiwania w panelu Źródła → kliknij Enter → NotebookLM znajdzie artykuły z internetu i zaproponuje je do dodania → kliknij „Importuj".
+              </p>
+              <p className="text-xs text-muted-foreground">Najszybsza metoda. Działa identycznie na telefonie i laptopie.</p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between gap-4">
+                <p className="text-sm font-semibold text-foreground">2. Wklej tekst</p>
+                <button
+                  id="copy-example-source-btn"
+                  onClick={handleCopy}
+                  className="shrink-0 inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/50 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted active:scale-95"
+                >
+                  {copied ? (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Skopiowano!
+                    </>
+                  ) : (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
+                      </svg>
+                      Kopiuj tekst
+                    </>
+                  )}
+                </button>
+              </div>
+              <p className="text-sm text-foreground leading-relaxed">
+                Dodaj źródło → „Skopiowany tekst" → wklej fragment podręcznika, notatki lub artykułu → Wstaw. Minimum ok. 100 słów.
+              </p>
+              <p className="text-xs text-muted-foreground">Idealne gdy masz gotowy tekst — np. fragment z podręcznika podany przez nauczyciela.</p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm font-semibold text-foreground">3. Wgraj plik</p>
+              <p className="text-sm text-foreground leading-relaxed">
+                Dodaj źródło → „Prześlij pliki" → wybierz PDF, zdjęcie lub dokument. NotebookLM odczyta nawet zdjęcie strony podręcznika (OCR).
+              </p>
+              <p className="text-xs text-muted-foreground">Obsługuje: PDF, DOCX, zdjęcia (JPG/PNG), EPUB, CSV, audio.</p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm font-semibold text-foreground">4. Dodaj link</p>
+              <p className="text-sm text-foreground leading-relaxed">
+                Dodaj źródło → „Witryny" → wklej adres URL strony, artykułu lub filmu YouTube.
+              </p>
+              <p className="text-xs text-muted-foreground">Działa z Wikipedia, stronami edukacyjnymi i filmami na YouTube (NotebookLM odczyta transkrypcję).</p>
+            </div>
+          </div>
+        </section>
+
+        {/* SEKCJA 5 - NotebookLM narzędzia */}
         <section className="space-y-4">
           <h2 className="font-heading text-xl font-bold text-foreground">🛠️ NotebookLM — narzędzia</h2>
           <p className="text-sm text-muted-foreground">
@@ -202,7 +274,6 @@ export default function MetodyNaukiPage() {
                 <ul className="space-y-1">
                   <li className="flex gap-2"><span className="text-primary">•</span> Pre-testing: zrób quiz ZANIM zaczniesz uczyć — zobaczysz co już wiesz</li>
                   <li className="flex gap-2"><span className="text-primary">•</span> Symulacja klasówki: wgraj materiał i poproś o 20 pytań w stylu egzaminacyjnym</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span> Powtórka w parach: jeden uczeń wgrywa materiał, drugi rozwiązuje quiz</li>
                 </ul>
               </>
             }
@@ -221,24 +292,6 @@ export default function MetodyNaukiPage() {
                   <li className="flex gap-2"><span className="text-primary">•</span> Ściągawka wizualna do zawieszenia nad biurkiem</li>
                   <li className="flex gap-2"><span className="text-primary">•</span> Plakat na korytarz szkolny</li>
                   <li className="flex gap-2"><span className="text-primary">•</span> Podsumowanie projektu badawczego</li>
-                </ul>
-              </>
-            }
-          />
-
-          <NotebookToolCard
-            emoji="🗺️"
-            title="Mapa myśli (Mind Map)"
-            description="Interaktywny diagram pokazujący strukturę i powiązania między wszystkimi tematami w Twoich źródłach."
-            details={
-              <>
-                <p><strong>Co robi:</strong> Generuje klikalne drzewo pojęć — główne tematy jako węzły, szczegóły jako gałęzie. Kliknięcie węzła otwiera czat z pytaniami dotyczącymi tylko tego fragmentu.</p>
-                <p><strong>Jak dostosować:</strong> Wybierz które źródła mają być uwzględnione (możesz pominąć część). Możesz wygenerować kilka wersji z różnymi zestawami źródeł.</p>
-                <p className="font-semibold">Przykłady użycia w szkole:</p>
-                <ul className="space-y-1">
-                  <li className="flex gap-2"><span className="text-primary">•</span> Ogląd całego tematu przed rozpoczęciem nauki</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span> Sprawdzenie czy Twoja własna mapa myśli zgadza się z tym co AI uznało za ważne</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span> Nawigacja po dużym materiale — klikasz w to co Cię interesuje</li>
                 </ul>
               </>
             }
@@ -268,15 +321,33 @@ export default function MetodyNaukiPage() {
             description="Zamienia Twoje materiały w podcast prowadzony przez dwóch AI-hostów. Słuchasz streszczenia jak audycji radiowej."
             details={
               <>
-                <p><strong>Co robi:</strong> Dwóch AI-rozmówców omawia Twoje źródła w naturalnej, konwersacyjnej formie — z przykładami, analogiami i odniesieniami między tematami. Możesz pobrać audio i słuchać offline.</p>
-                <p><strong>Jak dostosować:</strong> Przed wygenerowaniem możesz określić: format (pogłębiona rozmowa / krótkie streszczenie / krytyczna analiza / debata), język (ponad 80 języków w tym polski), długość oraz pole „Na czym mają się skupić AI-hosci?" — wpisz konkretne pytanie lub aspekt tematu.</p>
-                <p className="text-xs text-muted-foreground">Możesz też dołączyć do rozmowy w trybie interaktywnym: przerywasz AI-hostom i zadajesz pytania głosowo.</p>
+                <p><strong>Co robi:</strong> Dwóch rozmówców omawia Twoje źródła w naturalnej, konwersacyjnej formie — z przykładami, analogiami i odniesieniami między tematami. Możesz pobrać audio i słuchać offline.</p>
+                <p><strong>Jak dostosować:</strong> Przed wygenerowaniem możesz określić: format (pogłębiona rozmowa / krótkie streszczenie / krytyczna analiza / debata), język, długość oraz pole „Na czym mają się skupić prowadzący - wpisz konkretne pytanie lub aspekt tematu.</p>
+                <p className="text-xs text-muted-foreground">Możesz też dołączyć do rozmowy w trybie interaktywnym: przerywasz hostom i zadajesz pytania głosowo.</p>
                 <p className="font-semibold">Przykłady użycia w szkole:</p>
                 <ul className="space-y-1">
                   <li className="flex gap-2"><span className="text-primary">•</span> Historia: „Skupcie się na przyczynach, nie na przebiegu bitew"</li>
                   <li className="flex gap-2"><span className="text-primary">•</span> Biologia: „Wytłumaczcie mi cykl Krebsa tak, żebym mógł go narysować"</li>
                   <li className="flex gap-2"><span className="text-primary">•</span> Język polski: „Omówcie symbolikę w Weselu Wyspiańskiego"</li>
                   <li className="flex gap-2"><span className="text-primary">•</span> Nauka do egzaminu: „Zróbcie krótkie 5-minutowe podsumowanie przed testem"</li>
+                </ul>
+              </>
+            }
+          />
+
+          <NotebookToolCard
+            emoji="🗺️"
+            title="Mapa myśli (Mind Map)"
+            description="Interaktywny diagram pokazujący strukturę i powiązania między wszystkimi tematami w Twoich źródłach."
+            details={
+              <>
+                <p><strong>Co robi:</strong> Generuje klikalne drzewo pojęć — główne tematy jako węzły, szczegóły jako gałęzie. Kliknięcie węzła otwiera czat z pytaniami dotyczącymi tylko tego fragmentu.</p>
+                <p><strong>Jak dostosować:</strong> Wybierz które źródła mają być uwzględnione (możesz pominąć część). Możesz wygenerować kilka wersji z różnymi zestawami źródeł.</p>
+                <p className="font-semibold">Przykłady użycia w szkole:</p>
+                <ul className="space-y-1">
+                  <li className="flex gap-2"><span className="text-primary">•</span> Ogląd całego tematu przed rozpoczęciem nauki</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span> Sprawdzenie czy Twoja własna mapa myśli zgadza się z tym co AI uznało za ważne</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span> Nawigacja po dużym materiale — klikasz w to co Cię interesuje</li>
                 </ul>
               </>
             }
@@ -323,45 +394,6 @@ export default function MetodyNaukiPage() {
               </>
             }
           />
-        </section>
-
-        {/* SEKCJA 5 - Jak dodać materiał */}
-        <section className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-6">
-          <h2 className="font-heading text-xl font-bold text-foreground">📥 Jak dodać materiał do NotebookLM</h2>
-
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <p className="text-sm font-semibold text-foreground">1. Wyszukaj temat automatycznie (Discover Sources)</p>
-              <p className="text-sm text-foreground leading-relaxed">
-                Wpisz temat w pasku wyszukiwania w panelu Źródła → kliknij Enter → NotebookLM znajdzie artykuły z internetu i zaproponuje je do dodania → kliknij „Importuj".
-              </p>
-              <p className="text-xs text-muted-foreground">Najszybsza metoda. Działa identycznie na telefonie i laptopie.</p>
-            </div>
-
-            <div className="space-y-2">
-              <p className="text-sm font-semibold text-foreground">2. Wklej tekst</p>
-              <p className="text-sm text-foreground leading-relaxed">
-                Dodaj źródło → „Skopiowany tekst" → wklej fragment podręcznika, notatki lub artykułu → Wstaw. Minimum ok. 100 słów.
-              </p>
-              <p className="text-xs text-muted-foreground">Idealne gdy masz gotowy tekst — np. fragment z podręcznika podany przez nauczyciela.</p>
-            </div>
-
-            <div className="space-y-2">
-              <p className="text-sm font-semibold text-foreground">3. Wgraj plik</p>
-              <p className="text-sm text-foreground leading-relaxed">
-                Dodaj źródło → „Prześlij pliki" → wybierz PDF, zdjęcie lub dokument. NotebookLM odczyta nawet zdjęcie strony podręcznika (OCR).
-              </p>
-              <p className="text-xs text-muted-foreground">Obsługuje: PDF, DOCX, zdjęcia (JPG/PNG), EPUB, CSV, audio.</p>
-            </div>
-
-            <div className="space-y-2">
-              <p className="text-sm font-semibold text-foreground">4. Dodaj link</p>
-              <p className="text-sm text-foreground leading-relaxed">
-                Dodaj źródło → „Witryny" → wklej adres URL strony, artykułu lub filmu YouTube.
-              </p>
-              <p className="text-xs text-muted-foreground">Działa z Wikipedia, stronami edukacyjnymi i filmami na YouTube (NotebookLM odczyta transkrypcję).</p>
-            </div>
-          </div>
         </section>
 
         {/* SEKCJA 6 - Podgląd nie skrót */}
