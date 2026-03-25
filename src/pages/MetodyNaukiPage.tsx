@@ -174,7 +174,7 @@ export default function MetodyNaukiPage() {
           <NotebookToolCard
             emoji="📇"
             title="Fiszki (Flashcards)"
-            description="Automatycznie generuje zestaw pytanie–odpowiedź z Twoich materiałów. Z trybem „Wiem / Nie wiem" i zapamiętywaniem postępu."
+            description={'Automatycznie generuje zestaw pytanie–odpowiedź z Twoich materiałów. Z trybem „Wiem / Nie wiem" i zapamiętywaniem postępu.'}
             details={
               <>
                 <p><strong>Co robi:</strong> Tworzy dwustronne karty: pytanie na froncie, odpowiedź na odwrocie. Możesz tasować talię, oznaczać trudne karty i wracać tylko do nich. Postęp jest zapisywany między sesjami.</p>
