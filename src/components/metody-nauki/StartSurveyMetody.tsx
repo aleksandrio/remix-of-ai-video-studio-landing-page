@@ -11,6 +11,7 @@ const STUDY_METHOD_OPTIONS = [
 ]
 
 const TIME_OPTIONS = [
+  'Na przerwie przed sprawdzianem',
   'Dzień przed',
   '2–3 dni przed',
   'Tydzień przed',
