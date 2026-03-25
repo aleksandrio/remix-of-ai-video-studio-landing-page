@@ -6,20 +6,13 @@ import { FeedbackSurveyMetody } from '@/components/metody-nauki/FeedbackSurveyMe
 import { MethodCard } from '@/components/metody-nauki/MethodCard'
 import { NotebookToolCard } from '@/components/metody-nauki/NotebookToolCard'
 import { EXAMPLE_SOURCE_TEXT } from '@/data/exampleSource'
+import { CopyButton } from '@/components/ui/CopyButton'
 
 const LESSON_SLUG = '2-metody-nauki'
 
 export default function MetodyNaukiPage() {
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
-  const [copied, setCopied] = useState(false)
-
-  function handleCopy() {
-    navigator.clipboard.writeText(EXAMPLE_SOURCE_TEXT).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    })
-  }
 
   useEffect(() => {
     async function load() {
@@ -206,28 +199,7 @@ export default function MetodyNaukiPage() {
           <div className="space-y-2">
             <div className="flex items-center justify-between gap-4">
               <p className="text-sm font-semibold text-foreground">2. Wklej tekst</p>
-              <button
-                id="copy-example-source-btn"
-                onClick={handleCopy}
-                className="shrink-0 inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/50 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted active:scale-95"
-              >
-                {copied ? (
-                  <>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    Skopiowano!
-                  </>
-                ) : (
-                  <>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                      <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                    </svg>
-                    Kopiuj tekst
-                  </>
-                )}
-              </button>
+              <CopyButton text={EXAMPLE_SOURCE_TEXT} />
             </div>
             <p className="text-sm text-foreground leading-relaxed">
               Dodaj źródło → „Skopiowany tekst" → wklej fragment podręcznika, notatki lub artykułu → Wstaw. Minimum ok. 100 słów.
