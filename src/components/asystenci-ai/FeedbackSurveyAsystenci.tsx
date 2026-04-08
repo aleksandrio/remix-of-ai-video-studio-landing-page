@@ -87,11 +87,10 @@ export function FeedbackSurveyAsystenci({ sessionId }: Props) {
             <button
               key={opt}
               onClick={() => toggleMulti('favorite_assistant', opt)}
-              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                ((answers.favorite_assistant as string[]) || []).includes(opt)
-                  ? 'border-primary bg-primary/10 text-foreground'
-                  : 'border-border bg-background text-foreground hover:border-primary/50'
-              }`}
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${((answers.favorite_assistant as string[]) || []).includes(opt)
+                ? 'border-primary bg-primary/10 text-foreground'
+                : 'border-border bg-background text-foreground hover:border-primary/50'
+                }`}
             >
               {opt}
             </button>
@@ -107,11 +106,10 @@ export function FeedbackSurveyAsystenci({ sessionId }: Props) {
             <button
               key={opt}
               onClick={() => setAnswers(a => ({ ...a, will_use: opt }))}
-              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                answers.will_use === opt
-                  ? 'border-primary bg-primary/10 text-foreground'
-                  : 'border-border bg-background text-foreground hover:border-primary/50'
-              }`}
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${answers.will_use === opt
+                ? 'border-primary bg-primary/10 text-foreground'
+                : 'border-border bg-background text-foreground hover:border-primary/50'
+                }`}
             >
               {opt}
             </button>
@@ -127,11 +125,10 @@ export function FeedbackSurveyAsystenci({ sessionId }: Props) {
             <button
               key={opt}
               onClick={() => setAnswers(a => ({ ...a, pace: opt }))}
-              className={`px-4 py-3 rounded-lg border-2 transition-all ${
-                answers.pace === opt
-                  ? 'border-primary bg-primary/10 text-foreground'
-                  : 'border-border bg-background text-foreground hover:border-primary/50'
-              }`}
+              className={`px-4 py-3 rounded-lg border-2 transition-all ${answers.pace === opt
+                ? 'border-primary bg-primary/10 text-foreground'
+                : 'border-border bg-background text-foreground hover:border-primary/50'
+                }`}
             >
               {opt}
             </button>
@@ -147,11 +144,10 @@ export function FeedbackSurveyAsystenci({ sessionId }: Props) {
             <button
               key={opt}
               onClick={() => setAnswers(a => ({ ...a, learned_useful: opt }))}
-              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                answers.learned_useful === opt
-                  ? 'border-primary bg-primary/10 text-foreground'
-                  : 'border-border bg-background text-foreground hover:border-primary/50'
-              }`}
+              className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${answers.learned_useful === opt
+                ? 'border-primary bg-primary/10 text-foreground'
+                : 'border-border bg-background text-foreground hover:border-primary/50'
+                }`}
             >
               {opt}
             </button>
@@ -161,12 +157,12 @@ export function FeedbackSurveyAsystenci({ sessionId }: Props) {
 
       {/* other_comments */}
       <div className="space-y-3">
-        <p className="font-medium text-foreground">Inne uwagi (opcjonalne)</p>
+        <p className="font-medium text-foreground">Czego jeszcze chciałbyś się nauczyć o AI?</p>
         <textarea
           className="w-full border border-border bg-background text-foreground rounded-lg p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
           rows={3}
           maxLength={500}
-          placeholder="Twoje uwagi..."
+          placeholder="Twoje pomysły..."
           value={(answers.other_comments as string) || ''}
           onChange={e => setAnswers(a => ({ ...a, other_comments: e.target.value }))}
         />

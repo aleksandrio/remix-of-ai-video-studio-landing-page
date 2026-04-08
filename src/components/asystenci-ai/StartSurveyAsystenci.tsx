@@ -98,11 +98,10 @@ export function StartSurveyAsystenci({ sessionId }: Props) {
               <button
                 key={opt}
                 onClick={() => setAnswers(a => ({ ...a, ai_usage: opt }))}
-                className={`text-left px-4 py-3 rounded-lg border-2 transition-all ${
-                  answers.ai_usage === opt
+                className={`text-left px-4 py-3 rounded-lg border-2 transition-all ${answers.ai_usage === opt
                     ? 'border-primary bg-primary/10 text-foreground'
                     : 'border-border bg-background text-foreground hover:border-primary/50'
-                }`}
+                  }`}
               >
                 {opt}
               </button>
@@ -110,39 +109,18 @@ export function StartSurveyAsystenci({ sessionId }: Props) {
           </div>
         </div>
 
-        {/* 2) known_assistants - multi */}
+        {/* 2) would_use_for - multi */}
         <div className="space-y-3">
-          <p className="font-medium text-foreground">Których asystentów AI znasz? (zaznacz wszystkie)</p>
-          <div className="flex flex-wrap gap-2">
-            {KNOWN_ASSISTANTS.map(opt => (
-              <button
-                key={opt}
-                onClick={() => toggleMulti('known_assistants', opt)}
-                className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                  ((answers.known_assistants as string[]) || []).includes(opt)
-                    ? 'border-primary bg-primary/10 text-foreground'
-                    : 'border-border bg-background text-foreground hover:border-primary/50'
-                }`}
-              >
-                {opt}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* 3) would_use_for - multi */}
-        <div className="space-y-3">
-          <p className="font-medium text-foreground">Do czego AI mogłoby Ci się przydać w nauce? (zaznacz wszystkie)</p>
+          <p className="font-medium text-foreground">Do czego AI mogłoby Ci się przydać w nauce?</p>
           <div className="flex flex-wrap gap-2">
             {WOULD_USE_FOR.map(opt => (
               <button
                 key={opt}
                 onClick={() => toggleMulti('would_use_for', opt)}
-                className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${
-                  ((answers.would_use_for as string[]) || []).includes(opt)
+                className={`px-4 py-2 rounded-lg border-2 text-sm transition-all ${((answers.would_use_for as string[]) || []).includes(opt)
                     ? 'border-primary bg-primary/10 text-foreground'
                     : 'border-border bg-background text-foreground hover:border-primary/50'
-                }`}
+                  }`}
               >
                 {opt}
               </button>
@@ -150,7 +128,7 @@ export function StartSurveyAsystenci({ sessionId }: Props) {
           </div>
         </div>
 
-        {/* 4) trust_level 1-5 */}
+        {/* 3) trust_level 1-5 */}
         <div className="space-y-3">
           <p className="font-medium text-foreground">Na ile ufasz odpowiedziom AI? (1–5)</p>
           <div className="flex items-center gap-2">
@@ -159,30 +137,16 @@ export function StartSurveyAsystenci({ sessionId }: Props) {
               <button
                 key={v}
                 onClick={() => setAnswers(a => ({ ...a, trust_level: v }))}
-                className={`w-12 h-12 rounded-lg border-2 text-lg font-bold transition-all ${
-                  answers.trust_level === v
+                className={`w-12 h-12 rounded-lg border-2 text-lg font-bold transition-all ${answers.trust_level === v
                     ? 'border-primary bg-primary text-primary-foreground'
                     : 'border-border bg-background text-foreground hover:border-primary/50'
-                }`}
+                  }`}
               >
                 {v}
               </button>
             ))}
             <span className="text-xs text-muted-foreground whitespace-nowrap">Bardzo</span>
           </div>
-        </div>
-
-        {/* 5) open_answer */}
-        <div className="space-y-3">
-          <p className="font-medium text-foreground">Czego chciałbyś się dziś dowiedzieć o AI?</p>
-          <textarea
-            className="w-full border border-border bg-background text-foreground rounded-lg p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-            rows={3}
-            maxLength={500}
-            placeholder="Twoja odpowiedź (opcjonalne)..."
-            value={(answers.open_answer as string) || ''}
-            onChange={e => setAnswers(a => ({ ...a, open_answer: e.target.value }))}
-          />
         </div>
 
         <button

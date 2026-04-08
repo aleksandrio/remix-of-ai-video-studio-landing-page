@@ -1,4 +1,4 @@
-ZAKRES MATERIAŁU — MATEMATYKA, 8. KLASA SZKOŁY PODSTAWOWEJ
+ZAKRES MATERIAŁU - MATEMATYKA, 8. KLASA SZKOŁY PODSTAWOWEJ
 =============================================================
 Egzamin ósmoklasisty z matematyki 2026: 125 minut, ok. 20-21 zadań (otwarte i zamknięte).
 Zakres obejmuje materiał z CAŁEJ szkoły podstawowej (klasy 4-8).
@@ -44,7 +44,7 @@ Typowe trudności: przenoszenie na drugą stronę ze zmianą znaku, wzory skróc
 - Kąty: przyległe, wierzchołkowe, odpowiadające, naprzemianległe (przy prostych równoległych)
 - Trójkąty: rodzaje (równoboczny, równoramienny, prostokątny), suma kątów = 180°
 - Twierdzenie Pitagorasa: a² + b² = c² (w trójkącie prostokątnym)
-- Czworokąty: prostokąt, kwadrat, romb, równoległobok, trapez — własności, pola, obwody
+- Czworokąty: prostokąt, kwadrat, romb, równoległobok, trapez - własności, pola, obwody
 - Koło i okrąg: promień, średnica, obwód (2πr), pole (πr²), długość łuku, pole wycinka
 - Pola figur: trójkąt (½ × a × h), prostokąt (a × b), równoległobok (a × h), trapez (½(a+b) × h), romb (½ × d₁ × d₂)
 - Symetria osiowa i środkowa
@@ -61,7 +61,7 @@ Typowe trudności: stosowanie twierdzenia Pitagorasa (które boki to przyprostok
 - Walec: objętość (πr²h), pole powierzchni
 - Stożek: objętość (⅓πr²h)
 - Kula: objętość (⁴⁄₃πr³), pole powierzchni (4πr²)
-- Siatki brył — rozpoznawanie i rysowanie
+- Siatki brył - rozpoznawanie i rysowanie
 
 Typowe trudności: rozróżnianie pola powierzchni od objętości, zapominanie o ⅓ w objętości ostrosłupa/stożka, obliczanie pola powierzchni (zapominanie o podstawach).
 
@@ -69,7 +69,7 @@ Typowe trudności: rozróżnianie pola powierzchni od objętości, zapominanie o
 
 - Proporcja i jej własności (iloczyn skrajnych = iloczyn środkowych)
 - Proporcjonalność prosta i odwrotna
-- Skala mapy — obliczanie rzeczywistych odległości
+- Skala mapy - obliczanie rzeczywistych odległości
 - Prędkość, droga, czas (v = s/t)
 
 === FUNKCJE ===
@@ -89,12 +89,12 @@ Typowe trudności: mylenie współczynnika kierunkowego z wyrazem wolnym, rysowa
 - Mediana
 - Odczytywanie i interpretowanie diagramów: słupkowe, kołowe, liniowe
 - Odczytywanie danych z tabel
-- Prawdopodobieństwo zdarzenia (podstawowe — jako stosunek liczby zdarzeń sprzyjających do wszystkich możliwych)
+- Prawdopodobieństwo zdarzenia (podstawowe - jako stosunek liczby zdarzeń sprzyjających do wszystkich możliwych)
 
 === ZADANIA TEKSTOWE ===
 
-Egzamin kładzie duży nacisk na zadania tekstowe — uczeń musi umieć:
+Egzamin kładzie duży nacisk na zadania tekstowe - uczeń musi umieć:
 - Przeczytać treść i zidentyfikować, co jest dane, a czego szukamy
 - Przełożyć tekst na język matematyczny (równanie, proporcja, obliczenie)
-- Rozwiązać i ZINTERPRETOWAĆ wynik (np. "Ile metrów ogrodzenia potrzeba?" — wynik musi mieć jednostkę i sens)
+- Rozwiązać i ZINTERPRETOWAĆ wynik (np. "Ile metrów ogrodzenia potrzeba?" - wynik musi mieć jednostkę i sens)
 - Ocenić sensowność odpowiedzi (jeśli wyszło, że ktoś ma -3 lat, coś poszło nie tak)

@@ -92,8 +92,8 @@ function CollapsibleAssistant({ data }: { data: AssistantData }) {
           <div className="space-y-2">
             <h4 className="text-sm font-semibold text-foreground">1. Imię</h4>
             <div className="bg-muted rounded-lg p-4 flex items-center justify-between">
-              <span className="font-mono text-sm text-foreground">{data.gemName}</span>
-              <CopyButton text={data.gemName} />
+              <span className="font-mono text-sm text-foreground">{data.gemName.split(' — ')[0]}</span>
+              <CopyButton text={data.gemName.split(' — ')[0]} />
             </div>
           </div>
 
@@ -124,7 +124,6 @@ function CollapsibleAssistant({ data }: { data: AssistantData }) {
                   <p className="text-xs text-muted-foreground">{data.toolNote}</p>
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground">Pozostałe narzędzia (obrazy, muzyka itp.) możesz wyłączyć.</p>
             </div>
           </div>
 
