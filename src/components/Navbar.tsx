@@ -2,12 +2,19 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
+import { LanguageToggle, useLang } from '@/lib/i18n'
 
-const navLinks = [
+const navLinksPL = [
   { href: '#problem', label: 'Problem' },
   { href: '#program', label: 'Program' },
   { href: '#formaty', label: 'Współpraca' },
   { href: '#korzysci', label: 'Korzyści' },
+]
+const navLinksEN = [
+  { href: '#problem', label: 'Problem' },
+  { href: '#program', label: 'Program' },
+  { href: '#formaty', label: 'Cooperation' },
+  { href: '#korzysci', label: 'Benefits' },
 ]
 
 export function Navbar() {
