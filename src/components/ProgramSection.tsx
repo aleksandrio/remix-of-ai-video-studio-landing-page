@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useLang } from '@/lib/i18n'
 
-const days = [
+const daysPL = [
   {
     day: 1,
     title: 'Efektywna nauka z AI',
@@ -40,46 +41,87 @@ const days = [
   },
 ]
 
+const daysEN = [
+  {
+    day: 1,
+    title: 'Effective learning with AI',
+    subtitle: 'Your personal revision system',
+    description:
+      'Students create mind maps, flashcards and podcasts from their own materials with AI. They learn Active Recall and Spaced Repetition — and get instructions to repeat it at home.',
+  },
+  {
+    day: 2,
+    title: 'AI in STEM',
+    subtitle: 'How to make AI teach you instead of doing it for you',
+    description:
+      'Students write Socratic prompts that make AI ask guiding questions instead of giving ready answers. They practice solving math, physics and chemistry tasks through dialogue.',
+  },
+  {
+    day: 3,
+    title: 'AI in writing and humanities',
+    subtitle: 'How to write with AI, not by AI',
+    description:
+      'Brainstorming, argument structure and perspective analysis — with AI. But students write the text in their own words. They learn where the tool ends and plagiarism begins.',
+  },
+  {
+    day: 4,
+    title: 'AI for foreign languages',
+    subtitle: 'Stress-free conversation — AI as a practice partner',
+    description:
+      'Students talk with AI in a foreign language — by text and voice. AI corrects grammar, adapts the level and never judges. Perfect for daily 5-minute practice.',
+  },
+  {
+    day: 5,
+    title: 'Critical thinking',
+    subtitle: 'AI makes mistakes — and that’s OK if you notice',
+    description:
+      'Students hunt AI hallucinations, verify wrong information and learn why AI "makes things up". They build the most important skill: critically evaluating what they read.',
+  },
+]
+
 export function ProgramSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { lang } = useLang()
+  const days = lang === 'pl' ? daysPL : daysEN
+
+  const t = lang === 'pl' ? {
+    eyebrow: '5 spotkań warsztatowych',
+    title: 'Program zajęć',
+    intro: 'Pięć praktycznych spotkań opartych na modelu Hook → Do → Reflect. Każde spotkanie to 45 minut warsztatów, po których uczniowie dostają materiały z promptami i instrukcjami.',
+    info: ['Uczniowie 13–18 lat', 'Grupy do 30 osób', '45 min / spotkanie', 'Telefon + internet'],
+    dayLabel: 'Dzień',
+  } : {
+    eyebrow: '5 workshop sessions',
+    title: 'Course program',
+    intro: 'Five practical sessions based on the Hook → Do → Reflect model. Each session is a 45-minute workshop after which students receive materials with prompts and instructions.',
+    info: ['Students 13–18 years', 'Groups up to 30', '45 min / session', 'Phone + internet'],
+    dayLabel: 'Day',
+  }
 
   return (
     <section id="program" className="py-20 lg:py-32" ref={ref}>
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
           className="max-w-3xl mb-16"
         >
-          <p className="text-xs font-medium tracking-editorial uppercase text-muted-foreground mb-8">
-            5 spotkań warsztatowych
-          </p>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-6">
-            Program zajęć
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Pięć praktycznych spotkań opartych na modelu Hook → Do → Reflect. Każde spotkanie to 45 minut 
-            warsztatów, po których uczniowie dostają materiały z promptami i instrukcjami.
-          </p>
+          <p className="text-xs font-medium tracking-editorial uppercase text-muted-foreground mb-8">{t.eyebrow}</p>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-6">{t.title}</h2>
+          <p className="text-lg text-muted-foreground leading-relaxed">{t.intro}</p>
         </motion.div>
 
-        {/* Info bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
           className="flex flex-wrap gap-8 mb-16 text-sm text-muted-foreground border-y border-border py-6"
         >
-          <span>Uczniowie 13–18 lat</span>
-          <span>Grupy do 30 osób</span>
-          <span>45 min / spotkanie</span>
-          <span>Telefon + internet</span>
+          {t.info.map((s) => <span key={s}>{s}</span>)}
         </motion.div>
 
-        {/* Days — editorial list */}
         <div className="divide-y divide-border">
           {days.map((day, index) => (
             <motion.div
@@ -91,7 +133,7 @@ export function ProgramSection() {
             >
               <div>
                 <span className="text-xs font-semibold tracking-editorial uppercase text-muted-foreground">
-                  Dzień {day.day}
+                  {t.dayLabel} {day.day}
                 </span>
               </div>
               <div>
