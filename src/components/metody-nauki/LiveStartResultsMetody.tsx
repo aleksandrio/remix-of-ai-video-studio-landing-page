@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
+import { useT } from '@/lib/i18n'
 
 const LESSON_SLUG = '2-metody-nauki'
 
