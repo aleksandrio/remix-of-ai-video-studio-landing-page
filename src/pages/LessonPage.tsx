@@ -101,7 +101,10 @@ export default function LessonPage() {
             <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">AI w szkole</p>
             <h1 className="font-heading text-lg font-bold text-foreground">{lesson?.title}</h1>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-1">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
