@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { LanguageToggle } from '@/lib/i18n'
 import { StartSurveyAsystenci } from '@/components/asystenci-ai/StartSurveyAsystenci'
 import { FeedbackSurveyAsystenci } from '@/components/asystenci-ai/FeedbackSurveyAsystenci'
 import { AssistantCard } from '@/components/asystenci-ai/AssistantCard'
