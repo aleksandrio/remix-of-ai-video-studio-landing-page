@@ -180,7 +180,7 @@ export function Navbar() {
                 className="mt-4 text-sm font-semibold tracking-wide uppercase border border-foreground text-foreground px-6 py-3 text-center hover:bg-foreground hover:text-background transition-all duration-300"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Umów się
+                {ctaLabel}
               </a>
             </div>
           </motion.div>
