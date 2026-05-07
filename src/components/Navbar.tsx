@@ -18,6 +18,9 @@ const navLinksEN = [
 ]
 
 export function Navbar() {
+  const { lang } = useLang()
+  const navLinks = lang === 'pl' ? navLinksPL : navLinksEN
+  const ctaLabel = lang === 'pl' ? 'Umów się' : 'Get in touch'
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOverDarkSection, setIsOverDarkSection] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
