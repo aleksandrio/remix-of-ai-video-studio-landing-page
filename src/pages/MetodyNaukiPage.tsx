@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { LanguageToggle, useLang } from '@/lib/i18n'
 import { StartSurveyMetody } from '@/components/metody-nauki/StartSurveyMetody'
 import { FeedbackSurveyMetody } from '@/components/metody-nauki/FeedbackSurveyMetody'
 import { MethodCard } from '@/components/metody-nauki/MethodCard'
