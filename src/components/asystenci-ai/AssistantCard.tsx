@@ -20,6 +20,10 @@ interface Props {
 
 export function AssistantCard({ emoji, name, platform, platformLink, description, setupSteps, prompts }: Props) {
   const [open, setOpen] = useState(false)
+  const t = useT({
+    pl: { open: 'Otwórz', setup: 'Jak skonfigurować?', prompt: 'Prompt do skopiowania', hint: 'Podmień [NAWIASY].' },
+    en: { open: 'Open', setup: 'How to set it up?', prompt: 'Prompt to copy', hint: 'Replace [BRACKETS].' },
+  })
 
   return (
     <div className="bg-card border border-border rounded-lg overflow-hidden">
