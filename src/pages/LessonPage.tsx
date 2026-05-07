@@ -7,6 +7,7 @@ import { FeedbackSurveyModule } from '@/components/lesson/FeedbackSurveyModule'
 import { FeedbackSurveyModule2 } from '@/components/lesson/FeedbackSurveyModule2'
 import { ToolSection } from '@/components/lesson/ToolSection'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { LanguageToggle } from '@/lib/i18n'
 import { LESSON_TOOLS_MAP, LESSON_TOOLS } from '@/data/lessonTools'
 
 interface LessonConfig {
