@@ -112,6 +112,13 @@ export function Navbar() {
                 : 'text-muted-foreground hover:text-foreground'
             }
           />
+          <LanguageToggle
+            className={
+              isOverDarkSection || !isScrolled
+                ? 'text-white hover:text-white/80'
+                : 'text-muted-foreground hover:text-foreground'
+            }
+          />
           <a
             href="#kontakt"
             className={`text-xs font-semibold tracking-wide uppercase px-6 py-3 transition-all duration-300 ${
@@ -121,7 +128,7 @@ export function Navbar() {
             }`}
             style={isOverDarkSection || !isScrolled ? { textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)' } : undefined}
           >
-            Umów się
+            {ctaLabel}
           </a>
         </div>
 
