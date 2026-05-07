@@ -18,6 +18,9 @@ const navLinksEN = [
 ]
 
 export function Navbar() {
+  const { lang } = useLang()
+  const navLinks = lang === 'pl' ? navLinksPL : navLinksEN
+  const ctaLabel = lang === 'pl' ? 'Umów się' : 'Get in touch'
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOverDarkSection, setIsOverDarkSection] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -109,6 +112,13 @@ export function Navbar() {
                 : 'text-muted-foreground hover:text-foreground'
             }
           />
+          <LanguageToggle
+            className={
+              isOverDarkSection || !isScrolled
+                ? 'text-white hover:text-white/80'
+                : 'text-muted-foreground hover:text-foreground'
+            }
+          />
           <a
             href="#kontakt"
             className={`text-xs font-semibold tracking-wide uppercase px-6 py-3 transition-all duration-300 ${
@@ -118,13 +128,18 @@ export function Navbar() {
             }`}
             style={isOverDarkSection || !isScrolled ? { textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)' } : undefined}
           >
-            Umów się
+            {ctaLabel}
           </a>
         </div>
 
         {/* Mobile toggle */}
         <div className="flex md:hidden items-center gap-2">
           <ThemeToggle
+            className={
+              isOverDarkSection || !isScrolled ? 'text-white' : 'text-foreground'
+            }
+          />
+          <LanguageToggle
             className={
               isOverDarkSection || !isScrolled ? 'text-white' : 'text-foreground'
             }
@@ -165,7 +180,7 @@ export function Navbar() {
                 className="mt-4 text-sm font-semibold tracking-wide uppercase border border-foreground text-foreground px-6 py-3 text-center hover:bg-foreground hover:text-background transition-all duration-300"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Umów się
+                {ctaLabel}
               </a>
             </div>
           </motion.div>
