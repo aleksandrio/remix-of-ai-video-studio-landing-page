@@ -139,6 +139,11 @@ export function Navbar() {
               isOverDarkSection || !isScrolled ? 'text-white' : 'text-foreground'
             }
           />
+          <LanguageToggle
+            className={
+              isOverDarkSection || !isScrolled ? 'text-white' : 'text-foreground'
+            }
+          />
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`p-2 transition-colors duration-300 ${
