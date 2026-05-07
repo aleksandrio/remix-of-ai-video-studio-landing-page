@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
+import { useT } from '@/lib/i18n'
 
 const LESSON_SLUG = '2-metody-nauki'
 
@@ -74,10 +75,15 @@ export function LiveStartResultsMetody({ sessionId }: Props) {
   const sortedEntries = (obj: Record<string, number>) =>
     Object.entries(obj).sort((a, b) => b[1] - a[1])
 
+  const t = useT({
+    pl: { wait: 'Wyniki pojawią się po pierwszych odpowiedziach…', live: '📊 Wyniki na żywo', resp1: 'odpowiedź', respN: 'odpowiedzi', q1: 'Jak uczysz się przed klasówką?', q2: 'Ile czasu do klasówki?', q3: 'Największy kłopot', avg: 'Średnia skuteczność nauki' },
+    en: { wait: 'Results will appear after the first answers…', live: '📊 Live results', resp1: 'response', respN: 'responses', q1: 'How do you study before a test?', q2: 'How much time before the test?', q3: 'Biggest trouble', avg: 'Average study effectiveness' },
+  })
+
   if (total === 0) {
     return (
       <div className="bg-card border border-border rounded-lg p-6 text-center">
-        <p className="text-muted-foreground text-sm">Wyniki pojawią się po pierwszych odpowiedziach…</p>
+        <p className="text-muted-foreground text-sm">{t.wait}</p>
       </div>
     )
   }
@@ -85,16 +91,16 @@ export function LiveStartResultsMetody({ sessionId }: Props) {
   return (
     <div className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-6">
       <div className="flex items-center justify-between">
-        <h3 className="font-heading text-lg font-bold text-foreground">📊 Wyniki na żywo</h3>
-        <span className="text-xs text-muted-foreground">{total} {total === 1 ? 'odpowiedź' : 'odpowiedzi'}</span>
+        <h3 className="font-heading text-lg font-bold text-foreground">{t.live}</h3>
+        <span className="text-xs text-muted-foreground">{total} {total === 1 ? t.resp1 : t.respN}</span>
       </div>
 
-      <ResultBlock title="Jak uczysz się przed klasówką?" data={sortedEntries(studyMethod)} total={total} />
-      <ResultBlock title="Ile czasu do klasówki?" data={sortedEntries(timeBeforeTest)} total={total} />
-      <ResultBlock title="Największy kłopot" data={sortedEntries(biggestProblem)} total={total} />
+      <ResultBlock title={t.q1} data={sortedEntries(studyMethod)} total={total} />
+      <ResultBlock title={t.q2} data={sortedEntries(timeBeforeTest)} total={total} />
+      <ResultBlock title={t.q3} data={sortedEntries(biggestProblem)} total={total} />
 
       <div className="space-y-2">
-        <p className="text-sm font-medium text-foreground">Średnia skuteczność nauki</p>
+        <p className="text-sm font-medium text-foreground">{t.avg}</p>
         <p className="text-3xl font-bold text-primary">{avgEffectiveness}<span className="text-sm font-normal text-muted-foreground"> / 5</span></p>
       </div>
     </div>

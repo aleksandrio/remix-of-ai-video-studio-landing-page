@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
+import { useT } from '@/lib/i18n'
 
 const LESSON_SLUG = '3-asystenci-ai'
 
@@ -70,10 +71,15 @@ export function LiveStartResultsAsystenci({ sessionId }: Props) {
   const sortedEntries = (obj: Record<string, number>) =>
     Object.entries(obj).sort((a, b) => b[1] - a[1])
 
+  const t = useT({
+    pl: { wait: 'Wyniki pojawią się po pierwszych odpowiedziach…', live: '📊 Wyniki na żywo', resp1: 'odpowiedź', respN: 'odpowiedzi', q1: 'Czy rozmawiałeś/aś z AI?', q2: 'Znani asystenci', q3: 'Do czego przydałoby się AI?', avg: 'Średnie zaufanie do AI' },
+    en: { wait: 'Results will appear after the first answers…', live: '📊 Live results', resp1: 'response', respN: 'responses', q1: 'Have you talked to AI?', q2: 'Known assistants', q3: 'What could AI help with?', avg: 'Average trust in AI' },
+  })
+
   if (total === 0) {
     return (
       <div className="bg-card border border-border rounded-lg p-6 text-center">
-        <p className="text-muted-foreground text-sm">Wyniki pojawią się po pierwszych odpowiedziach…</p>
+        <p className="text-muted-foreground text-sm">{t.wait}</p>
       </div>
     )
   }
@@ -81,16 +87,16 @@ export function LiveStartResultsAsystenci({ sessionId }: Props) {
   return (
     <div className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-6">
       <div className="flex items-center justify-between">
-        <h3 className="font-heading text-lg font-bold text-foreground">📊 Wyniki na żywo</h3>
-        <span className="text-xs text-muted-foreground">{total} {total === 1 ? 'odpowiedź' : 'odpowiedzi'}</span>
+        <h3 className="font-heading text-lg font-bold text-foreground">{t.live}</h3>
+        <span className="text-xs text-muted-foreground">{total} {total === 1 ? t.resp1 : t.respN}</span>
       </div>
 
-      <ResultBlock title="Czy rozmawiałeś/aś z AI?" data={sortedEntries(countSingle('ai_usage'))} total={total} />
-      <ResultBlock title="Znani asystenci" data={sortedEntries(countMulti('known_assistants'))} total={total} />
-      <ResultBlock title="Do czego przydałoby się AI?" data={sortedEntries(countMulti('would_use_for'))} total={total} />
+      <ResultBlock title={t.q1} data={sortedEntries(countSingle('ai_usage'))} total={total} />
+      <ResultBlock title={t.q2} data={sortedEntries(countMulti('known_assistants'))} total={total} />
+      <ResultBlock title={t.q3} data={sortedEntries(countMulti('would_use_for'))} total={total} />
 
       <div className="space-y-2">
-        <p className="text-sm font-medium text-foreground">Średnie zaufanie do AI</p>
+        <p className="text-sm font-medium text-foreground">{t.avg}</p>
         <p className="text-3xl font-bold text-primary">{avgTrust}<span className="text-sm font-normal text-muted-foreground"> / 5</span></p>
       </div>
     </div>

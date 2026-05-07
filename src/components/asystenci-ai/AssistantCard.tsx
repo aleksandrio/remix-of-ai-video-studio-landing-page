@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react'
 import { CopyButton } from '@/components/ui/CopyButton'
+import { useT } from '@/lib/i18n'
 
 interface Prompt {
   title: string
@@ -19,6 +20,10 @@ interface Props {
 
 export function AssistantCard({ emoji, name, platform, platformLink, description, setupSteps, prompts }: Props) {
   const [open, setOpen] = useState(false)
+  const t = useT({
+    pl: { open: 'Otwórz', setup: 'Jak skonfigurować?', prompt: 'Prompt do skopiowania', hint: 'Podmień [NAWIASY].' },
+    en: { open: 'Open', setup: 'How to set it up?', prompt: 'Prompt to copy', hint: 'Replace [BRACKETS].' },
+  })
 
   return (
     <div className="bg-card border border-border rounded-lg overflow-hidden">
@@ -44,11 +49,11 @@ export function AssistantCard({ emoji, name, platform, platformLink, description
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
           >
-            Otwórz {platform} <ExternalLink className="w-3.5 h-3.5" />
+            {t.open} {platform} <ExternalLink className="w-3.5 h-3.5" />
           </a>
 
           <div>
-            <p className="text-sm font-semibold text-foreground mb-2">Jak skonfigurować?</p>
+            <p className="text-sm font-semibold text-foreground mb-2">{t.setup}</p>
             <ol className="space-y-1.5">
               {setupSteps.map((step, i) => (
                 <li key={i} className="text-sm text-muted-foreground flex gap-2">
@@ -59,7 +64,7 @@ export function AssistantCard({ emoji, name, platform, platformLink, description
           </div>
 
           <div className="space-y-6">
-            <p className="text-sm font-semibold text-foreground">Prompt do skopiowania</p>
+            <p className="text-sm font-semibold text-foreground">{t.prompt}</p>
             {prompts.map((p, i) => (
               <div key={i} className="space-y-2">
                 <p className="text-sm font-medium text-foreground">{p.title}</p>
@@ -68,7 +73,7 @@ export function AssistantCard({ emoji, name, platform, platformLink, description
                 </div>
                 <div className="flex items-center justify-between">
                   <CopyButton text={p.text} />
-                  <span className="text-xs text-muted-foreground">Podmień [NAWIASY].</span>
+                  <span className="text-xs text-muted-foreground">{t.hint}</span>
                 </div>
               </div>
             ))}
