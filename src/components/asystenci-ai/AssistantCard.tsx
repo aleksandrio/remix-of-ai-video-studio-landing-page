@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react'
 import { CopyButton } from '@/components/ui/CopyButton'
+import { useT } from '@/lib/i18n'
 
 interface Prompt {
   title: string
