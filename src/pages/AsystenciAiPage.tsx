@@ -250,7 +250,10 @@ export default function AsystenciAiPage() {
             <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">AI w szkole</p>
             <h1 className="font-heading text-lg font-bold text-foreground">Lekcja 3 – Asystenci AI do nauki</h1>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-1">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
