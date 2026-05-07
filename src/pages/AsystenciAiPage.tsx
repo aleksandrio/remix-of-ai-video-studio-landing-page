@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { LanguageToggle } from '@/lib/i18n'
 import { StartSurveyAsystenci } from '@/components/asystenci-ai/StartSurveyAsystenci'
 import { FeedbackSurveyAsystenci } from '@/components/asystenci-ai/FeedbackSurveyAsystenci'
 import { AssistantCard } from '@/components/asystenci-ai/AssistantCard'
@@ -249,7 +250,10 @@ export default function AsystenciAiPage() {
             <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">AI w szkole</p>
             <h1 className="font-heading text-lg font-bold text-foreground">Lekcja 3 – Asystenci AI do nauki</h1>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-1">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 

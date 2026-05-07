@@ -7,6 +7,7 @@ import { FeedbackSurveyModule } from '@/components/lesson/FeedbackSurveyModule'
 import { FeedbackSurveyModule2 } from '@/components/lesson/FeedbackSurveyModule2'
 import { ToolSection } from '@/components/lesson/ToolSection'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { LanguageToggle } from '@/lib/i18n'
 import { LESSON_TOOLS_MAP, LESSON_TOOLS } from '@/data/lessonTools'
 
 interface LessonConfig {
@@ -100,7 +101,10 @@ export default function LessonPage() {
             <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">AI w szkole</p>
             <h1 className="font-heading text-lg font-bold text-foreground">{lesson?.title}</h1>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-1">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
