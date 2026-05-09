@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react'
 import { CopyButton } from '@/components/ui/CopyButton'
+import { useT } from '@/lib/i18n'
 
 interface Prompt {
   title: string
@@ -18,6 +19,7 @@ interface ToolProps {
 
 
 function PromptBlock({ prompt }: { prompt: Prompt }) {
+  const t = useT({ pl: 'Podmień [NAWIASY].', en: 'Replace [BRACKETS].' })
   return (
     <div className="space-y-2">
       <p className="text-sm font-medium text-foreground">{prompt.title}</p>
@@ -26,7 +28,7 @@ function PromptBlock({ prompt }: { prompt: Prompt }) {
       </div>
       <div className="flex items-center justify-between">
         <CopyButton text={prompt.text} />
-        <span className="text-xs text-muted-foreground">Podmień [NAWIASY].</span>
+        <span className="text-xs text-muted-foreground">{t}</span>
       </div>
     </div>
   )
@@ -34,6 +36,7 @@ function PromptBlock({ prompt }: { prompt: Prompt }) {
 
 export function ToolSection({ emoji, name, description, link, whenToUse, prompts }: ToolProps) {
   const [open, setOpen] = useState(false)
+  const t = useT({ pl: { open: 'Otwórz', when: 'Kiedy używać?', prompts: 'Prompty do skopiowania' }, en: { open: 'Open', when: 'When to use?', prompts: 'Prompts to copy' } })
 
   return (
     <div className="bg-card border border-border rounded-lg overflow-hidden">
@@ -58,10 +61,10 @@ export function ToolSection({ emoji, name, description, link, whenToUse, prompts
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
           >
-            Otwórz {name} <ExternalLink className="w-3.5 h-3.5" />
+            {t.open} {name} <ExternalLink className="w-3.5 h-3.5" />
           </a>
           <div>
-            <p className="text-sm font-semibold text-foreground mb-2">Kiedy używać?</p>
+            <p className="text-sm font-semibold text-foreground mb-2">{t.when}</p>
             <ul className="space-y-1">
               {whenToUse.map((item, i) => (
                 <li key={i} className="text-sm text-muted-foreground flex gap-2">
@@ -72,7 +75,7 @@ export function ToolSection({ emoji, name, description, link, whenToUse, prompts
           </div>
 
           <div className="space-y-6">
-            <p className="text-sm font-semibold text-foreground">Prompty do skopiowania</p>
+            <p className="text-sm font-semibold text-foreground">{t.prompts}</p>
             {prompts.map((p, i) => (
               <PromptBlock key={i} prompt={p} />
             ))}

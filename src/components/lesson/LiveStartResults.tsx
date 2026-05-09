@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/integrations/supabase/client'
+import { useT } from '@/lib/i18n'
 
 interface Props {
   lessonSlug: string
@@ -8,6 +9,29 @@ interface Props {
 
 export function LiveStartResults({ lessonSlug, sessionId }: Props) {
   const [responses, setResponses] = useState<Record<string, unknown>[]>([])
+
+  const t = useT({
+    pl: {
+      live: 'Wyniki na żywo dla tej grupy',
+      r1: 'odpowiedź', rN: 'odpowiedzi',
+      wait: 'Czekam na odpowiedzi...',
+      uses: 'Czy korzystasz z AI?',
+      tools: 'Znane narzędzia (ranking)',
+      cases: 'Do czego używasz AI?',
+      cheat: 'Czy AI pomaga Ci ściągać?',
+      help: 'Pomocność AI (1–5) — średnia',
+    },
+    en: {
+      live: 'Live results for this group',
+      r1: 'response', rN: 'responses',
+      wait: 'Waiting for responses...',
+      uses: 'Do you use AI?',
+      tools: 'Known tools (ranking)',
+      cases: 'What do you use AI for?',
+      cheat: 'Does AI help you cheat?',
+      help: 'AI helpfulness (1–5) — average',
+    },
+  })
 
   useEffect(() => {
     supabase
@@ -22,21 +46,13 @@ export function LiveStartResults({ lessonSlug, sessionId }: Props) {
 
     const channel = supabase
       .channel(`live-start-${sessionId}`)
-      .on(
-        'postgres_changes',
-        {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'survey_responses',
-          filter: `session_id=eq.${sessionId}`,
-        },
-        (payload) => {
-          const row = payload.new as { survey_type: string; payload: Record<string, unknown> }
-          if (row.survey_type === 'start') {
-            setResponses((prev) => [...prev, row.payload])
-          }
-        }
-      )
+      .on('postgres_changes', {
+        event: 'INSERT', schema: 'public', table: 'survey_responses',
+        filter: `session_id=eq.${sessionId}`,
+      }, (payload) => {
+        const row = payload.new as { survey_type: string; payload: Record<string, unknown> }
+        if (row.survey_type === 'start') setResponses((prev) => [...prev, row.payload])
+      })
       .subscribe()
 
     return () => { supabase.removeChannel(channel) }
@@ -44,22 +60,14 @@ export function LiveStartResults({ lessonSlug, sessionId }: Props) {
 
   const total = responses.length
 
-  // Aggregations
   const countSingle = (field: string) => {
     const counts: Record<string, number> = {}
-    responses.forEach((r) => {
-      const v = r[field] as string
-      if (v) counts[v] = (counts[v] || 0) + 1
-    })
+    responses.forEach((r) => { const v = r[field] as string; if (v) counts[v] = (counts[v] || 0) + 1 })
     return counts
   }
-
   const countMulti = (field: string) => {
     const counts: Record<string, number> = {}
-    responses.forEach((r) => {
-      const arr = r[field] as string[]
-      if (Array.isArray(arr)) arr.forEach((v) => { counts[v] = (counts[v] || 0) + 1 })
-    })
+    responses.forEach((r) => { const arr = r[field] as string[]; if (Array.isArray(arr)) arr.forEach((v) => { counts[v] = (counts[v] || 0) + 1 }) })
     return counts
   }
 
@@ -73,52 +81,38 @@ export function LiveStartResults({ lessonSlug, sessionId }: Props) {
   const cheating = countSingle('cheating')
   const helpDist: Record<number, number> = {}
   for (let i = 1; i <= 5; i++) helpDist[i] = 0
-  responses.forEach((r) => {
-    const v = Number(r.helpfulness)
-    if (v >= 1 && v <= 5) helpDist[v]++
-  })
+  responses.forEach((r) => { const v = Number(r.helpfulness); if (v >= 1 && v <= 5) helpDist[v]++ })
 
-  const sortedEntries = (obj: Record<string, number>) =>
-    Object.entries(obj).sort((a, b) => b[1] - a[1])
+  const sortedEntries = (obj: Record<string, number>) => Object.entries(obj).sort((a, b) => b[1] - a[1])
 
   return (
     <div className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-8">
       <div className="flex items-center justify-between flex-wrap gap-2">
-        <h3 className="font-heading text-xl font-bold text-foreground">Wyniki na żywo dla tej grupy</h3>
+        <h3 className="font-heading text-xl font-bold text-foreground">{t.live}</h3>
         <span className="text-sm font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
-          {total} {total === 1 ? 'odpowiedź' : 'odpowiedzi'}
+          {total} {total === 1 ? t.r1 : t.rN}
         </span>
       </div>
 
       {total === 0 ? (
-        <p className="text-muted-foreground text-center py-8">Czekam na odpowiedzi...</p>
+        <p className="text-muted-foreground text-center py-8">{t.wait}</p>
       ) : (
         <>
-          {/* uses_ai */}
-          <ResultBlock title="Czy korzystasz z AI?" data={sortedEntries(usesAi)} total={total} />
+          <ResultBlock title={t.uses} data={sortedEntries(usesAi)} total={total} />
+          <ResultBlock title={t.tools} data={sortedEntries(tools)} total={total} />
+          <ResultBlock title={t.cases} data={sortedEntries(useCases)} total={total} />
+          <ResultBlock title={t.cheat} data={sortedEntries(cheating)} total={total} />
 
-          {/* tools ranking */}
-          <ResultBlock title="Znane narzędzia (ranking)" data={sortedEntries(tools)} total={total} />
-
-          {/* use_cases */}
-          <ResultBlock title="Do czego używasz AI?" data={sortedEntries(useCases)} total={total} />
-
-          {/* cheating */}
-          <ResultBlock title="Czy AI pomaga Ci ściągać?" data={sortedEntries(cheating)} total={total} />
-
-          {/* helpfulness */}
           <div className="space-y-3">
-            <p className="font-medium text-foreground text-sm md:text-base">Pomocność AI (1–5) — średnia: {avgHelpfulness}</p>
+            <p className="font-medium text-foreground text-sm md:text-base">{t.help}: {avgHelpfulness}</p>
             <div className="flex items-end gap-2 h-28">
               {Object.entries(helpDist).map(([val, count]) => {
                 const maxC = Math.max(...Object.values(helpDist), 1)
                 return (
                   <div key={val} className="flex-1 flex flex-col items-center gap-1">
                     <span className="text-xs font-bold text-foreground">{count}</span>
-                    <div
-                      className="w-full bg-primary/80 rounded-t transition-all duration-500"
-                      style={{ height: `${(count / maxC) * 100}%`, minHeight: count > 0 ? 8 : 2 }}
-                    />
+                    <div className="w-full bg-primary/80 rounded-t transition-all duration-500"
+                      style={{ height: `${(count / maxC) * 100}%`, minHeight: count > 0 ? 8 : 2 }} />
                     <span className="text-xs text-muted-foreground font-medium">{val}</span>
                   </div>
                 )

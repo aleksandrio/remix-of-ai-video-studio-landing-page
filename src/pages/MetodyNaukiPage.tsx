@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { LanguageToggle, useLang } from '@/lib/i18n'
+import { LanguageToggle, useT } from '@/lib/i18n'
 import { StartSurveyMetody } from '@/components/metody-nauki/StartSurveyMetody'
 import { FeedbackSurveyMetody } from '@/components/metody-nauki/FeedbackSurveyMetody'
 import { MethodCard } from '@/components/metody-nauki/MethodCard'
@@ -14,6 +14,7 @@ const LESSON_SLUG = '2-metody-nauki'
 export default function MetodyNaukiPage() {
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const t = useT({ pl: { brand: 'AI w szkole', title: 'Lekcja 2 – Metody uczenia się i NotebookLM' }, en: { brand: 'AI in school', title: 'Lesson 2 – Learning methods & NotebookLM' } })
 
   useEffect(() => {
     async function load() {
@@ -53,8 +54,8 @@ export default function MetodyNaukiPage() {
       <header className="border-b border-border bg-card">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">AI w szkole</p>
-            <h1 className="font-heading text-lg font-bold text-foreground">Lekcja 2 – Metody uczenia się i NotebookLM</h1>
+            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">{t.brand}</p>
+            <h1 className="font-heading text-lg font-bold text-foreground">{t.title}</h1>
           </div>
           <div className="flex items-center gap-1">
             <LanguageToggle />

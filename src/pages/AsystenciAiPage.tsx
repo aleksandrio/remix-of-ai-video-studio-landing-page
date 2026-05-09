@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/integrations/supabase/client'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { LanguageToggle } from '@/lib/i18n'
+import { LanguageToggle, useT } from '@/lib/i18n'
 import { StartSurveyAsystenci } from '@/components/asystenci-ai/StartSurveyAsystenci'
 import { FeedbackSurveyAsystenci } from '@/components/asystenci-ai/FeedbackSurveyAsystenci'
 import { AssistantCard } from '@/components/asystenci-ai/AssistantCard'
@@ -208,6 +208,7 @@ Zacznij od: "Hej! 👋 Co masz do zrobienia i co Cię blokuje?"`,
 export default function AsystenciAiPage() {
   const [sessionId, setSessionId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const t = useT({ pl: { brand: 'AI w szkole', title: 'Lekcja 3 – Asystenci AI do nauki' }, en: { brand: 'AI in school', title: 'Lesson 3 – AI assistants for learning' } })
 
   useEffect(() => {
     async function load() {
@@ -247,8 +248,8 @@ export default function AsystenciAiPage() {
       <header className="border-b border-border bg-card">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">AI w szkole</p>
-            <h1 className="font-heading text-lg font-bold text-foreground">Lekcja 3 – Asystenci AI do nauki</h1>
+            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">{t.brand}</p>
+            <h1 className="font-heading text-lg font-bold text-foreground">{t.title}</h1>
           </div>
           <div className="flex items-center gap-1">
             <LanguageToggle />
