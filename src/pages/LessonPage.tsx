@@ -7,7 +7,7 @@ import { FeedbackSurveyModule } from '@/components/lesson/FeedbackSurveyModule'
 import { FeedbackSurveyModule2 } from '@/components/lesson/FeedbackSurveyModule2'
 import { ToolSection } from '@/components/lesson/ToolSection'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { LanguageToggle } from '@/lib/i18n'
+import { LanguageToggle, useT } from '@/lib/i18n'
 import { LESSON_TOOLS_MAP, LESSON_TOOLS } from '@/data/lessonTools'
 
 interface LessonConfig {
@@ -29,6 +29,10 @@ export default function LessonPage() {
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
+  const t = useT({
+    pl: { brand: 'AI w szkole', notFound: 'Nie znaleziono lekcji', notFoundSub: 'Sprawdź, czy link jest poprawny.', howTitle: 'Jak korzystać z promptów', s1: 'Wybierz prompt', s2: 'Kliknij „Kopiuj"', s3: 'Podmień [NAWIASY] i uruchom', w1: '⚠️ AI to asystent — nie zastępuje myślenia.', w2: '⚠️ Nie wklejaj danych wrażliwych.', w3: '⚠️ Jeśli używasz do szkoły — sprawdzaj fakty.', tools: 'Narzędzia' },
+    en: { brand: 'AI in school', notFound: 'Lesson not found', notFoundSub: 'Check if the link is correct.', howTitle: 'How to use the prompts', s1: 'Pick a prompt', s2: 'Click "Copy"', s3: 'Replace [BRACKETS] and run', w1: '⚠️ AI is an assistant — it does not replace thinking.', w2: '⚠️ Do not paste sensitive data.', w3: '⚠️ If you use it for school — verify the facts.', tools: 'Tools' },
+  })
 
   useEffect(() => {
     if (!slug) return
@@ -86,8 +90,8 @@ export default function LessonPage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
-          <h1 className="font-heading text-3xl font-bold text-foreground">Nie znaleziono lekcji</h1>
-          <p className="text-muted-foreground">Sprawdź, czy link jest poprawny.</p>
+          <h1 className="font-heading text-3xl font-bold text-foreground">{t.notFound}</h1>
+          <p className="text-muted-foreground">{t.notFoundSub}</p>
         </div>
       </div>
     )
@@ -98,7 +102,7 @@ export default function LessonPage() {
       <header className="border-b border-border bg-card">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">AI w szkole</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">{t.brand}</p>
             <h1 className="font-heading text-lg font-bold text-foreground">{lesson?.title}</h1>
           </div>
           <div className="flex items-center gap-1">
@@ -118,16 +122,16 @@ export default function LessonPage() {
 
         {/* B) Mini-instruction */}
         <section className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-4">
-          <h2 className="font-heading text-xl font-bold text-foreground">Jak korzystać z promptów</h2>
+          <h2 className="font-heading text-xl font-bold text-foreground">{t.howTitle}</h2>
           <ol className="space-y-2 text-sm text-foreground">
-            <li className="flex gap-2"><span className="font-bold text-primary">1.</span> Wybierz prompt</li>
-            <li className="flex gap-2"><span className="font-bold text-primary">2.</span> Kliknij „Kopiuj"</li>
-            <li className="flex gap-2"><span className="font-bold text-primary">3.</span> Podmień [NAWIASY] i uruchom</li>
+            <li className="flex gap-2"><span className="font-bold text-primary">1.</span> {t.s1}</li>
+            <li className="flex gap-2"><span className="font-bold text-primary">2.</span> {t.s2}</li>
+            <li className="flex gap-2"><span className="font-bold text-primary">3.</span> {t.s3}</li>
           </ol>
           <div className="bg-muted/50 rounded-lg p-4 space-y-1 text-xs text-muted-foreground">
-            <p>⚠️ AI to asystent — nie zastępuje myślenia.</p>
-            <p>⚠️ Nie wklejaj danych wrażliwych.</p>
-            <p>⚠️ Jeśli używasz do szkoły — sprawdzaj fakty.</p>
+            <p>{t.w1}</p>
+            <p>{t.w2}</p>
+            <p>{t.w3}</p>
           </div>
         </section>
 
@@ -247,7 +251,7 @@ export default function LessonPage() {
         )}
 
         <section className="space-y-4">
-          <h2 className="font-heading text-xl font-bold text-foreground">Narzędzia</h2>
+          <h2 className="font-heading text-xl font-bold text-foreground">{t.tools}</h2>
           {(slug && LESSON_TOOLS_MAP[slug] ? LESSON_TOOLS_MAP[slug] : LESSON_TOOLS).map((tool) => (
             <ToolSection key={tool.name} {...tool} />
           ))}
