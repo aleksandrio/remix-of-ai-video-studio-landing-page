@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { CopyButton } from '@/components/ui/CopyButton'
 import { ChevronDown, ChevronUp } from 'lucide-react'
-import { useT } from '@/lib/i18n'
+import { useT, useLang } from '@/lib/i18n'
 
 // Angielski
 import angielskiInstructions from './angielski/system_message.md?raw'
@@ -94,6 +94,7 @@ function CollapsibleAssistant({ data }: { data: AssistantData }) {
   const desc = useT(data.gemDescription)
   const shortDesc = useT(data.description)
   const note = useT(data.toolNote)
+  const { lang } = useLang()
 
   return (
     <div className="bg-card border border-border rounded-lg overflow-hidden">
@@ -152,7 +153,7 @@ function CollapsibleAssistant({ data }: { data: AssistantData }) {
               <h4 className="text-sm font-semibold text-foreground">{t.h5}</h4>
               <p className="text-xs text-muted-foreground">{t.noteSources}</p>
               {data.knowledgeFiles.map((f, i) => (
-                <FileDisplay key={i} title={useT(f.title)} content={f.content} />
+                <FileDisplay key={i} title={f.title[lang]} content={f.content} />
               ))}
             </div>
           )}
@@ -162,7 +163,7 @@ function CollapsibleAssistant({ data }: { data: AssistantData }) {
               <h4 className="text-sm font-semibold text-foreground">{t.extra}</h4>
               <p className="text-xs text-muted-foreground">{t.noteExtra}</p>
               {data.extraKnowledgeFiles.map((f, i) => (
-                <FileDisplay key={i} title={useT(f.title)} content={f.content} />
+                <FileDisplay key={i} title={f.title[lang]} content={f.content} />
               ))}
             </div>
           )}
