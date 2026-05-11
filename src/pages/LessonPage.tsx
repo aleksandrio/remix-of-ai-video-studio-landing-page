@@ -126,7 +126,7 @@ export default function LessonPage() {
     },
     en: {
       title: '🧠 Proven learning methods',
-      intro: <>Before we get to the tools, it\'s worth knowing <strong>why</strong> they work. Every NotebookLM feature is rooted in techniques that researchers have studied for decades — and that really help you remember.</>,
+      intro: <>Before we get to the tools, it{"'"}s worth knowing <strong>why</strong> they work. Every NotebookLM feature is rooted in techniques that researchers have studied for decades — and that really help you remember.</>,
       items: [
         { label: '🗺️ Mind maps', desc: 'Link concepts into a visual network instead of linear notes. They help you see connections between topics and build deeper understanding — instead of mechanical cramming.' },
         { label: '📇 Flashcards (active recall)', desc: 'Question → attempted answer → check. This simple cycle forces the brain to actively retrieve knowledge — one of the most effective techniques for retention.' },
