@@ -21,6 +21,7 @@ export function Navbar() {
   const { lang } = useLang()
   const navLinks = lang === 'pl' ? navLinksPL : navLinksEN
   const ctaLabel = lang === 'pl' ? 'Umów się' : 'Get in touch'
+  const logoLabel = lang === 'pl' ? 'AI w szkole' : 'AI at school'
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOverDarkSection, setIsOverDarkSection] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -82,7 +83,7 @@ export function Navbar() {
           }`}
           style={isOverDarkSection || !isScrolled ? { textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5)' } : undefined}
         >
-          AI w szkole
+          {logoLabel}
         </a>
 
         {/* Desktop links */}

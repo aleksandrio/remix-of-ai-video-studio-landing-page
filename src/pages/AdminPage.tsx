@@ -1,6 +1,76 @@
 import { useState, useEffect, useCallback } from 'react'
 import { adminCall } from '@/lib/adminApi'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { LanguageToggle, useT } from '@/lib/i18n'
+
+const T = {
+  pl: {
+    title: 'Panel admina',
+    passcode: 'Kod dostępu',
+    checking: 'Sprawdzam...',
+    enter: 'Wejdź',
+    invalidCode: 'Nieprawidłowy kod dostępu',
+    lessons: 'Lekcje',
+    delete: 'Usuń',
+    newLesson: 'Nowa lekcja',
+    slug: 'Slug',
+    titleLabel: 'Tytuł',
+    add: 'Dodaj',
+    pickLesson: 'Wybierz lekcję z listy po lewej',
+    sessions: 'Sesje',
+    openStudentPage: 'Otwórz stronę ucznia →',
+    active: 'Aktywna',
+    unnamed: 'Bez nazwy',
+    archive: 'Archiwizuj',
+    newSessionPlaceholder: 'Nazwa nowej sesji (np. 8A 2026-03-04)',
+    newSession: 'Nowa sesja',
+    archived: 'Archiwalne sesje',
+    all: 'Wszystkie',
+    startSurvey: 'Ankieta startowa',
+    feedback: 'Feedback',
+    results: 'wyników',
+    feedbackSummary: 'Podsumowanie feedback',
+    avgRating: 'Średnia ocena',
+    responses: 'Odpowiedzi',
+    bestWorked: 'Co działało najlepiej?',
+    pace: 'Tempo',
+    confirmDelete: (slug: string) => `Usunąć lekcję "${slug}"?`,
+    locale: 'pl',
+  },
+  en: {
+    title: 'Admin panel',
+    passcode: 'Passcode',
+    checking: 'Checking...',
+    enter: 'Enter',
+    invalidCode: 'Invalid passcode',
+    lessons: 'Lessons',
+    delete: 'Delete',
+    newLesson: 'New lesson',
+    slug: 'Slug',
+    titleLabel: 'Title',
+    add: 'Add',
+    pickLesson: 'Pick a lesson from the list on the left',
+    sessions: 'Sessions',
+    openStudentPage: 'Open student page →',
+    active: 'Active',
+    unnamed: 'Unnamed',
+    archive: 'Archive',
+    newSessionPlaceholder: 'New session name (e.g. 8A 2026-03-04)',
+    newSession: 'New session',
+    archived: 'Archived sessions',
+    all: 'All',
+    startSurvey: 'Start survey',
+    feedback: 'Feedback',
+    results: 'results',
+    feedbackSummary: 'Feedback summary',
+    avgRating: 'Average rating',
+    responses: 'Responses',
+    bestWorked: 'What worked best?',
+    pace: 'Pace',
+    confirmDelete: (slug: string) => `Delete lesson "${slug}"?`,
+    locale: 'en',
+  },
+}
 
 interface Lesson {
   lesson_slug: string
@@ -27,6 +97,7 @@ interface SurveyResponse {
 }
 
 export default function AdminPage() {
+  const t = useT(T)
   const [passcode, setPasscode] = useState('')
   const [authenticated, setAuthenticated] = useState(false)
   const [error, setError] = useState('')
@@ -50,11 +121,11 @@ export default function AdminPage() {
       await adminCall(passcode, 'verify')
       setAuthenticated(true)
     } catch {
-      setError('Nieprawidłowy kod dostępu')
+      setError(t.invalidCode)
     } finally {
       setLoading(false)
     }
-  }, [passcode])
+  }, [passcode, t.invalidCode])
 
   const loadLessons = useCallback(async () => {
     const data = await adminCall(passcode, 'list_lessons')
@@ -94,7 +165,7 @@ export default function AdminPage() {
   }
 
   const deleteLesson = async (slug: string) => {
-    if (!confirm(`Usunąć lekcję "${slug}"?`)) return
+    if (!confirm(t.confirmDelete(slug))) return
     await adminCall(passcode, 'delete_lesson', { slug })
     if (selectedSlug === slug) { setSelectedSlug(null); setSessions([]); setResponses([]) }
     loadLessons()
@@ -116,11 +187,15 @@ export default function AdminPage() {
   if (!authenticated) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="absolute top-4 right-4 flex items-center gap-2">
+          <ThemeToggle />
+          <LanguageToggle />
+        </div>
         <div className="w-full max-w-sm space-y-6 p-8">
-          <h1 className="font-heading text-2xl font-bold text-foreground text-center">Panel admina</h1>
+          <h1 className="font-heading text-2xl font-bold text-foreground text-center">{t.title}</h1>
           <input
             type="password"
-            placeholder="Kod dostępu"
+            placeholder={t.passcode}
             value={passcode}
             onChange={(e) => setPasscode(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && verify()}
@@ -132,7 +207,7 @@ export default function AdminPage() {
             disabled={loading || !passcode}
             className="w-full py-3 bg-primary text-primary-foreground font-heading font-semibold rounded-lg disabled:opacity-50 hover:opacity-90 transition-all"
           >
-            {loading ? 'Sprawdzam...' : 'Wejdź'}
+            {loading ? t.checking : t.enter}
           </button>
         </div>
       </div>
@@ -175,15 +250,18 @@ export default function AdminPage() {
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <h1 className="font-heading text-lg font-bold text-foreground">🛠 Panel admina</h1>
-          <ThemeToggle />
+          <h1 className="font-heading text-lg font-bold text-foreground">🛠 {t.title}</h1>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <LanguageToggle />
+          </div>
         </div>
       </header>
 
       <div className="max-w-6xl mx-auto px-4 py-6 grid md:grid-cols-[280px_1fr] gap-6">
         {/* Sidebar */}
         <div className="space-y-4">
-          <h2 className="font-heading text-sm font-bold uppercase tracking-widest text-muted-foreground">Lekcje</h2>
+          <h2 className="font-heading text-sm font-bold uppercase tracking-widest text-muted-foreground">{t.lessons}</h2>
           <div className="space-y-2">
             {lessons.map((l) => (
               <div
@@ -195,54 +273,54 @@ export default function AdminPage() {
               >
                 <p className="font-medium text-foreground text-sm">{l.title}</p>
                 <p className="text-xs text-muted-foreground font-mono">/{l.lesson_slug}</p>
-                <button onClick={(e) => { e.stopPropagation(); deleteLesson(l.lesson_slug) }} className="text-xs text-destructive mt-1 hover:underline">Usuń</button>
+                <button onClick={(e) => { e.stopPropagation(); deleteLesson(l.lesson_slug) }} className="text-xs text-destructive mt-1 hover:underline">{t.delete}</button>
               </div>
             ))}
           </div>
           <div className="border border-border rounded-lg p-3 space-y-2">
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Nowa lekcja</p>
-            <input placeholder="Slug" value={newSlug} onChange={(e) => setNewSlug(e.target.value.replace(/[^a-z0-9-]/g, ''))} className="w-full border border-border bg-background text-foreground rounded p-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
-            <input placeholder="Tytuł" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} className="w-full border border-border bg-background text-foreground rounded p-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
-            <button onClick={createLesson} disabled={!newSlug.trim()} className="w-full py-2 bg-primary text-primary-foreground text-sm font-semibold rounded disabled:opacity-50 hover:opacity-90 transition-all">Dodaj</button>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{t.newLesson}</p>
+            <input placeholder={t.slug} value={newSlug} onChange={(e) => setNewSlug(e.target.value.replace(/[^a-z0-9-]/g, ''))} className="w-full border border-border bg-background text-foreground rounded p-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
+            <input placeholder={t.titleLabel} value={newTitle} onChange={(e) => setNewTitle(e.target.value)} className="w-full border border-border bg-background text-foreground rounded p-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
+            <button onClick={createLesson} disabled={!newSlug.trim()} className="w-full py-2 bg-primary text-primary-foreground text-sm font-semibold rounded disabled:opacity-50 hover:opacity-90 transition-all">{t.add}</button>
           </div>
         </div>
 
         {/* Main */}
         <div className="space-y-6">
           {!selectedSlug ? (
-            <p className="text-muted-foreground text-center py-16">Wybierz lekcję z listy po lewej</p>
+            <p className="text-muted-foreground text-center py-16">{t.pickLesson}</p>
           ) : (
             <>
               {/* Sessions */}
               <div className="bg-card border border-border rounded-lg p-6 space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="font-heading text-lg font-bold text-foreground">Sesje</h2>
-                  <a href={`/lekcja/${selectedSlug}`} target="_blank" rel="noopener" className="text-xs text-primary hover:underline">Otwórz stronę ucznia →</a>
+                  <h2 className="font-heading text-lg font-bold text-foreground">{t.sessions}</h2>
+                  <a href={`/lekcja/${selectedSlug}`} target="_blank" rel="noopener" className="text-xs text-primary hover:underline">{t.openStudentPage}</a>
                 </div>
                 {activeSession && (
                   <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <span className="text-xs font-bold uppercase text-primary">Aktywna</span>
-                        <p className="font-medium text-foreground">{activeSession.name || 'Bez nazwy'}</p>
-                        <p className="text-xs text-muted-foreground">{new Date(activeSession.created_at).toLocaleString('pl')}</p>
+                        <span className="text-xs font-bold uppercase text-primary">{t.active}</span>
+                        <p className="font-medium text-foreground">{activeSession.name || t.unnamed}</p>
+                        <p className="text-xs text-muted-foreground">{new Date(activeSession.created_at).toLocaleString(t.locale)}</p>
                       </div>
-                      <button onClick={() => archiveSession(activeSession.id)} className="text-xs border border-border px-3 py-1 rounded hover:bg-muted transition-all">Archiwizuj</button>
+                      <button onClick={() => archiveSession(activeSession.id)} className="text-xs border border-border px-3 py-1 rounded hover:bg-muted transition-all">{t.archive}</button>
                     </div>
                   </div>
                 )}
                 <div className="flex gap-2">
-                  <input placeholder="Nazwa nowej sesji (np. 8A 2026-03-04)" value={newSessionName} onChange={(e) => setNewSessionName(e.target.value)} className="flex-1 border border-border bg-background text-foreground rounded p-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
-                  <button onClick={createSession} className="px-4 py-2 bg-primary text-primary-foreground text-sm font-semibold rounded hover:opacity-90 transition-all">Nowa sesja</button>
+                  <input placeholder={t.newSessionPlaceholder} value={newSessionName} onChange={(e) => setNewSessionName(e.target.value)} className="flex-1 border border-border bg-background text-foreground rounded p-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
+                  <button onClick={createSession} className="px-4 py-2 bg-primary text-primary-foreground text-sm font-semibold rounded hover:opacity-90 transition-all">{t.newSession}</button>
                 </div>
                 {archivedSessions.length > 0 && (
                   <details className="text-sm">
-                    <summary className="cursor-pointer text-muted-foreground hover:text-foreground">Archiwalne sesje ({archivedSessions.length})</summary>
+                    <summary className="cursor-pointer text-muted-foreground hover:text-foreground">{t.archived} ({archivedSessions.length})</summary>
                     <div className="mt-2 space-y-1">
                       {archivedSessions.map((s) => (
                         <div key={s.id} className={`flex justify-between items-center p-2 rounded cursor-pointer transition-all ${selectedSessionId === s.id ? 'bg-muted' : 'hover:bg-muted/50'}`} onClick={() => setSelectedSessionId(selectedSessionId === s.id ? null : s.id)}>
-                          <span className="text-foreground">{s.name || 'Bez nazwy'}</span>
-                          <span className="text-xs text-muted-foreground">{s.archived_at ? new Date(s.archived_at).toLocaleDateString('pl') : ''}</span>
+                          <span className="text-foreground">{s.name || t.unnamed}</span>
+                          <span className="text-xs text-muted-foreground">{s.archived_at ? new Date(s.archived_at).toLocaleDateString(t.locale) : ''}</span>
                         </div>
                       ))}
                     </div>
@@ -252,33 +330,33 @@ export default function AdminPage() {
 
               {/* Filter */}
               <div className="flex gap-2">
-                {(['', 'start', 'feedback'] as const).map((t) => (
-                  <button key={t} onClick={() => setSurveyTypeFilter(t)} className={`px-4 py-2 text-sm rounded-lg border transition-all ${surveyTypeFilter === t ? 'border-primary bg-primary/10 text-foreground' : 'border-border text-muted-foreground hover:text-foreground'}`}>
-                    {t === '' ? 'Wszystkie' : t === 'start' ? 'Ankieta startowa' : 'Feedback'}
+                {(['', 'start', 'feedback'] as const).map((f) => (
+                  <button key={f} onClick={() => setSurveyTypeFilter(f)} className={`px-4 py-2 text-sm rounded-lg border transition-all ${surveyTypeFilter === f ? 'border-primary bg-primary/10 text-foreground' : 'border-border text-muted-foreground hover:text-foreground'}`}>
+                    {f === '' ? t.all : f === 'start' ? t.startSurvey : t.feedback}
                   </button>
                 ))}
-                <span className="flex items-center text-xs text-muted-foreground ml-auto">{responses.length} wyników</span>
+                <span className="flex items-center text-xs text-muted-foreground ml-auto">{responses.length} {t.results}</span>
               </div>
 
               {/* Feedback aggregates */}
               {feedbackResponses.length > 0 && (surveyTypeFilter === '' || surveyTypeFilter === 'feedback') && (
                 <div className="bg-card border border-border rounded-lg p-6 space-y-6">
-                  <h3 className="font-heading text-sm font-bold uppercase tracking-widest text-muted-foreground">Podsumowanie feedback</h3>
+                  <h3 className="font-heading text-sm font-bold uppercase tracking-widest text-muted-foreground">{t.feedbackSummary}</h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <p className="text-3xl font-bold text-foreground">{avgRating}</p>
-                      <p className="text-xs text-muted-foreground">Średnia ocena</p>
+                      <p className="text-xs text-muted-foreground">{t.avgRating}</p>
                     </div>
                     <div className="text-center">
                       <p className="text-3xl font-bold text-foreground">{feedbackResponses.length}</p>
-                      <p className="text-xs text-muted-foreground">Odpowiedzi</p>
+                      <p className="text-xs text-muted-foreground">{t.responses}</p>
                     </div>
                   </div>
 
                   {/* best_worked */}
                   {bestWorkedAgg.length > 0 && (
                     <div className="space-y-2">
-                      <p className="text-sm font-semibold text-foreground">Co działało najlepiej?</p>
+                      <p className="text-sm font-semibold text-foreground">{t.bestWorked}</p>
                       {bestWorkedAgg.map(([label, count]) => (
                         <div key={label} className="flex justify-between text-sm">
                           <span className="text-foreground">{label}</span>
@@ -291,7 +369,7 @@ export default function AdminPage() {
                   {/* pace */}
                   {paceAgg.length > 0 && (
                     <div className="space-y-2">
-                      <p className="text-sm font-semibold text-foreground">Tempo</p>
+                      <p className="text-sm font-semibold text-foreground">{t.pace}</p>
                       {paceAgg.map(([label, count]) => (
                         <div key={label} className="flex justify-between text-sm">
                           <span className="text-foreground">{label}</span>
@@ -309,7 +387,7 @@ export default function AdminPage() {
                   <div key={r.id} className="bg-card border border-border rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <span className={`text-xs font-bold uppercase px-2 py-0.5 rounded ${r.survey_type === 'start' ? 'bg-primary/10 text-primary' : 'bg-accent-terracotta/10 text-accent-terracotta'}`}>{r.survey_type}</span>
-                      <span className="text-xs text-muted-foreground">{new Date(r.created_at).toLocaleString('pl')}</span>
+                      <span className="text-xs text-muted-foreground">{new Date(r.created_at).toLocaleString(t.locale)}</span>
                     </div>
                     <div className="grid gap-1 text-sm">
                       {Object.entries(r.payload).map(([key, val]) => (

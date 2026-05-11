@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Moon, Sun } from 'lucide-react'
+import { useLang } from '@/lib/i18n'
 
 export function ThemeToggle({ className = '' }: { className?: string }) {
+  const { lang } = useLang()
   const [isDark, setIsDark] = useState(() => {
     if (typeof window === 'undefined') return false
     const stored = localStorage.getItem('theme')
@@ -23,7 +25,11 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
     <button
       onClick={() => setIsDark(!isDark)}
       className={`p-2 transition-colors duration-300 ${className}`}
-      aria-label={isDark ? 'Włącz tryb jasny' : 'Włącz tryb ciemny'}
+      aria-label={
+        lang === 'pl'
+          ? isDark ? 'Włącz tryb jasny' : 'Włącz tryb ciemny'
+          : isDark ? 'Switch to light mode' : 'Switch to dark mode'
+      }
     >
       {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
     </button>
