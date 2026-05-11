@@ -7,8 +7,9 @@ import { FeedbackSurveyModule } from '@/components/lesson/FeedbackSurveyModule'
 import { FeedbackSurveyModule2 } from '@/components/lesson/FeedbackSurveyModule2'
 import { ToolSection } from '@/components/lesson/ToolSection'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { LanguageToggle, useT } from '@/lib/i18n'
+import { LanguageToggle, useT, useLang } from '@/lib/i18n'
 import { LESSON_TOOLS_MAP, LESSON_TOOLS } from '@/data/lessonTools'
+import { LESSON_TOOLS_MAP_EN, LESSON_TOOLS_EN } from '@/data/lessonToolsEn'
 
 interface LessonConfig {
   lesson_slug: string
@@ -23,8 +24,15 @@ interface Session {
   status: string
 }
 
+const LESSON_TITLES: Record<string, { pl: string; en: string }> = {
+  '1-google-intro': { pl: 'Lekcja 1 — Google AI: tworzenie obrazów, filmów i muzyki', en: 'Lesson 1 — Google AI: creating images, videos and music' },
+  '2-notebooklm': { pl: 'Lekcja 2 — NotebookLM: nauka z własnych materiałów', en: 'Lesson 2 — NotebookLM: studying from your own materials' },
+  '3-ai-english': { pl: 'Lekcja 3 — Asystenci głosowi AI do nauki języków', en: 'Lesson 3 — AI voice assistants for language learning' },
+}
+
 export default function LessonPage() {
   const { slug } = useParams<{ slug: string }>()
+  const { lang } = useLang()
   const [lesson, setLesson] = useState<LessonConfig | null>(null)
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
@@ -32,6 +40,103 @@ export default function LessonPage() {
   const t = useT({
     pl: { brand: 'AI w szkole', notFound: 'Nie znaleziono lekcji', notFoundSub: 'Sprawdź, czy link jest poprawny.', howTitle: 'Jak korzystać z promptów', s1: 'Wybierz prompt', s2: 'Kliknij „Kopiuj"', s3: 'Podmień [NAWIASY] i uruchom', w1: '⚠️ AI to asystent — nie zastępuje myślenia.', w2: '⚠️ Nie wklejaj danych wrażliwych.', w3: '⚠️ Jeśli używasz do szkoły — sprawdzaj fakty.', tools: 'Narzędzia' },
     en: { brand: 'AI in school', notFound: 'Lesson not found', notFoundSub: 'Check if the link is correct.', howTitle: 'How to use the prompts', s1: 'Pick a prompt', s2: 'Click "Copy"', s3: 'Replace [BRACKETS] and run', w1: '⚠️ AI is an assistant — it does not replace thinking.', w2: '⚠️ Do not paste sensitive data.', w3: '⚠️ If you use it for school — verify the facts.', tools: 'Tools' },
+  })
+
+  const ethics = useT({
+    pl: {
+      title: '🤝 Tworzenie z szacunkiem',
+      p1: 'Narzędzia generatywnej AI dają Ci ogromne możliwości twórcze — możesz tworzyć niesamowite grafiki, filmy i muzykę. Z taką mocą wiąże się jednak odpowiedzialność.',
+      p2pre: 'Każda osoba ma prawo do swojego wizerunku. Tworzenie treści z wykorzystaniem czyjejś twarzy lub zdjęć ',
+      p2bold: 'wymaga zawsze zgody tej osoby',
+      p2post: '. To nie tylko kwestia prawa — to kwestia szacunku do drugiego człowieka.',
+      reactTitle: 'Co robić, gdy widzisz, że ktoś tworzy treści krzywdzące inne osoby?',
+      r1: 'Zareaguj — powiedz, że to nie jest OK',
+      r2: 'Usuń takie treści, jeśli masz taką możliwość',
+      r3: 'Zgłoś problem nauczycielowi lub innej zaufanej osobie dorosłej',
+      footer: 'Najlepsi twórcy potrafią tworzyć rzeczy, które inspirują — nie ranią. Bądź takim twórcą. 💪',
+    },
+    en: {
+      title: '🤝 Create with respect',
+      p1: 'Generative AI tools give you huge creative power — you can make amazing graphics, films and music. With great power comes responsibility.',
+      p2pre: 'Every person has a right to their own image. Creating content using someone\'s face or photos ',
+      p2bold: 'always requires that person\'s consent',
+      p2post: '. It\'s not only a legal matter — it\'s about respect for another human being.',
+      reactTitle: 'What to do when you see someone creating content that hurts others?',
+      r1: 'Speak up — say it\'s not OK',
+      r2: 'Remove such content if you can',
+      r3: 'Report the problem to a teacher or another trusted adult',
+      footer: 'The best creators make things that inspire — not hurt. Be that kind of creator. 💪',
+    },
+  })
+
+  const possibilities = useT({
+    pl: {
+      title: '🚀 Co możesz z tym zrobić?',
+      intro: 'Narzędzia, które dziś poznasz, to nie zabawki — to profesjonalne studio multimedialne w Twojej przeglądarce. Oto kilka pomysłów, jak możesz je wykorzystać:',
+      schoolLabel: '🎓 W szkole',
+      schoolItems: [
+        'Ilustracje i grafiki do prezentacji, które wyróżnią Twój projekt',
+        'Krótkie filmy edukacyjne do projektów grupowych',
+        'Plakaty na wydarzenia szkolne w kilka minut',
+        'Podkład muzyczny do własnych materiałów wideo',
+      ],
+      channelLabel: '🎥 Na własny kanał',
+      channelItems: [
+        'Intro i outro do filmów na YouTube czy TikToka',
+        'Miniaturki (thumbnails), które przyciągają uwagę',
+        'Oryginalna muzyka bez problemów z prawami autorskimi',
+        'Wstawki wizualne i animacje, które podnoszą jakość treści',
+      ],
+      footer: 'Ludzie, którzy dziś prowadzą popularne kanały, zaczynali dokładnie od takich eksperymentów. Jedyna różnica? Oni zaczęli — a Ty właśnie zaczynasz. 🎯',
+    },
+    en: {
+      title: '🚀 What can you do with this?',
+      intro: 'The tools you\'ll learn today are not toys — they\'re a professional multimedia studio in your browser. Here are a few ideas of how to use them:',
+      schoolLabel: '🎓 At school',
+      schoolItems: [
+        'Illustrations and graphics for presentations that make your project stand out',
+        'Short educational films for group projects',
+        'Posters for school events in minutes',
+        'Background music for your own video materials',
+      ],
+      channelLabel: '🎥 For your own channel',
+      channelItems: [
+        'Intros and outros for YouTube or TikTok videos',
+        'Eye-catching thumbnails',
+        'Original music without copyright issues',
+        'Visual inserts and animations that raise the quality of your content',
+      ],
+      footer: 'The people running popular channels today started with exactly these kinds of experiments. The only difference? They started — and you\'re starting now. 🎯',
+    },
+  })
+
+  const methods = useT({
+    pl: {
+      title: '🧠 Sprawdzone metody uczenia się',
+      intro: <>Zanim przejdziemy do narzędzi, warto wiedzieć <strong>dlaczego</strong> działają. Każda z funkcji NotebookLM opiera się na technikach, które naukowcy badają od dekad — i które naprawdę pomagają zapamiętywać.</>,
+      items: [
+        { label: '🗺️ Mapy myśli', desc: 'Łączą pojęcia w wizualną sieć zamiast liniowych notatek. Pomagają zobaczyć związki między tematami i budują głębsze zrozumienie — zamiast mechanicznego wkuwania.' },
+        { label: '📇 Fiszki (active recall)', desc: 'Pytanie → próba odpowiedzi → sprawdzenie. Ten prosty cykl zmusza mózg do aktywnego wydobywania wiedzy, co jest jedną z najskuteczniejszych technik utrwalania materiału.' },
+        { label: '🎧 Podcasty i słuchanie', desc: 'Uczenie się przez słuchanie aktywuje inny kanał percepcji. Możesz powtarzać materiał w drodze do szkoły, na spacerze — wtedy, kiedy czytanie jest niemożliwe.' },
+        { label: '❓ Quizy (self-testing)', desc: 'Testowanie siebie nie służy tylko ocenianiu — to potężna metoda nauki. Quizy pomagają wykryć luki w wiedzy i wzmacniają to, co już wiesz.' },
+        { label: '📝 Streszczenia i notatki', desc: 'Przetwarzanie materiału własnymi słowami (lub czytanie dobrych streszczeń) pomaga wyłowić najważniejsze informacje i zorganizować wiedzę w głowie.' },
+        { label: '🔁 Powtórki rozłożone w czasie', desc: 'Powtarzanie materiału w rosnących odstępach czasu (np. po 1, 3, 7 dniach) drastycznie zwiększa trwałość wiedzy — to tzw. spaced repetition.' },
+      ],
+      footer: 'NotebookLM łączy te metody w jednym narzędziu — i robi to automatycznie na podstawie Twoich materiałów. Zobaczmy jak. 👇',
+    },
+    en: {
+      title: '🧠 Proven learning methods',
+      intro: <>Before we get to the tools, it{"'"}s worth knowing <strong>why</strong> they work. Every NotebookLM feature is rooted in techniques that researchers have studied for decades — and that really help you remember.</>,
+      items: [
+        { label: '🗺️ Mind maps', desc: 'Link concepts into a visual network instead of linear notes. They help you see connections between topics and build deeper understanding — instead of mechanical cramming.' },
+        { label: '📇 Flashcards (active recall)', desc: 'Question → attempted answer → check. This simple cycle forces the brain to actively retrieve knowledge — one of the most effective techniques for retention.' },
+        { label: '🎧 Podcasts and listening', desc: 'Learning by listening activates another perception channel. You can revisit material on your way to school, on a walk — when reading is impossible.' },
+        { label: '❓ Quizzes (self-testing)', desc: 'Testing yourself is not only for grading — it\'s a powerful learning method. Quizzes help spot knowledge gaps and reinforce what you already know.' },
+        { label: '📝 Summaries and notes', desc: 'Processing material in your own words (or reading good summaries) helps surface the most important information and organize knowledge in your head.' },
+        { label: '🔁 Spaced repetition', desc: 'Repeating material at increasing intervals (e.g. after 1, 3, 7 days) dramatically improves retention — known as spaced repetition.' },
+      ],
+      footer: 'NotebookLM combines these methods in one tool — automatically, based on your materials. Let\'s see how. 👇',
+    },
   })
 
   useEffect(() => {
@@ -52,7 +157,6 @@ export default function LessonPage() {
 
       setLesson(lessonData as unknown as LessonConfig)
 
-      // Find active session
       let { data: sessionData } = await supabase
         .from('survey_sessions')
         .select('*')
@@ -60,7 +164,6 @@ export default function LessonPage() {
         .eq('status', 'active')
         .maybeSingle()
 
-      // Auto-create if none exists
       if (!sessionData) {
         const name = `Auto: ${new Date().toLocaleString('pl')}`
         const { data: newSession } = await supabase
@@ -97,13 +200,17 @@ export default function LessonPage() {
     )
   }
 
+  const titleOverride = slug && LESSON_TITLES[slug] ? LESSON_TITLES[slug][lang] : lesson?.title
+  const toolsMap = lang === 'en' ? LESSON_TOOLS_MAP_EN : LESSON_TOOLS_MAP
+  const toolsFallback = lang === 'en' ? LESSON_TOOLS_EN : LESSON_TOOLS
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
             <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">{t.brand}</p>
-            <h1 className="font-heading text-lg font-bold text-foreground">{lesson?.title}</h1>
+            <h1 className="font-heading text-lg font-bold text-foreground">{titleOverride}</h1>
           </div>
           <div className="flex items-center gap-1">
             <LanguageToggle />
@@ -113,14 +220,12 @@ export default function LessonPage() {
       </header>
 
       <main className="max-w-3xl mx-auto px-4 py-8 space-y-12">
-        {/* A) Start survey */}
         {lesson?.start_survey_enabled && session && (
           slug === '2-notebooklm'
             ? <StartSurveyModule2 lessonSlug={slug} sessionId={session.id} />
             : <StartSurveyModule lessonSlug={slug!} sessionId={session.id} />
         )}
 
-        {/* B) Mini-instruction */}
         <section className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-4">
           <h2 className="font-heading text-xl font-bold text-foreground">{t.howTitle}</h2>
           <ol className="space-y-2 text-sm text-foreground">
@@ -135,129 +240,74 @@ export default function LessonPage() {
           </div>
         </section>
 
-        {/* Ethical use note — lesson 1 */}
         {slug === '1-google-intro' && (
           <section className="bg-card border border-primary/20 rounded-lg p-6 md:p-8 space-y-4">
-            <h2 className="font-heading text-xl font-bold text-foreground">🤝 Tworzenie z szacunkiem</h2>
+            <h2 className="font-heading text-xl font-bold text-foreground">{ethics.title}</h2>
+            <p className="text-sm text-foreground leading-relaxed">{ethics.p1}</p>
             <p className="text-sm text-foreground leading-relaxed">
-              Narzędzia generatywnej AI dają Ci ogromne możliwości twórcze — możesz tworzyć niesamowite grafiki, filmy i muzykę. Z taką mocą wiąże się jednak odpowiedzialność.
-            </p>
-            <p className="text-sm text-foreground leading-relaxed">
-              Każda osoba ma prawo do swojego wizerunku. Tworzenie treści z wykorzystaniem czyjejś twarzy lub zdjęć <strong>wymaga zawsze zgody tej osoby</strong>. To nie tylko kwestia prawa — to kwestia szacunku do drugiego człowieka.
+              {ethics.p2pre}<strong>{ethics.p2bold}</strong>{ethics.p2post}
             </p>
             <div className="bg-primary/5 border border-primary/10 rounded-lg p-4 space-y-2 text-sm text-foreground">
-              <p className="font-semibold">Co robić, gdy widzisz, że ktoś tworzy treści krzywdzące inne osoby?</p>
+              <p className="font-semibold">{ethics.reactTitle}</p>
               <ul className="space-y-1.5 text-muted-foreground">
-                <li className="flex gap-2"><span className="text-primary font-bold">→</span> Zareaguj — powiedz, że to nie jest OK</li>
-                <li className="flex gap-2"><span className="text-primary font-bold">→</span> Usuń takie treści, jeśli masz taką możliwość</li>
-                <li className="flex gap-2"><span className="text-primary font-bold">→</span> Zgłoś problem nauczycielowi lub innej zaufanej osobie dorosłej</li>
+                <li className="flex gap-2"><span className="text-primary font-bold">→</span> {ethics.r1}</li>
+                <li className="flex gap-2"><span className="text-primary font-bold">→</span> {ethics.r2}</li>
+                <li className="flex gap-2"><span className="text-primary font-bold">→</span> {ethics.r3}</li>
               </ul>
             </div>
-            <p className="text-xs text-muted-foreground italic">
-              Najlepsi twórcy potrafią tworzyć rzeczy, które inspirują — nie ranią. Bądź takim twórcą. 💪
-            </p>
+            <p className="text-xs text-muted-foreground italic">{ethics.footer}</p>
           </section>
         )}
 
-        {/* Possibilities section — lesson 1 */}
         {slug === '1-google-intro' && (
           <section className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-5">
-            <h2 className="font-heading text-xl font-bold text-foreground">🚀 Co możesz z tym zrobić?</h2>
-            <p className="text-sm text-foreground leading-relaxed">
-              Narzędzia, które dziś poznasz, to nie zabawki — to profesjonalne studio multimedialne w Twojej przeglądarce. Oto kilka pomysłów, jak możesz je wykorzystać:
-            </p>
+            <h2 className="font-heading text-xl font-bold text-foreground">{possibilities.title}</h2>
+            <p className="text-sm text-foreground leading-relaxed">{possibilities.intro}</p>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="bg-muted/40 rounded-lg p-4 space-y-2">
-                <p className="text-sm font-semibold text-foreground">🎓 W szkole</p>
+                <p className="text-sm font-semibold text-foreground">{possibilities.schoolLabel}</p>
                 <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex gap-2"><span className="text-primary">•</span> Ilustracje i grafiki do prezentacji, które wyróżnią Twój projekt</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span> Krótkie filmy edukacyjne do projektów grupowych</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span> Plakaty na wydarzenia szkolne w kilka minut</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span> Podkład muzyczny do własnych materiałów wideo</li>
+                  {possibilities.schoolItems.map((it, i) => (
+                    <li key={i} className="flex gap-2"><span className="text-primary">•</span> {it}</li>
+                  ))}
                 </ul>
               </div>
               <div className="bg-muted/40 rounded-lg p-4 space-y-2">
-                <p className="text-sm font-semibold text-foreground">🎥 Na własny kanał</p>
+                <p className="text-sm font-semibold text-foreground">{possibilities.channelLabel}</p>
                 <ul className="space-y-1.5 text-sm text-muted-foreground">
-                  <li className="flex gap-2"><span className="text-primary">•</span> Intro i outro do filmów na YouTube czy TikToka</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span> Miniaturki (thumbnails), które przyciągają uwagę</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span> Oryginalna muzyka bez problemów z prawami autorskimi</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span> Wstawki wizualne i animacje, które podnoszą jakość treści</li>
+                  {possibilities.channelItems.map((it, i) => (
+                    <li key={i} className="flex gap-2"><span className="text-primary">•</span> {it}</li>
+                  ))}
                 </ul>
               </div>
             </div>
-            <p className="text-xs text-muted-foreground italic">
-              Ludzie, którzy dziś prowadzą popularne kanały, zaczynali dokładnie od takich eksperymentów. Jedyna różnica? Oni zaczęli — a Ty właśnie zaczynasz. 🎯
-            </p>
+            <p className="text-xs text-muted-foreground italic">{possibilities.footer}</p>
           </section>
         )}
 
-        {/* Learning methods intro — lesson 2 */}
         {slug === '2-notebooklm' && (
           <section className="bg-card border border-border rounded-lg p-6 md:p-8 space-y-6">
-            <h2 className="font-heading text-xl font-bold text-foreground">🧠 Sprawdzone metody uczenia się</h2>
-            <p className="text-sm text-foreground leading-relaxed">
-              Zanim przejdziemy do narzędzi, warto wiedzieć <strong>dlaczego</strong> działają. Każda z funkcji NotebookLM opiera się na technikach, które naukowcy badają od dekad — i które naprawdę pomagają zapamiętywać.
-            </p>
-
+            <h2 className="font-heading text-xl font-bold text-foreground">{methods.title}</h2>
+            <p className="text-sm text-foreground leading-relaxed">{methods.intro}</p>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
-                <p className="text-sm font-semibold text-foreground">🗺️ Mapy myśli</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Łączą pojęcia w wizualną sieć zamiast liniowych notatek. Pomagają zobaczyć związki między tematami i budują głębsze zrozumienie — zamiast mechanicznego wkuwania.
-                </p>
-              </div>
-
-              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
-                <p className="text-sm font-semibold text-foreground">📇 Fiszki (active recall)</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Pytanie → próba odpowiedzi → sprawdzenie. Ten prosty cykl zmusza mózg do aktywnego wydobywania wiedzy, co jest jedną z najskuteczniejszych technik utrwalania materiału.
-                </p>
-              </div>
-
-              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
-                <p className="text-sm font-semibold text-foreground">🎧 Podcasty i słuchanie</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Uczenie się przez słuchanie aktywuje inny kanał percepcji. Możesz powtarzać materiał w drodze do szkoły, na spacerze — wtedy, kiedy czytanie jest niemożliwe.
-                </p>
-              </div>
-
-              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
-                <p className="text-sm font-semibold text-foreground">❓ Quizy (self-testing)</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Testowanie siebie nie służy tylko ocenianiu — to potężna metoda nauki. Quizy pomagają wykryć luki w wiedzy i wzmacniają to, co już wiesz.
-                </p>
-              </div>
-
-              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
-                <p className="text-sm font-semibold text-foreground">📝 Streszczenia i notatki</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Przetwarzanie materiału własnymi słowami (lub czytanie dobrych streszczeń) pomaga wyłowić najważniejsze informacje i zorganizować wiedzę w głowie.
-                </p>
-              </div>
-
-              <div className="bg-muted/40 rounded-lg p-4 space-y-2">
-                <p className="text-sm font-semibold text-foreground">🔁 Powtórki rozłożone w czasie</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Powtarzanie materiału w rosnących odstępach czasu (np. po 1, 3, 7 dniach) drastycznie zwiększa trwałość wiedzy — to tzw. <em>spaced repetition</em>.
-                </p>
-              </div>
+              {methods.items.map((m, i) => (
+                <div key={i} className="bg-muted/40 rounded-lg p-4 space-y-2">
+                  <p className="text-sm font-semibold text-foreground">{m.label}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{m.desc}</p>
+                </div>
+              ))}
             </div>
-
-            <p className="text-xs text-muted-foreground italic">
-              NotebookLM łączy te metody w jednym narzędziu — i robi to automatycznie na podstawie Twoich materiałów. Zobaczmy jak. 👇
-            </p>
+            <p className="text-xs text-muted-foreground italic">{methods.footer}</p>
           </section>
         )}
 
         <section className="space-y-4">
           <h2 className="font-heading text-xl font-bold text-foreground">{t.tools}</h2>
-          {(slug && LESSON_TOOLS_MAP[slug] ? LESSON_TOOLS_MAP[slug] : LESSON_TOOLS).map((tool) => (
+          {(slug && toolsMap[slug] ? toolsMap[slug] : toolsFallback).map((tool) => (
             <ToolSection key={tool.name} {...tool} />
           ))}
         </section>
 
-        {/* D) Feedback */}
         {lesson?.feedback_survey_enabled && session && (
           slug === '2-notebooklm'
             ? <FeedbackSurveyModule2 lessonSlug={slug} sessionId={session.id} />
